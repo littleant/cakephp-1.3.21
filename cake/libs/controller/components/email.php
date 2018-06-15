@@ -18,7 +18,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::import('Core', 'Multibyte');
-App::import('Core', 'String');
+App::import('Core', 'CakeString');
 
 /**
  * EmailComponent
@@ -31,7 +31,7 @@ App::import('Core', 'String');
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Components/Email.html
  *
  */
-class EmailComponent extends Object{
+class EmailComponent extends CakeObject{
 
 /**
  * Recipient of the email
@@ -592,7 +592,7 @@ class EmailComponent extends Object{
 
 		if ($this->messageId !== false) {
 			if ($this->messageId === true) {
-				$headers['Message-ID'] = '<' . str_replace('-', '', String::uuid()) . '@' . env('HTTP_HOST') . '>';
+				$headers['Message-ID'] = '<' . str_replace('-', '', CakeString::uuid()) . '@' . env('HTTP_HOST') . '>';
 			} else {
 				$headers['Message-ID'] = $this->messageId;
 			}
@@ -841,7 +841,7 @@ class EmailComponent extends Object{
  * @access protected
  */
 	function _getSocket($config) {
-		$this->__smtpConnection =& new CakeSocket($config);
+		$this->__smtpConnection = new CakeSocket($config);
 	}
 
 /**
@@ -960,7 +960,9 @@ class EmailComponent extends Object{
 				$this->smtpError = 'timeout';
 				return false;
 			}
-			$response = end(explode("\r\n", rtrim($response, "\r\n")));
+			$response = rtrim($response, "\r\n");
+			$response = explode("\r\n", $response));
+			$response = end($response);
 
 			if (preg_match('/^(' . $checkCode . ')(.)/', $response, $code)) {
 				if ($code[2] === '-') {

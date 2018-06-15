@@ -41,7 +41,7 @@ class AllCoreJavascriptHelpersGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function AllCoreJavascriptHelpersGroupTest() {
+	function __construct() {
 		$helperTestPath = CORE_TEST_CASES . DS . 'libs' . DS . 'view' . DS . 'helpers' . DS;
 		TestManager::addTestFile($this, $helperTestPath . 'js.test.php');
 		TestManager::addTestFile($this, $helperTestPath . 'jquery_engine.test.php');

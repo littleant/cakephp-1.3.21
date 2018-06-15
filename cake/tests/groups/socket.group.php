@@ -48,7 +48,7 @@ class SocketGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function SocketGroupTest() {
+	function __construct() {
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'cake_socket');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'http_socket');
 	}

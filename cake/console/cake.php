@@ -129,7 +129,7 @@ class ShellDispatcher {
  * @return void
  * @access public
  */
-	function ShellDispatcher($args = array()) {
+	function __construct($args = array()) {
 		set_time_limit(0);
 
 		$this->__initConstants();
@@ -622,7 +622,7 @@ class ShellDispatcher {
 		if ($shellList) {
 			ksort($shellList);
 			if (DS === '/') {
-				$width = exec('tput cols') - 2;
+				$width = ((int) exec('tput cols')) - 2;
 			}
 			if (empty($width)) {
 				$width = 80;

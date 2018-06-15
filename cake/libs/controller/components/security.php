@@ -17,7 +17,7 @@
  * @since         CakePHP(tm) v 0.10.8.2156
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-App::import('Core', array('String', 'Security'));
+App::import('Core', array('CakeString', 'Security'));
 
 /**
  * SecurityComponent
@@ -26,7 +26,7 @@ App::import('Core', array('String', 'Security'));
  * @subpackage    cake.cake.libs.controller.components
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Components/Security-Component.html#Security-Component
  */
-class SecurityComponent extends Object {
+class SecurityComponent extends CakeObject {
 
 /**
  * The controller method that will be called if this request is black-hole'd
@@ -726,7 +726,7 @@ class SecurityComponent extends Object {
 			'type' => 'basic',
 			'realm' => env('SERVER_NAME'),
 			'qop' => 'auth',
-			'nonce' => String::uuid()
+			'nonce' => CakeString::uuid()
 		), array_filter($options));
 		$options = array_merge(array('opaque' => md5($options['realm'])), $options);
 	}

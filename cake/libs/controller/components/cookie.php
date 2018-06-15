@@ -33,7 +33,7 @@ App::import('Core', 'Security');
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Components/Cookies.html
  *
  */
-class CookieComponent extends Object {
+class CookieComponent extends CakeObject {
 
 /**
  * The name of the cookie.

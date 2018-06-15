@@ -223,7 +223,7 @@ class JqueryEngineHelper extends JsBaseEngineHelper {
 	function effect($name, $options = array()) {
 		$speed = null;
 		if (isset($options['speed']) && in_array($options['speed'], array('fast', 'slow'))) {
-			$speed = $this->value($options['speed']);
+			$speed = $this->jsonValue($options['speed']);
 		}
 		$effect = '';
 		switch ($name) {

@@ -650,10 +650,10 @@ class JavascriptHelper extends AppHelper {
 						($options['quoteKeys'] && in_array($key, $options['stringKeys'], true)) ||
 						(!$options['quoteKeys'] && !in_array($key, $options['stringKeys'], true))
 					);
-					$val = $this->value($val, $quoteStrings);
+					$val = $this->jsonValue($val, $quoteStrings);
 				}
 				if (!$numeric) {
-					$val = $options['q'] . $this->value($key, false) . $options['q'] . ':' . $val;
+					$val = $options['q'] . $this->jsonValue($key, false) . $options['q'] . ':' . $val;
 				}
 				$out[] = $val;
 			}
@@ -680,7 +680,7 @@ class JavascriptHelper extends AppHelper {
  * @param boolean $quoteStrings If false, leaves string values unquoted
  * @return string a JavaScript-safe/JSON representation of $val
  */
-	function value($val, $quoteStrings = true) {
+	function jsonValue($val, $quoteStrings = true) {
 		switch (true) {
 			case (is_array($val) || is_object($val)):
 				$val = $this->object($val);

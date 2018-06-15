@@ -31,7 +31,7 @@
  * @subpackage    cake.cake.libs.controller.components
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Components/Access-Control-Lists.html
  */
-class AclComponent extends Object {
+class AclComponent extends CakeObject {
 
 /**
  * Instance of an ACL class
@@ -55,7 +55,7 @@ class AclComponent extends Object {
 				trigger_error(sprintf(__('Could not find %s.', true), $name), E_USER_WARNING);
 			}
 		}
-		$this->_Instance =& new $name();
+		$this->_Instance = new $name();
 		$this->_Instance->initialize($this);
 	}
 
@@ -169,7 +169,7 @@ class AclComponent extends Object {
  * @subpackage    cake.cake.libs.controller.components
  * @abstract
  */
-class AclBase extends Object {
+class AclBase extends CakeObject {
 
 /**
  * This class should never be instantiated, just subclassed.

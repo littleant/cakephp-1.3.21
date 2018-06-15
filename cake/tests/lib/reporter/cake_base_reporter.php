@@ -81,8 +81,8 @@ class CakeBaseReporter extends SimpleReporter {
  * @param array $params Array of request parameters the reporter should use. See above.
  * @access public
  */
-	function CakeBaseReporter($charset = 'utf-8', $params = array()) {
-		$this->SimpleReporter();
+	function __construct($charset = 'utf-8', $params = array()) {
+		SimpleReporter::__construct();
 		if (!$charset) {
 			$charset = 'utf-8';
 		}

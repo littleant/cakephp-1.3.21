@@ -17,7 +17,7 @@
  * @since         CakePHP(tm) v 1.2.0.5432
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
-App::import('Core', array('Object', 'Controller', 'Model'));
+App::import('Core', array('CakeObject', 'Controller', 'Model'));
 
 /**
  * RequestActionPost class
@@ -171,7 +171,7 @@ class RequestActionPersistentController extends Controller {
  * @package       cake
  * @subpackage    cake.tests.cases.libs
  */
-class TestObject extends Object {
+class TestCakeObject extends CakeObject {
 
 /**
  * firstName property
@@ -341,7 +341,7 @@ class ObjectTest extends CakeTestCase {
  * @return void
  */
 	function setUp() {
-		$this->object = new TestObject();
+		$this->object = new TestCakeObject();
 	}
 
 /**
@@ -437,7 +437,7 @@ class ObjectTest extends CakeTestCase {
 
 		@unlink(CACHE . 'persistent' . DS . 'testmodel.php');
 
-		$model =& new ObjectTestModel();
+		$model = new ObjectTestModel();
 		$expected = ClassRegistry::keys();
 
 		ClassRegistry::flush();
@@ -596,7 +596,7 @@ class ObjectTest extends CakeTestCase {
  */
 	function testToString() {
 		$result = strtolower($this->object->toString());
-		$this->assertEqual($result, 'testobject');
+		$this->assertEqual($result, 'testcakeobject');
 	}
 
 /**
@@ -626,42 +626,42 @@ class ObjectTest extends CakeTestCase {
 		$expected[] = array('crazyMethod' => array(1, 2, 3, 4, 5, 6, 7));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object = new TestObject();
+		$this->object = new TestCakeObject();
 		$this->assertIdentical($this->object->methodCalls, array());
 
-		$this->object->dispatchMethod('emptyMethod');
+		$this->object->dispatchMethod($this->object, 'emptyMethod');
 		$expected = array('emptyMethod');
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('oneParamMethod', array('Hello'));
+		$this->object->dispatchMethod($this->object, 'oneParamMethod', array('Hello'));
 		$expected[] = array('oneParamMethod' => array('Hello'));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('twoParamMethod', array(true, false));
+		$this->object->dispatchMethod($this->object, 'twoParamMethod', array(true, false));
 		$expected[] = array('twoParamMethod' => array(true, false));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('threeParamMethod', array(true, false, null));
+		$this->object->dispatchMethod($this->object, 'threeParamMethod', array(true, false, null));
 		$expected[] = array('threeParamMethod' => array(true, false, null));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('fourParamMethod', array(1, 2, 3, 4));
+		$this->object->dispatchMethod($this->object, 'fourParamMethod', array(1, 2, 3, 4));
 		$expected[] = array('fourParamMethod' => array(1, 2, 3, 4));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('fiveParamMethod', array(1, 2, 3, 4, 5));
+		$this->object->dispatchMethod($this->object, 'fiveParamMethod', array(1, 2, 3, 4, 5));
 		$expected[] = array('fiveParamMethod' => array(1, 2, 3, 4, 5));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('crazyMethod', array(1, 2, 3, 4, 5, 6, 7));
+		$this->object->dispatchMethod($this->object, 'crazyMethod', array(1, 2, 3, 4, 5, 6, 7));
 		$expected[] = array('crazyMethod' => array(1, 2, 3, 4, 5, 6, 7));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('methodWithOptionalParam', array('Hello'));
+		$this->object->dispatchMethod($this->object, 'methodWithOptionalParam', array('Hello'));
 		$expected[] = array('methodWithOptionalParam' => array("Hello"));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 
-		$this->object->dispatchMethod('methodWithOptionalParam');
+		$this->object->dispatchMethod($this->object, 'methodWithOptionalParam');
 		$expected[] = array('methodWithOptionalParam' => array(null));
 		$this->assertIdentical($this->object->methodCalls, $expected);
 	}

@@ -52,7 +52,7 @@ class NoCrossContaminationGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function NoCrossContaminationGroupTest() {
+	function __construct() {
 		App::import('Core', 'Folder');
 
 		$Folder = new Folder(CORE_TEST_CASES);

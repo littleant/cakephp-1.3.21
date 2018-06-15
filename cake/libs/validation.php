@@ -27,7 +27,7 @@ if (!class_exists('Multibyte')) {
  * @subpackage    cake.cake.libs
  * @since         CakePHP v 1.2.0.3830
  */
-class Validation extends Object {
+class Validation extends CakeObject {
 
 /**
  * Set the value of methods $check param.
@@ -101,7 +101,7 @@ class Validation extends Object {
 		static $instance = array();
 
 		if (!$instance) {
-			$instance[0] =& new Validation();
+			$instance[0] = new Validation();
 		}
 		return $instance[0];
 	}

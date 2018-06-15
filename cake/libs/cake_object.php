@@ -30,7 +30,7 @@
  * @package cake
  * @subpackage cake.cake.libs
  */
-class Object {
+class CakeObject {
 
 /**
  * A hack to support __construct() on PHP 4
@@ -104,22 +104,22 @@ class Object {
  * @return mixed  Returns the result of the method call
  * @access public
  */
-	function dispatchMethod($method, $params = array()) {
+	function dispatchMethod(&$model, $method, $params = array()) {
 		switch (count($params)) {
 			case 0:
-				return $this->{$method}();
+				return $model->{$method}();
 			case 1:
-				return $this->{$method}($params[0]);
+				return $model->{$method}($params[0]);
 			case 2:
-				return $this->{$method}($params[0], $params[1]);
+				return $model->{$method}($params[0], $params[1]);
 			case 3:
-				return $this->{$method}($params[0], $params[1], $params[2]);
+				return $model->{$method}($params[0], $params[1], $params[2]);
 			case 4:
-				return $this->{$method}($params[0], $params[1], $params[2], $params[3]);
+				return $model->{$method}($params[0], $params[1], $params[2], $params[3]);
 			case 5:
-				return $this->{$method}($params[0], $params[1], $params[2], $params[3], $params[4]);
+				return $model->{$method}($params[0], $params[1], $params[2], $params[3], $params[4]);
 			default:
-				return call_user_func_array(array(&$this, $method), $params);
+				return call_user_func_array(array(&$model, $method), $params);
 			break;
 		}
 	}

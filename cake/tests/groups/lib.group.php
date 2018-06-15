@@ -42,7 +42,7 @@ class LibGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function LibGroupTest() {
+	function __construct() {
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'basics');
 		// TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'inflector');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'cake_session');
@@ -57,7 +57,7 @@ class LibGroupTest extends TestSuite {
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'sanitize');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'security');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'set');
-		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'string');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'cake_string');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'validation');
 	}
 }

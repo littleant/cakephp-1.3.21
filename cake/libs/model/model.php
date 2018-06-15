@@ -23,7 +23,7 @@
 /**
  * Included libs
  */
-App::import('Core', array('ClassRegistry', 'Validation', 'Set', 'String'));
+App::import('Core', array('ClassRegistry', 'Validation', 'Set', 'CakeString'));
 App::import('Model', 'ModelBehavior', false);
 App::import('Model', 'ConnectionManager', false);
 
@@ -1344,9 +1344,9 @@ class Model extends Overloadable {
 				if (empty($this->data[$this->alias][$this->primaryKey]) && $isUUID) {
 					if (array_key_exists($this->primaryKey, $this->data[$this->alias])) {
 						$j = array_search($this->primaryKey, $fields);
-						$values[$j] = String::uuid();
+						$values[$j] = CakeString::uuid();
 					} else {
-						list($fields[], $values[]) = array($this->primaryKey, String::uuid());
+						list($fields[], $values[]) = array($this->primaryKey, CakeString::uuid());
 					}
 				}
 
@@ -1426,7 +1426,7 @@ class Model extends Overloadable {
 							$db->value($row)
 						);
 						if ($isUUID && $primaryAdded) {
-							$values[] = $db->value(String::uuid());
+							$values[] = $db->value(CakeString::uuid());
 						}
 						$values = implode(',', $values);
 						$newValues[] = "({$values})";
@@ -2239,7 +2239,7 @@ class Model extends Overloadable {
 				$list = array("{n}.{$this->alias}.{$this->primaryKey}", "{n}.{$this->alias}.{$this->displayField}", null);
 			} else {
 				if (!is_array($query['fields'])) {
-					$query['fields'] = String::tokenize($query['fields']);
+					$query['fields'] = CakeString::tokenize($query['fields']);
 				}
 
 				if (count($query['fields']) == 1) {
@@ -2631,13 +2631,13 @@ class Model extends Overloadable {
 					if (in_array(strtolower($rule), $methods)) {
 						$ruleParams[] = $validator;
 						$ruleParams[0] = array($fieldName => $ruleParams[0]);
-						$valid = $this->dispatchMethod($rule, $ruleParams);
+						$valid = $this->dispatchMethod($this, $rule, $ruleParams);
 					} elseif (in_array($rule, $behaviorMethods) || in_array(strtolower($rule), $behaviorMethods)) {
 						$ruleParams[] = $validator;
 						$ruleParams[0] = array($fieldName => $ruleParams[0]);
 						$valid = $this->Behaviors->dispatchMethod($this, $rule, $ruleParams);
 					} elseif (method_exists($Validation, $rule)) {
-						$valid = $Validation->dispatchMethod($rule, $ruleParams);
+						$valid = $Validation->dispatchMethod($this, $rule, $ruleParams);
 					} elseif (!is_array($validator['rule'])) {
 						$valid = preg_match($rule, $data[$fieldName]);
 					} elseif (Configure::read('debug') > 0) {

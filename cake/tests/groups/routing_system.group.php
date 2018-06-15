@@ -42,7 +42,7 @@ class RoutingSystemGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function RoutingSystemGroupTest() {
+	function __construct() {
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'dispatcher');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'router');
 	}

@@ -46,7 +46,7 @@ class FileLog {
  * @param array $options Options for the FileLog, see above.
  * @return void
  */
-	function FileLog($options = array()) {
+	function __construct($options = array()) {
 		$options += array('path' => LOGS);
 		$this->_path = $options['path'];
 	}

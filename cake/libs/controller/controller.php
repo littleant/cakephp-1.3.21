@@ -34,7 +34,7 @@ App::import('View', 'View', false);
  * @subpackage    cake.cake.libs.controller
  * @link          http://book.cakephp.org/1.3/en/The-Manual/Developing-With-CakePHP/Controllers.html#Introduction
  */
-class Controller extends Object {
+class Controller extends CakeObject {
 
 /**
  * The name of this controller. Controller names are plural, named after the model they manipulate.
@@ -374,7 +374,7 @@ class Controller extends Object {
 		}
 		$this->modelClass = Inflector::classify($this->name);
 		$this->modelKey = Inflector::underscore($this->modelClass);
-		$this->Component =& new Component();
+		$this->Component = new Component();
 
 		$childMethods = get_class_methods($this);
 		$parentMethods = get_class_methods('Controller');
@@ -876,7 +876,7 @@ class Controller extends Object {
 			$this->set('cakeDebug', $this);
 		}
 
-		$View =& new $viewClass($this);
+		$View = new $viewClass($this);
 
 		if (!empty($this->modelNames)) {
 			$models = array();
@@ -926,7 +926,7 @@ class Controller extends Object {
 			$base = FULL_BASE_URL . $this->webroot;
 			if (strpos($ref, $base) === 0) {
 				$return =  substr($ref, strlen($base));
-				if ($return[0] != '/') {
+				if (isset($return[0]) && $return[0] != '/') {
 					$return = '/'.$return;
 				}
 				return $return;

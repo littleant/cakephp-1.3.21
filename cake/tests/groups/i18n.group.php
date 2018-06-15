@@ -42,7 +42,7 @@ class i18nGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function i18nGroupTest() {
+	function __construct() {
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'i18n');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'l10n');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'multibyte');

@@ -17,8 +17,8 @@
  * @since         CakePHP(tm) v 1.2.0
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-if (!class_exists('Object')) {
-	require LIBS . 'object.php';
+if (!class_exists('CakeObject')) {
+	require LIBS . 'cake_object.php';
 }
 if (!class_exists('File')) {
 	require LIBS . 'file.php';
@@ -30,7 +30,7 @@ if (!class_exists('File')) {
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class MagicDb extends Object {
+class MagicDb extends CakeObject {
 
 /**
  * Holds the parsed MagicDb for this class instance
@@ -53,7 +53,7 @@ class MagicDb extends Object {
 		if (is_array($magicDb) || strpos($magicDb, '# FILE_ID DB') === 0) {
 			$data = $magicDb;
 		} else {
-			$File =& new File($magicDb);
+			$File = new File($magicDb);
 			if (!$File->exists()) {
 				return false;
 			}
@@ -158,7 +158,7 @@ class MagicDb extends Object {
 		}
 
 		$matches = array();
-		$MagicFileResource =& new MagicFileResource($file);
+		$MagicFileResource = new MagicFileResource($file);
 		foreach ($this->db['database'] as $format) {
 			$magic = $format[0];
 			$match = $MagicFileResource->test($magic);
@@ -178,7 +178,7 @@ class MagicDb extends Object {
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class MagicFileResource extends Object{
+class MagicFileResource extends CakeObject{
 
 /**
  * undocumented variable
@@ -205,7 +205,7 @@ class MagicFileResource extends Object{
  */
 	function __construct($file) {
 		if (file_exists($file)) {
-			$this->resource =& new File($file);
+			$this->resource = new File($file);
 		} else {
 			$this->resource = $file;
 		}

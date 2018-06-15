@@ -576,7 +576,8 @@ class FormHelper extends AppHelper {
 
 		if ($text === null) {
 			if (strpos($fieldName, '.') !== false) {
-				$text = array_pop(explode('.', $fieldName));
+			    $fieldNameParts = explode('.', $fieldName);
+				$text = array_pop($fieldNameParts);
 			} else {
 				$text = $fieldName;
 			}

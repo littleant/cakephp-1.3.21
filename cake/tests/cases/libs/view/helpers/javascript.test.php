@@ -119,10 +119,10 @@ class JavascriptTest extends CakeTestCase {
  * @return void
  */
 	function startTest() {
-		$this->Javascript =& new JavascriptHelper();
-		$this->Javascript->Html =& new HtmlHelper();
-		$this->Javascript->Form =& new FormHelper();
-		$this->View =& new TheView(new TheJsTestController());
+		$this->Javascript = new JavascriptHelper();
+		$this->Javascript->Html = new HtmlHelper();
+		$this->Javascript->Form = new FormHelper();
+		$this->View = new TheView(new TheJsTestController());
 		ClassRegistry::addObject('view', $this->View);
 	}
 
@@ -147,10 +147,10 @@ class JavascriptTest extends CakeTestCase {
  * @return void
  */
 	function testConstruct() {
-		$Javascript =& new JavascriptHelper(array('safe'));
+		$Javascript = new JavascriptHelper(array('safe'));
 		$this->assertTrue($Javascript->safe);
 
-		$Javascript =& new JavascriptHelper(array('safe' => false));
+		$Javascript = new JavascriptHelper(array('safe' => false));
 		$this->assertFalse($Javascript->safe);
 	}
 
@@ -297,42 +297,42 @@ class JavascriptTest extends CakeTestCase {
  * @return void
  */
 	function testValue() {
-		$result = $this->Javascript->value(array('title' => 'New thing', 'indexes' => array(5, 6, 7, 8)));
+		$result = $this->Javascript->jsonValue(array('title' => 'New thing', 'indexes' => array(5, 6, 7, 8)));
 		$expected = '{"title":"New thing","indexes":[5,6,7,8]}';
 		$this->assertEqual($result, $expected);
 
-		$result = $this->Javascript->value(null);
+		$result = $this->Javascript->jsonValue(null);
 		$this->assertEqual($result, 'null');
 
-		$result = $this->Javascript->value(true);
+		$result = $this->Javascript->jsonValue(true);
 		$this->assertEqual($result, 'true');
 
-		$result = $this->Javascript->value(false);
+		$result = $this->Javascript->jsonValue(false);
 		$this->assertEqual($result, 'false');
 
-		$result = $this->Javascript->value(5);
+		$result = $this->Javascript->jsonValue(5);
 		$this->assertEqual($result, '5');
 
-		$result = $this->Javascript->value(floatval(5.3));
+		$result = $this->Javascript->jsonValue(floatval(5.3));
 		$this->assertPattern('/^5.3[0]+$/', $result);
 
-		$result = $this->Javascript->value('');
+		$result = $this->Javascript->jsonValue('');
 		$expected = '""';
 		$this->assertEqual($result, $expected);
 
-		$result = $this->Javascript->value('CakePHP' . "\n" . 'Rapid Development Framework');
+		$result = $this->Javascript->jsonValue('CakePHP' . "\n" . 'Rapid Development Framework');
 		$expected = '"CakePHP\\nRapid Development Framework"';
 		$this->assertEqual($result, $expected);
 
-		$result = $this->Javascript->value('CakePHP' . "\r\n" . 'Rapid Development Framework' . "\r" . 'For PHP');
+		$result = $this->Javascript->jsonValue('CakePHP' . "\r\n" . 'Rapid Development Framework' . "\r" . 'For PHP');
 		$expected = '"CakePHP\\nRapid Development Framework\\nFor PHP"';
 		$this->assertEqual($result, $expected);
 
-		$result = $this->Javascript->value('CakePHP: "Rapid Development Framework"');
+		$result = $this->Javascript->jsonValue('CakePHP: "Rapid Development Framework"');
 		$expected = '"CakePHP: \\"Rapid Development Framework\\""';
 		$this->assertEqual($result, $expected);
 
-		$result = $this->Javascript->value('CakePHP: \'Rapid Development Framework\'');
+		$result = $this->Javascript->jsonValue('CakePHP: \'Rapid Development Framework\'');
 		$expected = '"CakePHP: \\\'Rapid Development Framework\\\'"';
 		$this->assertEqual($result, $expected);
 	}

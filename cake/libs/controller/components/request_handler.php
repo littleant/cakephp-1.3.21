@@ -28,7 +28,7 @@
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Components/Request-Handling.html
  *
  */
-class RequestHandlerComponent extends Object {
+class RequestHandlerComponent extends CakeObject {
 
 /**
  * The layout that will be switched to for Ajax requests

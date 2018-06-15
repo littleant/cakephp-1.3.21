@@ -30,11 +30,9 @@
  * You can specify multiple configurations for production, development and testing.
  *
  * driver => The name of a supported driver; valid options are as follows:
- *		mysql 		- MySQL 4 & 5,
  *		mysqli 		- MySQL 4 & 5 Improved Interface (PHP5 only),
  *		sqlite		- SQLite (PHP5 only),
  *		postgres	- PostgreSQL 7 and higher,
- *		mssql		- Microsoft SQL Server 2000 and higher,
  *		db2			- IBM DB2, Cloudscape, and Apache Derby (http://php.net/ibm-db2)
  *		oracle		- Oracle 8 and higher
  *		firebird	- Firebird/Interbase

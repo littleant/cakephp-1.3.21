@@ -74,7 +74,7 @@ class CakeTestSuiteDispatcher {
  *
  * @return void
  */
-	function CakeTestSuiteDispatcher() {
+	function __construct() {
 		$this->_baseUrl = $_SERVER['PHP_SELF'];
 		$dir = rtrim(dirname($this->_baseUrl), '\\');
 		$this->_baseDir = ($dir === '/') ? $dir : $dir . '/';
@@ -185,9 +185,9 @@ class CakeTestSuiteDispatcher {
 			$appClass = $this->params['output'] . 'Reporter';
 			$appFile = APPLIBS . 'test_suite' . DS . 'reporter' . DS . $type . '_reporter.php';
 			if (file_exists($appFile) && include_once $appFile) {
-				$Reporter =& new $appClass(null, $this->params);
+				$Reporter = new $appClass(null, $this->params);
 			} elseif (include_once $coreFile) {
-				$Reporter =& new $coreClass(null, $this->params);
+				$Reporter = new $coreClass(null, $this->params);
 			}
 		}
 		return $Reporter;

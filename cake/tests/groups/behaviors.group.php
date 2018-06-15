@@ -42,7 +42,7 @@ class BehaviorsGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function BehaviorsGroupTest() {
+	function __construct() {
 		TestManager::addTestCasesFromDirectory($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'behaviors');
 	}
 }

@@ -35,7 +35,7 @@ if (!class_exists('Security')) {
  * @package       cake
  * @subpackage    cake.cake.libs
  */
-class CakeSession extends Object {
+class CakeSession extends CakeObject {
 
 /**
  * True if the Session is still valid
@@ -475,7 +475,7 @@ class CakeSession extends Object {
 			ini_set('session.cookie_secure', 1);
 		}
 		if ($iniSet && ($this->security === 'high' || $this->security === 'medium')) {
-			ini_set('session.referer_check', $this->host);
+		    ini_set('session.referer_check', $this->host);
 		}
 
 		if ($this->security == 'high') {

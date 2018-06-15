@@ -104,7 +104,7 @@ class MediaView extends View {
  *
  * @return unknown
  */
-	function render() {
+	function render($action = null, $layout = null, $file = null) {
 		$name = $download = $extension = $id = $modified = $path = $size = $cache = $mimeType = null;
 		extract($this->viewVars, EXTR_OVERWRITE);
 

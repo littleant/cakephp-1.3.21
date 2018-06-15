@@ -42,7 +42,7 @@ class ConsoleGroupTest extends TestSuite {
  * @access public
  * @return void
  */
-	function ConsoleGroupTest() {
+	function __construct() {
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'cake');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'acl');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'api');

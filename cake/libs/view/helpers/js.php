@@ -138,7 +138,7 @@ class JsHelper extends AppHelper {
 					unset($params['buffer']);
 				}
 			}
-			$out = $this->{$this->__engineName}->dispatchMethod($method, $params);
+			$out = $this->{$this->__engineName}->dispatchMethod($this, $method, $params);
 			if ($this->bufferScripts && $buffer && is_string($out)) {
 				$this->buffer($out);
 				return null;
@@ -149,7 +149,7 @@ class JsHelper extends AppHelper {
 			return $out;
 		}
 		if (method_exists($this, $method . '_')) {
-			return $this->dispatchMethod($method . '_', $params);
+			return $this->dispatchMethod($this, $method . '_', $params);
 		}
 		trigger_error(sprintf(__('JsHelper:: Missing Method %s is undefined', true), $method), E_USER_WARNING);
 	}
@@ -178,8 +178,8 @@ class JsHelper extends AppHelper {
  * @return string a JavaScript-safe/JSON representation of $val
  * @access public
  **/
-	function value($val, $quoteString = true) {
-		return $this->{$this->__engineName}->value($val, $quoteString);
+	function jsonValue($val, $quoteString = true) {
+		return $this->{$this->__engineName}->jsonValue($val, $quoteString);
 	}
 
 /**
@@ -618,10 +618,10 @@ class JsBaseEngineHelper extends AppHelper {
 				if (is_array($val) || is_object($val)) {
 					$val = $this->object($val);
 				} else {
-					$val = $this->value($val);
+					$val = $this->jsonValue($val);
 				}
 				if (!$numeric) {
-					$val = '"' . $this->value($key, false) . '":' . $val;
+					$val = '"' . $this->jsonValue($key, false) . '":' . $val;
 				}
 				$out[] = $val;
 			}
@@ -644,7 +644,7 @@ class JsBaseEngineHelper extends AppHelper {
  * @return string a JavaScript-safe/JSON representation of $val
  * @access public
  */
-	function value($val, $quoteString = true) {
+	function jsonValue($val, $quoteString = true) {
 		switch (true) {
 			case (is_array($val) || is_object($val)):
 				$val = $this->object($val);
@@ -1027,7 +1027,7 @@ class JsBaseEngineHelper extends AppHelper {
 		$safeKeys = array_flip($safeKeys);
 		foreach ($options as $key => $value) {
 			if (!is_int($value) && !isset($safeKeys[$key])) {
-				$value = $this->value($value);
+				$value = $this->jsonValue($value);
 			}
 			$out[] = $key . ':' . $value;
 		}

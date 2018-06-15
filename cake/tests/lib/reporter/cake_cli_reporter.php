@@ -55,8 +55,8 @@ class CakeCliReporter extends CakeBaseReporter {
  * @param array $params 
  * @return void
  */
-	function CakeCLIReporter($charset = 'utf-8', $params = array()) {
-		$this->CakeBaseReporter($charset, $params);
+	function __construct($charset = 'utf-8', $params = array()) {
+		CakeBaseReporter::__construct($charset, $params);
 	}
 
 	function setFailDetailSeparator($separator) {

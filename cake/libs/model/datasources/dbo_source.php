@@ -17,7 +17,7 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-App::import('Core', array('Set', 'String'));
+App::import('Core', array('Set', 'CakeString'));
 
 /**
  * DboSource
@@ -361,7 +361,7 @@ class DboSource extends DataSource {
 					$cache = true;
 				}
 				$args[1] = array_map(array(&$this, 'value'), $args[1]);
-				return $this->fetchAll(String::insert($args[0], $args[1]), $cache);
+				return $this->fetchAll(CakeString::insert($args[0], $args[1]), $cache);
 			}
 		}
 	}
@@ -631,7 +631,7 @@ class DboSource extends DataSource {
 		if (PHP_SAPI != 'cli') {
 			App::import('Core', 'View');
 			$controller = null;
-			$View =& new View($controller, false);
+			$View = new View($controller, false);
 			$View->set('logs', array($this->configKeyName => $log));
 			echo $View->element('sql_dump', array('_forced_from_dbo_' => true));
 		} else {
@@ -1145,7 +1145,7 @@ class DboSource extends DataSource {
 			if (isset($merge[$association])) {
 				$data[$association] = $merge[$association][0];
 			} else {
-				if (count($merge[0][$association]) > 1) {
+				if ($merge[0][$association] !== false && count($merge[0][$association]) > 1) {
 					foreach ($merge[0] as $assoc => $data2) {
 						if ($assoc != $association) {
 							$merge[0][$association][$assoc] = $data2;
@@ -1900,7 +1900,7 @@ class DboSource extends DataSource {
  * @return string
  * @access public
  */
-	function resolveKey($model, $key, $assoc = null) {
+	function resolveKey(&$model, $key, $assoc = null) {
 		if (empty($assoc)) {
 			$assoc = $model->alias;
 		}
@@ -1979,7 +1979,7 @@ class DboSource extends DataSource {
 		if ($allFields) {
 			$fields = array_keys($model->schema());
 		} elseif (!is_array($fields)) {
-			$fields = String::tokenize($fields);
+			$fields = CakeString::tokenize($fields);
 		}
 		$fields = array_values(array_filter($fields));
 		$allFields = $allFields || in_array('*', $fields) || in_array($model->alias . '.*', $fields);
@@ -2293,7 +2293,7 @@ class DboSource extends DataSource {
 		}
 
 		if ($bound) {
-			return  String::insert($key . ' ' . trim($operator), $value);
+			return  CakeString::insert($key . ' ' . trim($operator), $value);
 		}
 
 		if (!preg_match($operatorMatch, trim($operator))) {

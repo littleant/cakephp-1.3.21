@@ -32,7 +32,7 @@ App::import('View', 'Helper', false);
  * @package       cake
  * @subpackage    cake.cake.libs.view
  */
-class View extends Object {
+class View extends CakeObject {
 
 /**
  * Path parts for creating links in views.
@@ -723,7 +723,7 @@ class View extends Object {
 					${$name} =& $helper;
 				}
 				$this->loaded[$helperNames[$i]] =& $helper;
-				$this->{$helpers[$i]} =& $helper;
+				$this->{$helpers[$i]} = $helper;
 			}
 			$this->_triggerHelpers('beforeRender');
 			unset($name, $loadedHelpers, $helpers, $i, $helperNames, $helper);
@@ -810,7 +810,7 @@ class View extends Object {
 						return false;
 					}
 				}
-				$loaded[$helper] =& new $helperCn($options);
+				$loaded[$helper] = new $helperCn($options);
 				$vars = array('base', 'webroot', 'here', 'params', 'action', 'data', 'theme', 'plugin');
 				$c = count($vars);
 
