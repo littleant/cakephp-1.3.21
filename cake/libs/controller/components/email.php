@@ -961,7 +961,7 @@ class EmailComponent extends CakeObject{
 				return false;
 			}
 			$response = rtrim($response, "\r\n");
-			$response = explode("\r\n", $response));
+			$response = explode("\r\n", $response);
 			$response = end($response);
 
 			if (preg_match('/^(' . $checkCode . ')(.)/', $response, $code)) {
