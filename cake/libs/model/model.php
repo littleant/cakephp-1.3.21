@@ -2637,7 +2637,7 @@ class Model extends Overloadable {
 						$ruleParams[0] = array($fieldName => $ruleParams[0]);
 						$valid = $this->Behaviors->dispatchMethod($this, $rule, $ruleParams);
 					} elseif (method_exists($Validation, $rule)) {
-						$valid = $Validation->dispatchMethod($this, $rule, $ruleParams);
+						$valid = $Validation->dispatchMethod($Validation, $rule, $ruleParams);
 					} elseif (!is_array($validator['rule'])) {
 						$valid = preg_match($rule, $data[$fieldName]);
 					} elseif (Configure::read('debug') > 0) {
