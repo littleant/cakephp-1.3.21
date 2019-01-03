@@ -636,7 +636,7 @@ class CakeSession extends CakeObject {
 /**
  * Helper method to restart a session.
  *
- * @return void
+ * @return boolean
  * @access private
  */
 	function __regenerateId() {
@@ -667,15 +667,17 @@ class CakeSession extends CakeObject {
 				session_start();
 			}
 		}
+		return true;
 	}
 
 /**
  * Restarts this session.
  *
  * @access public
+ * @return boolean
  */
 	function renew() {
-		$this->__regenerateId();
+		return $this->__regenerateId();
 	}
 
 /**
