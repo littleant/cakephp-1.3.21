@@ -509,7 +509,9 @@ class CakeSession extends CakeObject {
 					if ($iniSet) {
 						ini_set('session.use_trans_sid', 0);
 						ini_set('url_rewriter.tags', '');
-						ini_set('session.save_handler', 'user');
+						if (version_compare(PHP_VERSION, '7.2.0', '<')) {;
+							ini_set('session.save_handler', 'user');
+						}
 						ini_set('session.serialize_handler', 'php');
 						ini_set('session.use_cookies', 1);
 						ini_set('session.name', Configure::read('Session.cookie'));
@@ -545,7 +547,9 @@ class CakeSession extends CakeObject {
 					if ($iniSet) {
 						ini_set('session.use_trans_sid', 0);
 						ini_set('url_rewriter.tags', '');
-						ini_set('session.save_handler', 'user');
+						if (version_compare(PHP_VERSION, '7.2.0', '<')) {;
+							ini_set('session.save_handler', 'user');
+						}
 						ini_set('session.use_cookies', 1);
 						ini_set('session.name', Configure::read('Session.cookie'));
 						ini_set('session.cookie_lifetime', $this->cookieLifeTime);
@@ -736,7 +740,7 @@ class CakeSession extends CakeObject {
 		));
 
 		if (empty($row[$model->alias]['data'])) {
-			return false;
+			return '';
 		}
 
 		return $row[$model->alias]['data'];
