@@ -375,7 +375,7 @@ class CakeSession extends CakeObject {
 			return $result;
 		}
 		$this->__setError(2, "$name doesn't exist");
-		return null;
+		return "";
 	}
 
 /**
@@ -462,6 +462,7 @@ class CakeSession extends CakeObject {
 		$this->start();
 		$this->renew();
 		$this->_checkValid();
+        return true;
 	}
 
 /**
