@@ -1,5 +1,17 @@
 language: php
+php:
+  - 5.6
 notifications:
   email:false
 branches:
-  only: master
+  only:
+    - cakephp-1.3.21-original
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS cake;'
+install:
+  - echo "<?php class DATABASE_CONFIG { var \$test = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'test', 'prefix' => '',); var \$default = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'cake', 'prefix' => '',); }" > ./app/config/database.php
+script:
+  - cd app && ../cake/console/cake testsuite core all
