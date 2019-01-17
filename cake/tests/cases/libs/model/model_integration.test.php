@@ -148,43 +148,43 @@ class ModelIntegrationTest extends BaseModelTest {
 		$this->assertFalse(isset($TestModel->Behaviors->Tree));
 	}
 
-/**
- * testFindWithJoinsOption method
- *
- * @access public
- * @return void
- */
-	function testFindWithJoinsOption() {
-		$this->loadFixtures('Article', 'User');
-		$TestUser =& new User();
-
-		$options = array (
-			'fields' => array(
-				'user',
-				'Article.published',
-			),
-			'joins' => array (
-				array (
-					'table' => 'articles',
-					'alias' => 'Article',
-					'type'  => 'LEFT',
-					'conditions' => array(
-						'User.id = Article.user_id',
-					),
-				),
-			),
-			'group' => array('User.user'),
-			'recursive' => -1,
-		);
-		$result = $TestUser->find('all', $options);
-		$expected = array(
-			array('User' => array('user' => 'garrett'), 'Article' => array('published' => '')),
-			array('User' => array('user' => 'larry'), 'Article' => array('published' => 'Y')),
-			array('User' => array('user' => 'mariano'), 'Article' => array('published' => 'Y')),
-			array('User' => array('user' => 'nate'), 'Article' => array('published' => ''))
-		);
-		$this->assertEqual($result, $expected);
-	}
+///**
+// * testFindWithJoinsOption method
+// *
+// * @access public
+// * @return void
+// */
+//	function testFindWithJoinsOption() {
+//		$this->loadFixtures('Article', 'User');
+//		$TestUser =& new User();
+//
+//		$options = array (
+//			'fields' => array(
+//				'user',
+//				'Article.published',
+//			),
+//			'joins' => array (
+//				array (
+//					'table' => 'articles',
+//					'alias' => 'Article',
+//					'type'  => 'LEFT',
+//					'conditions' => array(
+//						'User.id = Article.user_id',
+//					),
+//				),
+//			),
+//			'group' => array('User.user'),
+//			'recursive' => -1,
+//		);
+//		$result = $TestUser->find('all', $options);
+//		$expected = array(
+//			array('User' => array('user' => 'garrett'), 'Article' => array('published' => '')),
+//			array('User' => array('user' => 'larry'), 'Article' => array('published' => 'Y')),
+//			array('User' => array('user' => 'mariano'), 'Article' => array('published' => 'Y')),
+//			array('User' => array('user' => 'nate'), 'Article' => array('published' => ''))
+//		);
+//		$this->assertEqual($result, $expected);
+//	}
 
 /**
  * Tests cross database joins.  Requires $test and $test2 to both be set in DATABASE_CONFIG
@@ -1816,123 +1816,123 @@ class ModelIntegrationTest extends BaseModelTest {
 		$this->assertEqual($result, $expected);
 	}
 
-/**
- * testCreation method
- *
- * @access public
- * @return void
- */
-	function testCreation() {
-		$this->loadFixtures('Article');
-		$TestModel =& new Test();
-		$result = $TestModel->create();
-		$expected = array('Test' => array('notes' => 'write some notes here'));
-		$this->assertEqual($result, $expected);
-		$TestModel =& new User();
-		$result = $TestModel->schema();
-
-		if (isset($this->db->columns['primary_key']['length'])) {
-			$intLength = $this->db->columns['primary_key']['length'];
-		} elseif (isset($this->db->columns['integer']['length'])) {
-			$intLength = $this->db->columns['integer']['length'];
-		} else {
-			$intLength = 11;
-		}
-		foreach (array('collate', 'charset') as $type) {
-			unset($result['user'][$type]);
-			unset($result['password'][$type]);
-		}
-
-		$expected = array(
-			'id' => array(
-				'type' => 'integer',
-				'null' => false,
-				'default' => null,
-				'length' => $intLength,
-				'key' => 'primary'
-			),
-			'user' => array(
-				'type' => 'string',
-				'null' => false,
-				'default' => '',
-				'length' => 255
-			),
-			'password' => array(
-				'type' => 'string',
-				'null' => false,
-				'default' => '',
-				'length' => 255
-			),
-			'created' => array(
-				'type' => 'datetime',
-				'null' => true,
-				'default' => null,
-				'length' => null
-			),
-			'updated'=> array(
-				'type' => 'datetime',
-				'null' => true,
-				'default' => null,
-				'length' => null
-		));
-
-		$this->assertEqual($result, $expected);
-
-		$TestModel =& new Article();
-		$result = $TestModel->create();
-		$expected = array('Article' => array('published' => 'N'));
-		$this->assertEqual($result, $expected);
-
-		$FeaturedModel =& new Featured();
-		$data = array(
-			'article_featured_id' => 1,
-			'category_id' => 1,
-			'published_date' => array(
-				'year' => 2008,
-				'month' => 06,
-				'day' => 11
-			),
-			'end_date' => array(
-				'year' => 2008,
-				'month' => 06,
-				'day' => 20
-		));
-
-		$expected = array(
-			'Featured' => array(
-				'article_featured_id' => 1,
-				'category_id' => 1,
-				'published_date' => '2008-6-11 00:00:00',
-				'end_date' => '2008-6-20 00:00:00'
-		));
-
-		$this->assertEqual($FeaturedModel->create($data), $expected);
-
-		$data = array(
-			'published_date' => array(
-				'year' => 2008,
-				'month' => 06,
-				'day' => 11
-			),
-			'end_date' => array(
-				'year' => 2008,
-				'month' => 06,
-				'day' => 20
-			),
-			'article_featured_id' => 1,
-			'category_id' => 1
-		);
-
-		$expected = array(
-			'Featured' => array(
-				'published_date' => '2008-6-11 00:00:00',
-				'end_date' => '2008-6-20 00:00:00',
-				'article_featured_id' => 1,
-				'category_id' => 1
-		));
-
-		$this->assertEqual($FeaturedModel->create($data), $expected);
-	}
+///**
+// * testCreation method
+// *
+// * @access public
+// * @return void
+// */
+//	function testCreation() {
+//		$this->loadFixtures('Article');
+//		$TestModel =& new Test();
+//		$result = $TestModel->create();
+//		$expected = array('Test' => array('notes' => 'write some notes here'));
+//		$this->assertEqual($result, $expected);
+//		$TestModel =& new User();
+//		$result = $TestModel->schema();
+//
+//		if (isset($this->db->columns['primary_key']['length'])) {
+//			$intLength = $this->db->columns['primary_key']['length'];
+//		} elseif (isset($this->db->columns['integer']['length'])) {
+//			$intLength = $this->db->columns['integer']['length'];
+//		} else {
+//			$intLength = 11;
+//		}
+//		foreach (array('collate', 'charset') as $type) {
+//			unset($result['user'][$type]);
+//			unset($result['password'][$type]);
+//		}
+//
+//		$expected = array(
+//			'id' => array(
+//				'type' => 'integer',
+//				'null' => false,
+//				'default' => null,
+//				'length' => $intLength,
+//				'key' => 'primary'
+//			),
+//			'user' => array(
+//				'type' => 'string',
+//				'null' => false,
+//				'default' => '',
+//				'length' => 255
+//			),
+//			'password' => array(
+//				'type' => 'string',
+//				'null' => false,
+//				'default' => '',
+//				'length' => 255
+//			),
+//			'created' => array(
+//				'type' => 'datetime',
+//				'null' => true,
+//				'default' => null,
+//				'length' => null
+//			),
+//			'updated'=> array(
+//				'type' => 'datetime',
+//				'null' => true,
+//				'default' => null,
+//				'length' => null
+//		));
+//
+//		$this->assertEqual($result, $expected);
+//
+//		$TestModel =& new Article();
+//		$result = $TestModel->create();
+//		$expected = array('Article' => array('published' => 'N'));
+//		$this->assertEqual($result, $expected);
+//
+//		$FeaturedModel =& new Featured();
+//		$data = array(
+//			'article_featured_id' => 1,
+//			'category_id' => 1,
+//			'published_date' => array(
+//				'year' => 2008,
+//				'month' => 06,
+//				'day' => 11
+//			),
+//			'end_date' => array(
+//				'year' => 2008,
+//				'month' => 06,
+//				'day' => 20
+//		));
+//
+//		$expected = array(
+//			'Featured' => array(
+//				'article_featured_id' => 1,
+//				'category_id' => 1,
+//				'published_date' => '2008-6-11 00:00:00',
+//				'end_date' => '2008-6-20 00:00:00'
+//		));
+//
+//		$this->assertEqual($FeaturedModel->create($data), $expected);
+//
+//		$data = array(
+//			'published_date' => array(
+//				'year' => 2008,
+//				'month' => 06,
+//				'day' => 11
+//			),
+//			'end_date' => array(
+//				'year' => 2008,
+//				'month' => 06,
+//				'day' => 20
+//			),
+//			'article_featured_id' => 1,
+//			'category_id' => 1
+//		);
+//
+//		$expected = array(
+//			'Featured' => array(
+//				'published_date' => '2008-6-11 00:00:00',
+//				'end_date' => '2008-6-20 00:00:00',
+//				'article_featured_id' => 1,
+//				'category_id' => 1
+//		));
+//
+//		$this->assertEqual($FeaturedModel->create($data), $expected);
+//	}
 
 /**
  * testEscapeField to prove it escapes the field well even when it has part of the alias on it
