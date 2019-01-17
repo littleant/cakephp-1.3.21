@@ -68,11 +68,7 @@ if (!$imported) {
 	define('ARTICLE_MODEL_CREATED', true);
 	App::import('Core', 'Model');
 
-	class Article extends Model {
-		var $name = 'Article';
-		var $hasMany = array('Comment');
-		var $hasAndBelongsToMany = array('Tag');
-	}
+    require_once CAKE . 'tests' . DS . 'cases' . DS . 'libs' . DS . 'model' . DS . 'article.php';
 
 }
 
