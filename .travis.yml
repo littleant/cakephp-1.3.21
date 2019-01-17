@@ -14,4 +14,4 @@ before_install:
 install:
   - echo "<?php class DATABASE_CONFIG { var \$test = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'test', 'prefix' => '',); var \$default = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'cake', 'prefix' => '',); }" > ./app/config/database.php
 script:
-  - cd app && ../cake/console/cake testsuite core all
+  - cd app && ../cake/console/cake testsuite core all cov
