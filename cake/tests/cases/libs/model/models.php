@@ -192,6 +192,8 @@ class User extends CakeTestModel {
  */
 	var $name = 'User';
 
+	var $useTable = 'users';
+
 /**
  * validate property
  *
