@@ -2992,75 +2992,75 @@ class Basket extends CakeTestModel {
 	);
 }
 
-/**
- * TestPluginArticle class
- *
- * @package       cake
- * @subpackage    cake.tests.cases.libs.model
- */
-class TestPluginArticle extends CakeTestModel {
-
-/**
- * name property
- *
- * @var string 'TestPluginArticle'
- * @access public
- */
-	var $name = 'TestPluginArticle';
-
-/**
- * belongsTo property
- *
- * @var array
- * @access public
- */
-	var $belongsTo = array('User');
-
-/**
- * hasMany property
- *
- * @var array
- * @access public
- */
-	var $hasMany = array(
-		'TestPluginComment' => array(
-			'className' => 'TestPlugin.TestPluginComment',
-			'foreignKey' => 'article_id',
-			'dependent' => true
-		)
-	);
-}
-
-/**
- * TestPluginComment class
- *
- * @package       cake
- * @subpackage    cake.tests.cases.libs.model
- */
-class TestPluginComment extends CakeTestModel {
-
-/**
- * name property
- *
- * @var string 'TestPluginComment'
- * @access public
- */
-	var $name = 'TestPluginComment';
-
-/**
- * belongsTo property
- *
- * @var array
- * @access public
- */
-	var $belongsTo = array(
-		'TestPluginArticle' => array(
-			'className' => 'TestPlugin.TestPluginArticle',
-			'foreignKey' => 'article_id',
-		),
-		'User'
-	);
-}
+///**
+// * TestPluginArticle class
+// *
+// * @package       cake
+// * @subpackage    cake.tests.cases.libs.model
+// */
+//class TestPluginArticle extends CakeTestModel {
+//
+///**
+// * name property
+// *
+// * @var string 'TestPluginArticle'
+// * @access public
+// */
+//	var $name = 'TestPluginArticle';
+//
+///**
+// * belongsTo property
+// *
+// * @var array
+// * @access public
+// */
+//	var $belongsTo = array('User');
+//
+///**
+// * hasMany property
+// *
+// * @var array
+// * @access public
+// */
+//	var $hasMany = array(
+//		'TestPluginComment' => array(
+//			'className' => 'TestPlugin.TestPluginComment',
+//			'foreignKey' => 'article_id',
+//			'dependent' => true
+//		)
+//	);
+//}
+//
+///**
+// * TestPluginComment class
+// *
+// * @package       cake
+// * @subpackage    cake.tests.cases.libs.model
+// */
+//class TestPluginComment extends CakeTestModel {
+//
+///**
+// * name property
+// *
+// * @var string 'TestPluginComment'
+// * @access public
+// */
+//	var $name = 'TestPluginComment';
+//
+///**
+// * belongsTo property
+// *
+// * @var array
+// * @access public
+// */
+//	var $belongsTo = array(
+//		'TestPluginArticle' => array(
+//			'className' => 'TestPlugin.TestPluginArticle',
+//			'foreignKey' => 'article_id',
+//		),
+//		'User'
+//	);
+//}
 
 /**
  * Uuidportfolio class
