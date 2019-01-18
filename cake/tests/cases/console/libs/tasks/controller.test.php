@@ -86,7 +86,7 @@ class ControllerTaskTest extends CakeTestCase {
  * @var array
  * @access public
  */
-	var $fixtures = array('core.article', 'core.comment', 'core.articles_tag', 'core.tag');
+	var $fixtures = array('core.article', 'core.comment', 'core.articles_tag', 'core.tag', 'core.user');
 
 /**
  * startTest method
