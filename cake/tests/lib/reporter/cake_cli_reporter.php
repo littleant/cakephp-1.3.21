@@ -142,6 +142,16 @@ class CakeCliReporter extends CakeBaseReporter {
         fwrite(STDOUT, 'CASE START' . $this->separator . $test_name . "\n\n");
     }
 
+    /**
+     *    Paints the start of a test method.
+     *    @param string $test_name     Name of test or other label.
+     *    @access public
+     */
+    function paintMethodStart($test_name) {
+        parent::paintMethodStart($test_name);
+        fwrite(STDOUT, 'METHOD START' . $this->separator . $test_name . "\n\n");
+    }
+
 /**
  * Paint a footer with test case name, timestamp, counts of fails and exceptions.
  */
