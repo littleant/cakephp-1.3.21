@@ -281,29 +281,29 @@ class TestTaskTest extends CakeTestCase {
 		App::build();
 	}
 
-/**
- * Test that file path generation doesn't continuously append paths.
- *
- * @return void
- * @access public
- */
-	function testFilePathGeneration() {
-		$file = TESTS . 'cases' . DS . 'models' . DS . 'my_class.test.php';
-
-		$this->Task->Dispatch->expectNever('stderr');
-		$this->Task->Dispatch->expectNever('_stop');
-
-		$this->Task->setReturnValue('in', 'y');
-		$this->Task->expectAt(0, 'createFile', array($file, '*'));
-		$this->Task->bake('Model', 'MyClass');
-
-		$this->Task->expectAt(1, 'createFile', array($file, '*'));
-		$this->Task->bake('Model', 'MyClass');
-
-		$file = TESTS . 'cases' . DS . 'controllers' . DS . 'comments_controller.test.php';
-		$this->Task->expectAt(2, 'createFile', array($file, '*'));
-		$this->Task->bake('Controller', 'Comments');
-	}
+///**
+// * Test that file path generation doesn't continuously append paths.
+// *
+// * @return void
+// * @access public
+// */
+//	function testFilePathGeneration() {
+//		$file = TESTS . 'cases' . DS . 'models' . DS . 'my_class.test.php';
+//
+//		$this->Task->Dispatch->expectNever('stderr');
+//		$this->Task->Dispatch->expectNever('_stop');
+//
+//		$this->Task->setReturnValue('in', 'y');
+//		$this->Task->expectAt(0, 'createFile', array($file, '*'));
+//		$this->Task->bake('Model', 'MyClass');
+//
+//		$this->Task->expectAt(1, 'createFile', array($file, '*'));
+//		$this->Task->bake('Model', 'MyClass');
+//
+//		$file = TESTS . 'cases' . DS . 'controllers' . DS . 'comments_controller.test.php';
+//		$this->Task->expectAt(2, 'createFile', array($file, '*'));
+//		$this->Task->bake('Controller', 'Comments');
+//	}
 
 /**
  * Test that method introspection pulls all relevant non parent class
