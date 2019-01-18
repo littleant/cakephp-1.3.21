@@ -299,48 +299,48 @@ class ControllerTaskTest extends CakeTestCase {
 		$this->assertEqual($this->Task->Template->templateVars['plugin'], 'ControllerTest');
 	}
 
-/**
- * test that bakeActions is creating the correct controller Code. (Using sessions)
- *
- * @return void
- * @access public
- */
-	function testBakeActionsUsingSessions() {
-		$skip = $this->skipIf(!defined('ARTICLE_MODEL_CREATED'),
-			'Testing bakeActions requires Article, Comment & Tag Model to be undefined. %s');
-		if ($skip) {
-			return;
-		}
-		$result = $this->Task->bakeActions('Articles', null, true);
-
-		$this->assertTrue(strpos($result, 'function index() {') !== false);
-		$this->assertTrue(strpos($result, '$this->Article->recursive = 0;') !== false);
-		$this->assertTrue(strpos($result, "\$this->set('articles', \$this->paginate());") !== false);
-
-		$this->assertTrue(strpos($result, 'function view($id = null)') !== false);
-		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('Invalid article', true));") !== false);
-		$this->assertTrue(strpos($result, "\$this->set('article', \$this->Article->read(null, \$id)") !== false);
-
-		$this->assertTrue(strpos($result, 'function add()') !== false);
-		$this->assertTrue(strpos($result, 'if (!empty($this->data))') !== false);
-		$this->assertTrue(strpos($result, 'if ($this->Article->save($this->data))') !== false);
-		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('The article has been saved', true));") !== false);
-
-		$this->assertTrue(strpos($result, 'function edit($id = null)') !== false);
-		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('The article could not be saved. Please, try again.', true));") !== false);
-
-		$this->assertTrue(strpos($result, 'function delete($id = null)') !== false);
-		$this->assertTrue(strpos($result, 'if ($this->Article->delete($id))') !== false);
-		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('Article deleted', true));") !== false);
-
-		$result = $this->Task->bakeActions('Articles', 'admin_', true);
-
-		$this->assertTrue(strpos($result, 'function admin_index() {') !== false);
-		$this->assertTrue(strpos($result, 'function admin_add()') !== false);
-		$this->assertTrue(strpos($result, 'function admin_view($id = null)') !== false);
-		$this->assertTrue(strpos($result, 'function admin_edit($id = null)') !== false);
-		$this->assertTrue(strpos($result, 'function admin_delete($id = null)') !== false);
-	}
+///**
+// * test that bakeActions is creating the correct controller Code. (Using sessions)
+// *
+// * @return void
+// * @access public
+// */
+//	function testBakeActionsUsingSessions() {
+//		$skip = $this->skipIf(!defined('ARTICLE_MODEL_CREATED'),
+//			'Testing bakeActions requires Article, Comment & Tag Model to be undefined. %s');
+//		if ($skip) {
+//			return;
+//		}
+//		$result = $this->Task->bakeActions('Articles', null, true);
+//
+//		$this->assertTrue(strpos($result, 'function index() {') !== false);
+//		$this->assertTrue(strpos($result, '$this->Article->recursive = 0;') !== false);
+//		$this->assertTrue(strpos($result, "\$this->set('articles', \$this->paginate());") !== false);
+//
+//		$this->assertTrue(strpos($result, 'function view($id = null)') !== false);
+//		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('Invalid article', true));") !== false);
+//		$this->assertTrue(strpos($result, "\$this->set('article', \$this->Article->read(null, \$id)") !== false);
+//
+//		$this->assertTrue(strpos($result, 'function add()') !== false);
+//		$this->assertTrue(strpos($result, 'if (!empty($this->data))') !== false);
+//		$this->assertTrue(strpos($result, 'if ($this->Article->save($this->data))') !== false);
+//		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('The article has been saved', true));") !== false);
+//
+//		$this->assertTrue(strpos($result, 'function edit($id = null)') !== false);
+//		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('The article could not be saved. Please, try again.', true));") !== false);
+//
+//		$this->assertTrue(strpos($result, 'function delete($id = null)') !== false);
+//		$this->assertTrue(strpos($result, 'if ($this->Article->delete($id))') !== false);
+//		$this->assertTrue(strpos($result, "\$this->Session->setFlash(__('Article deleted', true));") !== false);
+//
+//		$result = $this->Task->bakeActions('Articles', 'admin_', true);
+//
+//		$this->assertTrue(strpos($result, 'function admin_index() {') !== false);
+//		$this->assertTrue(strpos($result, 'function admin_add()') !== false);
+//		$this->assertTrue(strpos($result, 'function admin_view($id = null)') !== false);
+//		$this->assertTrue(strpos($result, 'function admin_edit($id = null)') !== false);
+//		$this->assertTrue(strpos($result, 'function admin_delete($id = null)') !== false);
+//	}
 
 /**
  * Test baking with Controller::flash() or no sessions.
