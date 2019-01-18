@@ -27,7 +27,7 @@ if (!class_exists('AppController')) {
 	define('APP_CONTROLLER_EXISTS', true);
 }
 
-Mock::generate('CakeHtmlReporter', 'MockCakeHtmlReporter');
+Mock::generate('CakeHtmlReporter');
 Mock::generate('CakeTestCase', 'CakeDispatcherMockTestCase');
 
 SimpleTest::ignore('SubjectCakeTestCase');
