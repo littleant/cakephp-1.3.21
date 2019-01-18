@@ -114,46 +114,46 @@ class CodeCoverageManagerTest extends CakeTestCase {
 		return ($var != basename(__FILE__));
 	}
 
-/**
- * testGetTestObjectFileNameFromTestCaseFile method
- *
- * @access public
- * @return void
- */
-	function testGetTestObjectFileNameFromTestCaseFile() {
-		$manager =& CodeCoverageManager::getInstance();
-		$manager->reporter = new CakeHtmlReporter();
-
-		$expected = $manager->__testObjectFileFromCaseFile('models/some_file.test.php', true);
-		$this->assertIdentical(APP.'models'.DS.'some_file.php', $expected);
-
-		$expected = $manager->__testObjectFileFromCaseFile('models/datasources/some_file.test.php', true);
-		$this->assertIdentical(APP.'models'.DS.'datasources'.DS.'some_file.php', $expected);
-
-		$expected = $manager->__testObjectFileFromCaseFile('controllers/some_file.test.php', true);
-		$this->assertIdentical(APP.'controllers'.DS.'some_file.php', $expected);
-
-		$expected = $manager->__testObjectFileFromCaseFile('views/some_file.test.php', true);
-		$this->assertIdentical(APP.'views'.DS.'some_file.php', $expected);
-
-		$expected = $manager->__testObjectFileFromCaseFile('behaviors/some_file.test.php', true);
-		$this->assertIdentical(APP.'models'.DS.'behaviors'.DS.'some_file.php', $expected);
-
-		$expected = $manager->__testObjectFileFromCaseFile('components/some_file.test.php', true);
-		$this->assertIdentical(APP.'controllers'.DS.'components'.DS.'some_file.php', $expected);
-
-		$expected = $manager->__testObjectFileFromCaseFile('helpers/some_file.test.php', true);
-		$this->assertIdentical(APP.'views'.DS.'helpers'.DS.'some_file.php', $expected);
-
-		$manager->pluginTest = 'bugs';
-		$expected = $manager->__testObjectFileFromCaseFile('models/some_file.test.php', false);
-		$this->assertIdentical(APP.'plugins'.DS.'bugs'.DS.'models'.DS.'some_file.php', $expected);
-
-		$manager->pluginTest = false;
-		$manager->reporter = new CakeCliReporter;
-		$expected = $manager->__testObjectFileFromCaseFile('libs/set.test.php', false);
-		$this->assertIdentical(ROOT.DS.'cake'.DS.'libs'.DS.'set.php', $expected);
-	}
+///**
+// * testGetTestObjectFileNameFromTestCaseFile method
+// *
+// * @access public
+// * @return void
+// */
+//	function testGetTestObjectFileNameFromTestCaseFile() {
+//		$manager =& CodeCoverageManager::getInstance();
+//		$manager->reporter = new CakeHtmlReporter();
+//
+//		$expected = $manager->__testObjectFileFromCaseFile('models/some_file.test.php', true);
+//		$this->assertIdentical(APP.'models'.DS.'some_file.php', $expected);
+//
+//		$expected = $manager->__testObjectFileFromCaseFile('models/datasources/some_file.test.php', true);
+//		$this->assertIdentical(APP.'models'.DS.'datasources'.DS.'some_file.php', $expected);
+//
+//		$expected = $manager->__testObjectFileFromCaseFile('controllers/some_file.test.php', true);
+//		$this->assertIdentical(APP.'controllers'.DS.'some_file.php', $expected);
+//
+//		$expected = $manager->__testObjectFileFromCaseFile('views/some_file.test.php', true);
+//		$this->assertIdentical(APP.'views'.DS.'some_file.php', $expected);
+//
+//		$expected = $manager->__testObjectFileFromCaseFile('behaviors/some_file.test.php', true);
+//		$this->assertIdentical(APP.'models'.DS.'behaviors'.DS.'some_file.php', $expected);
+//
+//		$expected = $manager->__testObjectFileFromCaseFile('components/some_file.test.php', true);
+//		$this->assertIdentical(APP.'controllers'.DS.'components'.DS.'some_file.php', $expected);
+//
+//		$expected = $manager->__testObjectFileFromCaseFile('helpers/some_file.test.php', true);
+//		$this->assertIdentical(APP.'views'.DS.'helpers'.DS.'some_file.php', $expected);
+//
+//		$manager->pluginTest = 'bugs';
+//		$expected = $manager->__testObjectFileFromCaseFile('models/some_file.test.php', false);
+//		$this->assertIdentical(APP.'plugins'.DS.'bugs'.DS.'models'.DS.'some_file.php', $expected);
+//
+//		$manager->pluginTest = false;
+//		$manager->reporter = new CakeCliReporter;
+//		$expected = $manager->__testObjectFileFromCaseFile('libs/set.test.php', false);
+//		$this->assertIdentical(ROOT.DS.'cake'.DS.'libs'.DS.'set.php', $expected);
+//	}
 
 /**
  * testOfHtmlDiffReport method
