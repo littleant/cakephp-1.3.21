@@ -129,5 +129,14 @@ class DefaultReporter extends SimpleReporterDecorator {
         }
         $this->SimpleReporterDecorator($reporter);
     }
+
+    /**
+     *    Paints the start of a test case.
+     *    @param string $test_name     Name of test or other label.
+     *    @access public
+     */
+    function paintCaseStart($test_name) {
+        echo $test_name ."\n";
+    }
 }
 ?>
