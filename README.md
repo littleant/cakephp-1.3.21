@@ -26,6 +26,10 @@ Three class functions had to be renamed:
 - `JavascriptHelper->value()` has been renamed to `JavascriptHelper->jsonValue()`
 - `JsBaseEngineHelper->value()` has been renamed to `JsBaseEngineHelper->jsonValue()`
 
+### Renamed files
+One file had to be renamed:
+- "cake/libs/error.php" has been renamed to "cake/libs/error_handler.php": Change any `App::import('Core', 'Error')` to `App::import('Core', 'ErrorHandler')`
+
 ### Removed database drivers
 Two database drivers had to be removed:
 - "mysql" (replace with "mysqli")
