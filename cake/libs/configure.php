@@ -42,7 +42,7 @@ class Configure extends CakeObject {
  * @return Configure instance
  * @access public
  */
-	function &getInstance($boot = true) {
+	static function &getInstance($boot = true) {
 		static $instance = array();
 		if (!$instance) {
 			if (!class_exists('Set')) {
@@ -79,7 +79,7 @@ class Configure extends CakeObject {
  * @return boolean True if write was successful
  * @access public
  */
-	function write($config, $value = null) {
+	static function write($config, $value = null) {
 		$_this =& Configure::getInstance();
 
 		if (!is_array($config)) {
@@ -160,7 +160,7 @@ class Configure extends CakeObject {
  * @return string value of Configure::$var
  * @access public
  */
-	function read($var = 'debug') {
+	static function read($var = 'debug') {
 		$_this =& Configure::getInstance();
 
 		if ($var === 'debug') {
@@ -210,7 +210,7 @@ class Configure extends CakeObject {
  * @return void
  * @access public
  */
-	function delete($var = null) {
+	static function delete($var = null) {
 		$_this =& Configure::getInstance();
 
 		if (strpos($var, '.') === false) {
@@ -287,7 +287,7 @@ class Configure extends CakeObject {
  * @return string Current version of CakePHP
  * @access public
  */
-	function version() {
+	static function version() {
 		$_this =& Configure::getInstance();
 
 		if (!isset($_this->Cake['version'])) {

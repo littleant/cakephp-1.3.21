@@ -62,7 +62,7 @@ class CakeLog {
  * @return void
  * @static
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 		if (!isset($instance[0])) {
 			$instance[0] = new CakeLog();
