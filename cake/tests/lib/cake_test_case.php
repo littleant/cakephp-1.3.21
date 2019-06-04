@@ -188,7 +188,7 @@ class CakeTestCase extends UnitTestCase {
  * @return boolean|null
  * @access public
  */
-	function assert($expectation, $compare, $message = '%s') {
+	function assert(&$expectation, $compare, $message = '%s') {
 		if ($this->_should_skip) {
 			return;
 		}
