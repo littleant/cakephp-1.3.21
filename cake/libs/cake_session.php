@@ -509,7 +509,9 @@ class CakeSession extends CakeObject {
 					if ($iniSet) {
 						ini_set('session.use_trans_sid', 0);
 						ini_set('url_rewriter.tags', '');
-						ini_set('session.save_handler', 'user');
+                                                if (version_compare(PHP_VERSION, '7.2.0', '<')) {
+                                                        ini_set('session.save_handler', 'user');
+                                                }
 						ini_set('session.serialize_handler', 'php');
 						ini_set('session.use_cookies', 1);
 						ini_set('session.name', Configure::read('Session.cookie'));
@@ -545,7 +547,9 @@ class CakeSession extends CakeObject {
 					if ($iniSet) {
 						ini_set('session.use_trans_sid', 0);
 						ini_set('url_rewriter.tags', '');
-						ini_set('session.save_handler', 'user');
+                                                if (version_compare(PHP_VERSION, '7.2.0', '<')) {
+                                                        ini_set('session.save_handler', 'user');
+                                                }
 						ini_set('session.use_cookies', 1);
 						ini_set('session.name', Configure::read('Session.cookie'));
 						ini_set('session.cookie_lifetime', $this->cookieLifeTime);
@@ -725,7 +729,7 @@ class CakeSession extends CakeObject {
  * Method used to read from a database session.
  *
  * @param mixed $id The key of the value to read
- * @return mixed The value of the key or false if it does not exist
+ * @return string The value of the key or an empty string if the value does not exist
  * @access private
  */
 	function __read($id) {
@@ -736,7 +740,7 @@ class CakeSession extends CakeObject {
 		));
 
 		if (empty($row[$model->alias]['data'])) {
-			return false;
+			return '';
 		}
 
 		return $row[$model->alias]['data'];
@@ -757,7 +761,7 @@ class CakeSession extends CakeObject {
 		$expires = time() + Configure::read('Session.timeout') * Security::inactiveMins();
 		$model =& ClassRegistry::getObject('Session');
 		$return = $model->save(array($model->primaryKey => $id) + compact('data', 'expires'));
-		return $return;
+		return (bool) $return;
 	}
 
 /**
@@ -769,9 +773,11 @@ class CakeSession extends CakeObject {
  */
 	function __destroy($id) {
 		$model =& ClassRegistry::getObject('Session');
-		$return = $model->delete($id);
+		$model->delete($id);
 
-		return $return;
+		// always return true, because the deletion might fail, if the session is not yet written and causes problems on
+                // calls to session_regenerate_id(true)
+		return true;
 	}
 
 /**
@@ -789,6 +795,6 @@ class CakeSession extends CakeObject {
 		}
 
 		$return = $model->deleteAll(array($model->alias . ".expires <" => $expires), false, false);
-		return $return;
+		return (bool) $return;
 	}
 }
