@@ -542,7 +542,7 @@ class DboSource extends DataSource {
 			return $return;
 		}
 		$data = trim($data);
-		if (preg_match('/^[\w-]+(?:\.[^ \*]*)*$/', $data)) { // string, string.string
+		if (preg_match('/^[\w\-]+(?:\.[^ \*]*)*$/', $data)) { // string, string.string
 			if (strpos($data, '.') === false) { // string
 				return $this->cacheMethod(__FUNCTION__, $cacheKey, $this->startQuote . $data . $this->endQuote);
 			}
@@ -551,18 +551,18 @@ class DboSource extends DataSource {
 				$this->startQuote . implode($this->endQuote . '.' . $this->startQuote, $items) . $this->endQuote
 			);
 		}
-		if (preg_match('/^[\w-]+\.\*$/', $data)) { // string.*
+		if (preg_match('/^[\w\-]+\.\*$/', $data)) { // string.*
 			return $this->cacheMethod(__FUNCTION__, $cacheKey,
 				$this->startQuote . str_replace('.*', $this->endQuote . '.*', $data)
 			);
 		}
-		if (preg_match('/^([\w-]+)\((.*)\)$/', $data, $matches)) { // Functions
+		if (preg_match('/^([\w\-]+)\((.*)\)$/', $data, $matches)) { // Functions
 			return $this->cacheMethod(__FUNCTION__, $cacheKey,
 				 $matches[1] . '(' . $this->name($matches[2]) . ')'
 			);
 		}
 		if (
-			preg_match('/^([\w-]+(\.[\w-]+|\(.*\))*)\s+' . preg_quote($this->alias) . '\s*([\w-]+)$/i', $data, $matches
+			preg_match('/^([\w\-]+(\.[\w\-]+|\(.*\))*)\s+' . preg_quote($this->alias) . '\s*([\w\-]+)$/i', $data, $matches
 		)) {
 			return $this->cacheMethod(
 				__FUNCTION__, $cacheKey,
@@ -571,7 +571,7 @@ class DboSource extends DataSource {
 				)
 			);
 		}
-		if (preg_match('/^[\w-_\s]*[\w-_]+/', $data)) {
+		if (preg_match('/^[\w\-_\s]*[\w\-_]+/', $data)) {
 			return $this->cacheMethod(__FUNCTION__, $cacheKey, $this->startQuote . $data . $this->endQuote);
 		}
 		return $this->cacheMethod(__FUNCTION__, $cacheKey, $data);
