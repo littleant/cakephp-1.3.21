@@ -241,12 +241,12 @@ class Debugger extends CakeObject {
  * @param string $file File on which error occurred
  * @param integer $line Line that triggered the error
  * @param array $context Context
- * @return boolean true if error was handled
+ * @return boolean true if error was handled, false otherwise
  * @access public
  */
 	function handleError($code, $description, $file = null, $line = null, $context = null) {
 		if (error_reporting() == 0 || $code === 2048 || $code === 8192) {
-			return;
+			return false;
 		}
 
 		$_this =& Debugger::getInstance();
@@ -263,7 +263,7 @@ class Debugger extends CakeObject {
 		if (!in_array($info, $_this->errors)) {
 			$_this->errors[] = $info;
 		} else {
-			return;
+			return false;
 		}
 
 		switch ($code) {
@@ -288,11 +288,11 @@ class Debugger extends CakeObject {
 				$level = LOG_NOTICE;
 			break;
 			default:
-				return;
+				return false;
 			break;
 		}
 
-		$helpCode = null;
+		$helpID = null;
 		if (!empty($_this->helpPath) && preg_match('/.*\[([0-9]+)\]$/', $description, $codes)) {
 			if (isset($codes[1])) {
 				$helpID = $codes[1];
