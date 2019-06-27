@@ -2399,7 +2399,7 @@ class DboSource extends DataSource {
 /**
  * Returns an ORDER BY clause as a string.
  *
- * @param string $key Field reference, as a key (i.e. Post.title)
+ * @param string $keys Field reference, as a key (i.e. Post.title)
  * @param string $direction Direction (ASC or DESC)
  * @param object $model model reference (used to look for virtual field)
  * @return string ORDER BY clause
@@ -2412,7 +2412,8 @@ class DboSource extends DataSource {
 		$keys = array_filter($keys);
 		$result = array();
 		while (!empty($keys)) {
-			list($key, $dir) = each($keys);
+            $key = key($keys);
+            $dir = current($keys);
 			array_shift($keys);
 
 			if (is_numeric($key)) {
