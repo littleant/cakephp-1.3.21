@@ -772,7 +772,7 @@ class Router {
 		}
 
 		if (!empty($self->__params)) {
-			if (isset($this) && !isset($this->params['requested'])) {
+			if (isset($self) && !isset($self->params['requested'])) {
 				$params = $self->__params[0];
 			} else {
 				$params = end($self->__params);
@@ -781,7 +781,7 @@ class Router {
 		$path = array('base' => null);
 
 		if (!empty($self->__paths)) {
-			if (isset($this) && !isset($this->params['requested'])) {
+			if (isset($self) && !isset($self->params['requested'])) {
 				$path = $self->__paths[0];
 			} else {
 				$path = end($self->__paths);
