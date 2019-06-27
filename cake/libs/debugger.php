@@ -227,7 +227,7 @@ class Debugger extends CakeObject {
  * @static
  * @link http://book.cakephp.org/1.3/en/The-Manual/Common-Tasks-With-CakePHP/Debugging.html#Using-the-Debugger-Class
  */
-	function log($var, $level = LOG_DEBUG) {
+    static function log($var, $level = LOG_DEBUG) {
 		$_this =& Debugger::getInstance();
 		$source = $_this->trace(array('start' => 1)) . "\n";
 		CakeLog::write($level, "\n" . $source . $_this->exportVar($var));
@@ -414,7 +414,7 @@ class Debugger extends CakeObject {
  * @access public
  * @static
  */
-	function trimPath($path) {
+    static function trimPath($path) {
 		if (!defined('CAKE_CORE_INCLUDE_PATH') || !defined('APP')) {
 			return $path;
 		}
@@ -692,7 +692,7 @@ class Debugger extends CakeObject {
  * @access public
  * @static
  */
-	function checkSecurityKeys() {
+	static function checkSecurityKeys() {
 		if (Configure::read('Security.salt') == 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi') {
 			trigger_error(__('Please change the value of \'Security.salt\' in app/config/core.php to a salt value specific to your application', true), E_USER_NOTICE);
 		}

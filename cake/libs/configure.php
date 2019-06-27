@@ -238,7 +238,7 @@ class Configure extends CakeObject {
  * @return mixed false if file not found, void if load successful
  * @access public
  */
-	function load($fileName) {
+	static function load($fileName) {
 		$found = $plugin = $pluginPath = false;
 		list($plugin, $fileName) = pluginSplit($fileName);
 		if ($plugin) {
@@ -631,7 +631,7 @@ class App extends CakeObject {
  * @return string array
  * @access public
  */
-	function path($type) {
+	static function path($type) {
 		$_this =& App::getInstance();
 		if (!isset($_this->{$type})) {
 			return array();
@@ -648,7 +648,7 @@ class App extends CakeObject {
  * @return void
  * @access public
  */
-	function build($paths = array(), $reset = false) {
+	static function build($paths = array(), $reset = false) {
 		$_this =& App::getInstance();
 		$defaults = array(
 			'models' => array(MODELS),
@@ -707,7 +707,7 @@ class App extends CakeObject {
  * @param string $plugin CamelCased/lower_cased plugin name to find the path of.
  * @return string full path to the plugin.
  */
-	function pluginPath($plugin) {
+	static function pluginPath($plugin) {
 		$_this =& App::getInstance();
 		$pluginDir = Inflector::underscore($plugin);
 		for ($i = 0, $length = count($_this->plugins); $i < $length; $i++) {
@@ -744,7 +744,7 @@ class App extends CakeObject {
  * @return array numeric keyed array of core lib paths
  * @access public
  */
-	function core($type = null) {
+	static function core($type = null) {
 		static $paths = false;
 		if ($paths === false) {
 			$paths = Cache::read('core_paths', '_cake_core_');
@@ -790,7 +790,7 @@ class App extends CakeObject {
  * @return mixed Either false on incorrect / miss.  Or an array of found objects.
  * @access public
  */
-	function objects($type, $path = null, $cache = true) {
+	static function objects($type, $path = null, $cache = true) {
 		$objects = array();
 		$extension = false;
 		$name = $type;
@@ -864,7 +864,7 @@ class App extends CakeObject {
  * @return boolean true if Class is already in memory or if file is found and loaded, false if not
  * @access public
  */
-	function import($type = null, $name = null, $parent = true, $search = array(), $file = null, $return = false) {
+	static function import($type = null, $name = null, $parent = true, $search = array(), $file = null, $return = false) {
 		$plugin = $directory = null;
 
 		if (is_array($type)) {
@@ -984,7 +984,7 @@ class App extends CakeObject {
  * @return object
  * @access public
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 		if (!$instance) {
 			$instance[0] = new App();

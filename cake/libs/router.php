@@ -185,7 +185,7 @@ class Router {
  * @access public
  * @static
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 
 		if (!$instance) {
@@ -202,7 +202,7 @@ class Router {
  * @see Router::$__named
  * @static
  */
-	function getNamedExpressions() {
+	static function getNamedExpressions() {
 		$self =& Router::getInstance();
 		return $self->__named;
 	}
@@ -260,7 +260,7 @@ class Router {
  * @access public
  * @static
  */
-	function connect($route, $defaults = array(), $options = array()) {
+	static function connect($route, $defaults = array(), $options = array()) {
 		$self =& Router::getInstance();
 
 		foreach ($self->__prefixes as $prefix) {
@@ -401,7 +401,7 @@ class Router {
  * @access public
  * @static
  */
-	function mapResources($controller, $options = array()) {
+    static function mapResources($controller, $options = array()) {
 		$self =& Router::getInstance();
 		$options = array_merge(array('prefix' => '/', 'id' => $self->__named['ID'] . '|' . $self->__named['UUID']), $options);
 		$prefix = $options['prefix'];
@@ -429,7 +429,7 @@ class Router {
  * @access public
  * @static
  */
-	function prefixes() {
+	static function prefixes() {
 		$self =& Router::getInstance();
 		return $self->__prefixes;
 	}
@@ -443,7 +443,7 @@ class Router {
  * @access public
  * @static
  */
-	function parse($url) {
+	static function parse($url) {
 		$self =& Router::getInstance();
 		if (!$self->__defaultsMapped && $self->__connectDefaults) {
 			$self->__connectDefaultRoutes();
@@ -620,7 +620,7 @@ class Router {
  * @access public
  * @static
  */
-	function setRequestInfo($params) {
+	static function setRequestInfo($params) {
 		$self =& Router::getInstance();
 		$defaults = array('plugin' => null, 'controller' => null, 'action' => null);
 		$params[0] = array_merge($defaults, (array)$params[0]);
@@ -680,7 +680,7 @@ class Router {
  * @access public
  * @static
  */
-	function getPaths($current = false) {
+    static function getPaths($current = false) {
 		$self =& Router::getInstance();
 		if ($current) {
 			return $self->__paths[count($self->__paths) - 1];
@@ -761,7 +761,7 @@ class Router {
  * @access public
  * @static
  */
-	function url($url = null, $full = false) {
+	static function url($url = null, $full = false) {
 		$self =& Router::getInstance();
 		$defaults = $params = array('plugin' => null, 'controller' => null, 'action' => 'index');
 
@@ -971,7 +971,7 @@ class Router {
  * @access public
  * @static
  */
-	function getNamedElements($params, $controller = null, $action = null) {
+    static function getNamedElements($params, $controller = null, $action = null) {
 		$self =& Router::getInstance();
 		$named = array();
 
@@ -1067,7 +1067,7 @@ class Router {
  * @access public
  * @static
  */
-	function reverse($params) {
+	static function reverse($params) {
 		$pass = $params['pass'];
 		$named = $params['named'];
 		if (isset($params['url'])) {
@@ -1096,7 +1096,7 @@ class Router {
  * @access public
  * @static
  */
-	function normalize($url = '/') {
+    static function normalize($url = '/') {
 		if (is_array($url)) {
 			$url = Router::url($url);
 		} elseif (preg_match('/^[a-z\-]+:\/\//', $url)) {
@@ -1139,7 +1139,7 @@ class Router {
  * @access public
  * @static
  */
-	function &currentRoute() {
+    static function &currentRoute() {
 		$self =& Router::getInstance();
 		return $self->__currentRoute[count($self->__currentRoute) - 1];
 	}
@@ -1183,7 +1183,7 @@ class Router {
  * @return void
  * @static
  */
-	function parseExtensions() {
+	static function parseExtensions() {
 		$self =& Router::getInstance();
 		$self->__parseExtensions = true;
 		if (func_num_args() > 0) {

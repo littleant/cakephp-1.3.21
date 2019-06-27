@@ -96,7 +96,7 @@ class CakeLog {
  * @return boolean success of configuration.
  * @static
  */
-	function config($key, $config) {
+	static function config($key, $config) {
 		if (empty($config['engine'])) {
 			trigger_error(__('Missing logger classname', true), E_USER_WARNING);
 			return false;
@@ -150,7 +150,7 @@ class CakeLog {
  * @access public
  * @static
  */
-	function configured() {
+	static function configured() {
 		$self =& CakeLog::getInstance();
 		return array_keys($self->_streams);
 	}

@@ -72,7 +72,7 @@ class ConnectionManager extends CakeObject {
  * @access public
  * @static
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 
 		if (!$instance) {
@@ -90,7 +90,7 @@ class ConnectionManager extends CakeObject {
  * @access public
  * @static
  */
-	function &getDataSource($name) {
+	static function &getDataSource($name) {
 		$_this =& ConnectionManager::getInstance();
 
 		if (!empty($_this->_dataSources[$name])) {
@@ -125,7 +125,7 @@ class ConnectionManager extends CakeObject {
  * @access public
  * @static
  */
-	function sourceList() {
+    static function sourceList() {
 		$_this =& ConnectionManager::getInstance();
 		return array_keys($_this->_dataSources);
 	}
@@ -141,7 +141,7 @@ class ConnectionManager extends CakeObject {
  * @access public
  * @static
  */
-	function getSourceName(&$source) {
+	static function getSourceName(&$source) {
 		$_this =& ConnectionManager::getInstance();
 		foreach ($_this->_dataSources as $name => $ds) {
 			if ($ds == $source) {

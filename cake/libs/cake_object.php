@@ -145,7 +145,7 @@ class CakeObject {
  * @return boolean Success of log write
  * @access public
  */
-	function log($msg, $type = LOG_ERROR) {
+    static function log($msg, $type = LOG_ERROR) {
 		if (!class_exists('CakeLog')) {
 			require LIBS . 'cake_log.php';
 		}

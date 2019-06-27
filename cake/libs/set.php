@@ -40,7 +40,7 @@ class Set {
  * @access public
  * @static
  */
-	function merge($arr1, $arr2 = null) {
+	static function merge($arr1, $arr2 = null) {
 		$args = func_get_args();
 
 		$r = (array)current($args);
@@ -87,7 +87,7 @@ class Set {
  * @access public
  * @static
  */
-	function pushDiff($array, $array2) {
+	static function pushDiff($array, $array2) {
 		if (empty($array) && !empty($array2)) {
 			return $array2;
 		}
@@ -227,7 +227,7 @@ class Set {
  * @access public
  * @static
  */
-	function numeric($array = null) {
+    static function numeric($array = null) {
 		if (empty($array)) {
 			return null;
 		}
@@ -597,7 +597,7 @@ class Set {
  * @access public
  * @static
  */
-	function classicExtract($data, $path = null) {
+	static function classicExtract($data, $path = null) {
 		if (empty($path)) {
 			return $data;
 		}
@@ -686,7 +686,7 @@ class Set {
  * @access public
  * @static
  */
-	function insert($list, $path, $data = null) {
+	static function insert($list, $path, $data = null) {
 		if (!is_array($path)) {
 			$path = explode('.', $path);
 		}
@@ -788,7 +788,7 @@ class Set {
  * @access public
  * @static
  */
-	function diff($val1, $val2 = null) {
+    static function diff($val1, $val2 = null) {
 		if (empty($val1)) {
 			return (array)$val2;
 		}
@@ -874,7 +874,7 @@ class Set {
  * @access public
  * @static
  */
-	function normalize($list, $assoc = true, $sep = ',', $trim = true) {
+	static function normalize($list, $assoc = true, $sep = ',', $trim = true) {
 		if (is_string($list)) {
 			$list = explode($sep, $list);
 			if ($trim) {
@@ -989,7 +989,7 @@ class Set {
  * @public
  * @static
  */
-	function reverse($object) {
+	static function reverse($object) {
 		$out = array();
 		if (is_a($object, 'XmlNode')) {
 			$out = $object->toArray();

@@ -97,7 +97,7 @@ class I18n extends CakeObject {
  * @return object I18n
  * @access public
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 		if (!$instance) {
 			$instance[0] = new I18n();
@@ -118,7 +118,7 @@ class I18n extends CakeObject {
  * @return string translated string.
  * @access public
  */
-	function translate($singular, $plural = null, $domain = null, $category = 6, $count = null) {
+	static function translate($singular, $plural = null, $domain = null, $category = 6, $count = null) {
 		$_this =& I18n::getInstance();
 		
 		if (strpos($singular, "\r\n") !== false) {

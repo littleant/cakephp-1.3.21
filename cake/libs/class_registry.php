@@ -62,7 +62,7 @@ class ClassRegistry {
  * @return ClassRegistry instance
  * @access public
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 		if (!$instance) {
 			$instance[0] = new ClassRegistry();
@@ -97,7 +97,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function &init($class, $type = null) {
+	static function &init($class, $type = null) {
 		$_this =& ClassRegistry::getInstance();
 		$id = $false = false;
 		$true = true;
@@ -181,7 +181,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function addObject($key, &$object) {
+	static function addObject($key, &$object) {
 		$_this =& ClassRegistry::getInstance();
 		$key = Inflector::underscore($key);
 		if (!isset($_this->__objects[$key])) {
@@ -215,7 +215,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function isKeySet($key) {
+	static function isKeySet($key) {
 		$_this =& ClassRegistry::getInstance();
 		$key = Inflector::underscore($key);
 		if (isset($_this->__objects[$key])) {
@@ -233,7 +233,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function keys() {
+    static function keys() {
 		$_this =& ClassRegistry::getInstance();
 		return array_keys($_this->__objects);
 	}
@@ -246,7 +246,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function &getObject($key) {
+	static function &getObject($key) {
 		$_this =& ClassRegistry::getInstance();
 		$key = Inflector::underscore($key);
 		$return = false;

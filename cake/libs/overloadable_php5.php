@@ -33,7 +33,7 @@ class Overloadable extends CakeObject {
  *
  * @access public
  */
-	function overload() { }
+	static function overload() { }
 
 /**
  * Magic method handler.

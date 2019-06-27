@@ -114,7 +114,7 @@ class CakeString {
  * @access public
  * @static
  */
-	function tokenize($data, $separator = ',', $leftBound = '(', $rightBound = ')') {
+	static function tokenize($data, $separator = ',', $leftBound = '(', $rightBound = ')') {
 		if (empty($data) || is_array($data)) {
 			return $data;
 		}

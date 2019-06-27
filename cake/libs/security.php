@@ -56,7 +56,7 @@ class Security extends CakeObject {
  * @access public
  * @static
  */
-	function inactiveMins() {
+	static function inactiveMins() {
 		switch (Configure::read('Security.level')) {
 			case 'high':
 				return 10;
@@ -168,7 +168,7 @@ class Security extends CakeObject {
  * @access public
  * @static
  */
-	function cipher($text, $key) {
+	static function cipher($text, $key) {
 		if (empty($key)) {
 			trigger_error(__('You cannot use an empty key for Security::cipher()', true), E_USER_WARNING);
 			return '';

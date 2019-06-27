@@ -67,7 +67,7 @@ class Cache {
  * @access public
  * @static
  */
-	function &getInstance() {
+	static function &getInstance() {
 		static $instance = array();
 		if (!$instance) {
 			$instance[0] = new Cache();
@@ -111,7 +111,7 @@ class Cache {
  * @access public
  * @static
  */
-	function config($name = null, $settings = array()) {
+	static function config($name = null, $settings = array()) {
 		$self =& Cache::getInstance();
 		if (is_array($name)) {
 			$settings = $name;
@@ -295,7 +295,7 @@ class Cache {
  * @access public
  * @static
  */
-	function write($key, $value, $config = null) {
+	static function write($key, $value, $config = null) {
 		$self =& Cache::getInstance();
 
 		if (!$config) {
@@ -341,7 +341,7 @@ class Cache {
  * @access public
  * @static
  */
-	function read($key, $config = null) {
+	static function read($key, $config = null) {
 		$self =& Cache::getInstance();
 
 		if (!$config) {
