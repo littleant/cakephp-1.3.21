@@ -273,7 +273,7 @@ class CakeString {
  * @static
  * @see String::insert()
  */
-	function cleanInsert($str, $options) {
+	static function cleanInsert($str, $options) {
 		$clean = $options['clean'];
 		if (!$clean) {
 			return $str;
