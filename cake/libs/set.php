@@ -844,7 +844,7 @@ class Set {
  * @access public
  * @static
  */
-	function countDim($array = null, $all = false, $count = 0) {
+	static function countDim($array = null, $all = false, $count = 0) {
 		if ($all) {
 			$depth = array($count);
 			if (is_array($array) && reset($array) !== false) {

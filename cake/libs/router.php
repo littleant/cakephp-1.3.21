@@ -644,7 +644,7 @@ class Router {
  * @access public
  * @static
  */
-	function getParams($current = false) {
+	static function getParams($current = false) {
 		$self =& Router::getInstance();
 		if ($current) {
 			return $self->__params[count($self->__params) - 1];
@@ -664,7 +664,7 @@ class Router {
  * @access public
  * @static
  */
-	function getParam($name = 'controller', $current = false) {
+	static function getParam($name = 'controller', $current = false) {
 		$params = Router::getParams($current);
 		if (isset($params[$name])) {
 			return $params[$name];
@@ -999,7 +999,7 @@ class Router {
  * @access public
  * @static
  */
-	function matchNamed($param, $val, $rule, $context = array()) {
+	static function matchNamed($param, $val, $rule, $context = array()) {
 		if ($rule === true || $rule === false) {
 			return $rule;
 		}
