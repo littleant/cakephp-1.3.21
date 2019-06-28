@@ -1,18 +1,18 @@
-# CakePHP 1.3 for PHP 7.2
-An unofficial port of CakePHP 1.3.21 to PHP 7.2.
+# CakePHP 1.3 for PHP 7.3
+An unofficial port of CakePHP 1.3.21 to PHP 7.3.
 
 **:warning: Only use this code, if you have an active CakePHP 1.3 version that you have to port to PHP 7!
 Otherwise use a [current CakePHP version](https://cakephp.org/)!**
 
 ## Getting Started
-1. Make sure your code is PHP 7.2 ready. [php7cc](https://github.com/sstalle/php7cc) is a good start, just exclude the cake-directory in your scans.
+1. Make sure your code is PHP 7.3 ready. [php7cc](https://github.com/sstalle/php7cc) is a good start, just exclude the cake-directory in your scans.
 2. If you made any changes in the cake-directory, that you want to reapply in the PHP 7-version, write them down.
 3. Delete your cake-directory.
 4. Copy **only** the cake-directory from this repository to your existing installation.
 5. Reapply the changes you wrote down in step 2.
 6. Find and fix problems related to the changes described below.
 
-Porting CakePHP to PHP 7.2 required the introduction of some breaking changes.
+Porting CakePHP to PHP 7.3 required the introduction of some breaking changes.
 Make sure you update your own code accord to the following changes:
 
 ### Renamed classes
