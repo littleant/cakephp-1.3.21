@@ -164,7 +164,7 @@ class CakeLog {
  * @access public
  * @static
  */
-	function drop($streamName) {
+	static function drop($streamName) {
 		$self =& CakeLog::getInstance();
 		unset($self->_streams[$streamName]);
 	}
