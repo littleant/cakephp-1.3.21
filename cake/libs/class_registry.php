@@ -272,7 +272,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function config($type, $param = array()) {
+	static function config($type, $param = array()) {
 		$_this =& ClassRegistry::getInstance();
 
 		if (empty($param) && is_array($type)) {
