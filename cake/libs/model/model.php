@@ -1225,7 +1225,7 @@ class Model extends Overloadable {
 		$fields = array();
 
 		if (!is_array($validate)) {
-			$options = array_merge($defaults, compact('validate', 'fieldList', 'callbacks'));
+			$options = array_merge($defaults, compact('validate', 'fieldList'));
 		} else {
 			$options = array_merge($defaults, $validate);
 		}
