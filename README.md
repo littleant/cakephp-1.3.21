@@ -13,7 +13,7 @@ Otherwise use a [current CakePHP version](https://cakephp.org/)!**
 6. Find and fix problems related to the changes described below.
 
 Porting CakePHP to PHP 7.3 required the introduction of some breaking changes.
-Make sure you update your own code accord to the following changes:
+Make sure you update your own code according to the following changes:
 
 ### Renamed classes
 Two classes had to be renamed:
