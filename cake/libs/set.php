@@ -67,7 +67,7 @@ class Set {
  * @access public
  * @static
  */
-	function filter($var, $isArray = false) {
+    static function filter($var, $isArray = false) {
 		if (is_array($var) && (!empty($var) || $isArray)) {
 			return array_filter($var, array('Set', 'filter'));
 		}
@@ -370,7 +370,7 @@ class Set {
  * @access public
  * @static
  */
-	function extract($path, $data = null, $options = array()) {
+	static function extract($path, $data = null, $options = array()) {
 		if (is_string($data)) {
 			$tmp = $data;
 			$data = $path;
@@ -720,7 +720,7 @@ class Set {
  * @access public
  * @static
  */
-	function remove($list, $path = null) {
+    static function remove($list, $path = null) {
 		if (empty($path)) {
 			return $list;
 		}
@@ -927,7 +927,7 @@ class Set {
  * @access public
  * @static
  */
-	function combine($data, $path1 = null, $path2 = null, $groupPath = null) {
+    static function combine($data, $path1 = null, $path2 = null, $groupPath = null) {
 		if (empty($data)) {
 			return array();
 		}

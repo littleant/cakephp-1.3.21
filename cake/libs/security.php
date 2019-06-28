@@ -41,7 +41,7 @@ class Security extends CakeObject {
  * @access public
  * @static
  */
-	function &getInstance() {
+    static function &getInstance() {
 		static $instance = array();
 		if (!$instance) {
 			$instance[0] = new Security;
@@ -110,7 +110,7 @@ class Security extends CakeObject {
  * @access public
  * @static
  */
-	function hash($string, $type = null, $salt = false) {
+    static function hash($string, $type = null, $salt = false) {
 		$_this =& Security::getInstance();
 
 		if ($salt) {
