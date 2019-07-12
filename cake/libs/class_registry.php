@@ -199,7 +199,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function removeObject($key) {
+	static function removeObject($key) {
 		$_this =& ClassRegistry::getInstance();
 		$key = Inflector::underscore($key);
 		if (isset($_this->__objects[$key])) {
@@ -233,7 +233,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-    static function keys() {
+	static function keys() {
 		$_this =& ClassRegistry::getInstance();
 		return array_keys($_this->__objects);
 	}
@@ -315,7 +315,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function map($key, $name) {
+	static function map($key, $name) {
 		$_this =& ClassRegistry::getInstance();
 		$key = Inflector::underscore($key);
 		$name = Inflector::underscore($name);
@@ -331,7 +331,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function mapKeys() {
+	static function mapKeys() {
 		$_this =& ClassRegistry::getInstance();
 		return array_keys($_this->__map);
 	}
@@ -357,7 +357,7 @@ class ClassRegistry {
  * @access public
  * @static
  */
-	function flush() {
+	static function flush() {
 		$_this =& ClassRegistry::getInstance();
 		$_this->__objects = array();
 		$_this->__map = array();
