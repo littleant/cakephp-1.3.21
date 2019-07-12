@@ -681,7 +681,7 @@ class DboMysql extends DboMysqlBase {
 					return $data;
 				}
 			default:
-				return "'" . mysql_real_escape_string($data, $this->connection) . "'";
+				return "'" . mysqli_real_escape_string($data, $this->connection) . "'";
 			break;
 		}
 	}
@@ -692,8 +692,8 @@ class DboMysql extends DboMysqlBase {
  * @return string Error message with error number
  */
 	function lastError() {
-		if (mysql_errno($this->connection)) {
-			return mysql_errno($this->connection).': '.mysql_error($this->connection);
+		if (mysqli_errno($this->connection)) {
+			return mysqli_errno($this->connection).': '.mysql_error($this->connection);
 		}
 		return null;
 	}
