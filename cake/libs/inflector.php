@@ -351,7 +351,7 @@ class Inflector {
  * @return void
  * @static
  */
-	function rules($type, $rules, $reset = false) {
+	static function rules($type, $rules, $reset = false) {
 		$_this =& Inflector::getInstance();
 		$var = '_'.$type;
 
@@ -588,7 +588,7 @@ class Inflector {
  * @static
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Utility-Libraries/Inflector.html#Class-methods
  */
-    static function variable($string) {
+	static function variable($string) {
 		$_this =& Inflector::getInstance();
 		if (!($result = $_this->_cache(__FUNCTION__, $string))) {
 			$string2 = Inflector::camelize(Inflector::underscore($string));
@@ -612,7 +612,7 @@ class Inflector {
  * @static
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Utility-Libraries/Inflector.html#Class-methods
  */
-    static function slug($string, $replacement = '_', $map = array()) {
+	static function slug($string, $replacement = '_', $map = array()) {
 		$_this =& Inflector::getInstance();
 
 		if (is_array($replacement)) {
