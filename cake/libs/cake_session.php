@@ -454,7 +454,7 @@ class CakeSession extends CakeObject {
  * @access public
  */
 	function destroy() {
-		if ($this->started()) {
+		if ($this->started() && session_status() == PHP_SESSION_ACTIVE) {
 			session_destroy();
 		}
 		$_SESSION = null;
