@@ -71,7 +71,7 @@ class BakeShellTestCase extends CakeTestCase {
  * @return void
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Dispatch = new BakeShellMockShellDispatcher();
 		$this->Shell = new MockBakeShell();
 		$this->Shell->Dispatch =& $this->Dispatch;
@@ -84,7 +84,7 @@ class BakeShellTestCase extends CakeTestCase {
  * @return void
  * @access public
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Dispatch, $this->Shell);
 	}
 

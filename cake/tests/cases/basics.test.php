@@ -365,7 +365,7 @@ class BasicsTest extends CakeTestCase {
 		$this->assertTrue(file_exists(CACHE . 'views' . DS . 'empty'));
 		$this->assertFalse(file_exists(CACHE . 'views' . DS . 'basics_test.php'));
 		if (!$emptyExists) {
-			unlink(CACHE . 'views' . DS . 'empty');
+			@unlink(CACHE . 'views' . DS . 'empty');
 		}
 	}
 

@@ -57,7 +57,7 @@ class ProjectTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Dispatcher = new TestProjectTaskMockShellDispatcher();
 		$this->Dispatcher->shellPaths = App::path('shells');
 		$this->Task = new MockProjectTask($this->Dispatcher);
@@ -71,7 +71,7 @@ class ProjectTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function endTest() {
+	function endTest($method) {
 		ClassRegistry::flush();
 
 		$Folder = new Folder($this->Task->path . 'bake_test_app');

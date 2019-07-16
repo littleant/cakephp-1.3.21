@@ -611,7 +611,7 @@ class JavascriptHelper extends AppHelper {
 			'block' => false, 'prefix' => '', 'postfix' => '',
 			'stringKeys' => array(), 'quoteKeys' => true, 'q' => '"'
 		);
-		$options = array_merge($defaultOptions, $options, array_filter(compact(array_keys($defaultOptions))));
+        	$options = array_merge($defaultOptions, $options);
 
 		if (is_object($data)) {
 			$data = get_object_vars($data);

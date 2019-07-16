@@ -75,7 +75,7 @@ class ModelTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Dispatcher = new TestModelTaskMockShellDispatcher();
 		$this->Task = new MockModelTask($this->Dispatcher);
 		$this->Task->name = 'ModelTask';
@@ -93,7 +93,7 @@ class ModelTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Task, $this->Dispatcher);
 		ClassRegistry::flush();
 	}
@@ -653,7 +653,7 @@ array(
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
-				//'last' => false, // Stop validation after this rule
+				//'last' => true, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 STRINGEND;

@@ -98,7 +98,7 @@ class ControllerTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Dispatcher = new TestControllerTaskMockShellDispatcher();
 		$this->Task = new MockControllerTask($this->Dispatcher);
 		$this->Task->name = 'ControllerTask';
@@ -117,7 +117,7 @@ class ControllerTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Task, $this->Dispatcher);
 		ClassRegistry::flush();
 	}

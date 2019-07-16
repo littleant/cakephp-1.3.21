@@ -29,7 +29,7 @@ class <?php echo $controllerName; ?>Controller extends <?php echo $plugin; ?>App
 	var $scaffold;
 <?php else: ?>
 <?php
-if (count($helpers)):
+if (@count($helpers)):
 	echo "\tvar \$helpers = array(";
 	for ($i = 0, $len = count($helpers); $i < $len; $i++):
 		if ($i != $len - 1):
@@ -41,7 +41,7 @@ if (count($helpers)):
 	echo ");\n";
 endif;
 
-if (count($components)):
+if (@count($components)):
 	echo "\tvar \$components = array(";
 	for ($i = 0, $len = count($components); $i < $len; $i++):
 		if ($i != $len - 1):

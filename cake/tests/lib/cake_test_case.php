@@ -698,7 +698,8 @@ class CakeTestCase extends UnitTestCase {
 				return false;
 			}
 		}
-		return $this->assert(new TrueExpectation(), true, '%s');
+		$trueExpectation = new TrueExpectation();
+		return $this->assert($trueExpectation, true, '%s');
 	}
 
 /**

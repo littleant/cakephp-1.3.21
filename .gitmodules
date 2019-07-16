@@ -1,0 +1,3 @@
+[submodule "vendors/simpletest"]
+	path = vendors/simpletest
+	url = https://github.com/littleant/simpletest-1.0.1.git

@@ -209,7 +209,7 @@ class FixtureTask extends BakeTask {
 		if (isset($this->params['records']) || isset($importOptions['fromTable'])) {
 			$records = $this->_makeRecordString($this->_getRecordsFromTable($model, $useTable));
 		}
-		$out = $this->generateFixtureFile($model, compact('records', 'table', 'schema', 'import', 'fields'));
+		$out = $this->generateFixtureFile($model, compact('records', 'table', 'schema', 'import'));
 		return $out;
 	}
 
