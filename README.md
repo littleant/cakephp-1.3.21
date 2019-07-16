@@ -41,8 +41,8 @@ One configuration variable has to be changed:
 
 ## Running the tests
 Tests have only partially ported to PHP 7.
-To run any tests, you need a (Simpletest 1.0.1 version with PHP 7 support)[https://github.com/littleant/simpletest-1.0.1] in the vendors-directory.
-Note: The original CakePHP 1.3 developers (noted)[https://book.cakephp.org/1.3/en/The-Manual/Common-Tasks-With-CakePHP/Testing.html], that the core-tests cannot be run all at once. You need to run them individually, or they will fail.
+To run any tests, you need a [Simpletest 1.0.1 version with PHP 7 support](https://github.com/littleant/simpletest-1.0.1) in the vendors-directory.
+Note: The original CakePHP 1.3 developers [noted](https://book.cakephp.org/1.3/en/The-Manual/Common-Tasks-With-CakePHP/Testing.html), that the core-tests cannot be run all at once. You need to run them individually, or they will fail.
 
 ## Contributing
 Please issue a pull request if you want to contribute.
