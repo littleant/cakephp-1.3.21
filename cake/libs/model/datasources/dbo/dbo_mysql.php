@@ -693,7 +693,7 @@ class DboMysql extends DboMysqlBase {
  */
 	function lastError() {
 		if (mysqli_errno($this->connection)) {
-			return mysqli_errno($this->connection).': '.mysql_error($this->connection);
+			return mysqli_errno($this->connection).': '.mysqli_error($this->connection);
 		}
 		return null;
 	}
