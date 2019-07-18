@@ -40,13 +40,13 @@ One configuration variable has to be changed:
 - "Security.cipherSeed" must be a valid `int` instead of a string. Make sure, it is small enough to be treated like an int, and not like a float on your system. Otherwise cookies will not be decoded correctly!
 
 ## Running the tests
-Tests have only partially ported to PHP 7.
+Tests have only been partially ported to PHP 7.
 
 To run any tests, you need a [Simpletest 1.0.1 version with PHP 7 support](https://github.com/littleant/simpletest-1.0.1) in the vendors-directory.
 
 Note: The original CakePHP 1.3 developers [noted](https://book.cakephp.org/1.3/en/The-Manual/Common-Tasks-With-CakePHP/Testing.html), that the core-tests cannot be run all at once. You need to run them individually, or they will fail.
 
-Also: Some core-tests will fail, if you are not using a dedicated test-database. These are bugs in the test-cases.
+Also: Some core-tests will fail, if you are not using a dedicated test-database. These are shortcomings in the test-cases.
 
 ## Contributing
 Please issue a pull request if you want to contribute.
