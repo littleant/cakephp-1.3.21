@@ -20,7 +20,7 @@
 App::import('Core', array('Theme', 'Controller'));
 
 if (!class_exists('ErrorHandler')) {
-	App::import('Core', array('Error'));
+	App::import('Core', array('ErrorHandler'));
 }
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 	define('CAKEPHP_UNIT_TEST_EXECUTION', 1);
@@ -70,7 +70,7 @@ class ThemeViewTestErrorHandler extends ErrorHandler {
  * @access public
  * @return void
  */
-	function _stop() {
+	function _stop($status = 0) {
 		return;
 	}
 }
@@ -125,7 +125,7 @@ class TestThemeView extends ThemeView {
  * @access public
  * @return void
  */
-	function cakeError($method, $messages) {
+	function cakeError($method, $messages = array()) {
 		$error = new ThemeViewTestErrorHandler($method, $messages);
 		return $error;
 	}
@@ -185,7 +185,7 @@ class ThemeViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		App::build(array(
 			'plugins' => array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'plugins' . DS),
 			'views' => array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views'. DS)
@@ -198,7 +198,7 @@ class ThemeViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		App::build();
 	}
 

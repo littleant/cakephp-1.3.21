@@ -37,7 +37,7 @@ class SessionHelperTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Session = new SessionHelper();
 
 		$_SESSION = array(
@@ -85,7 +85,7 @@ class SessionHelperTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		App::build();
 	}
 

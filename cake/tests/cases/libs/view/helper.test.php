@@ -41,7 +41,7 @@ class HelperTestPost extends Model {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		$this->_schema = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '8'),
 			'title' => array('type' => 'string', 'null' => false, 'default' => '', 'length' => '255'),
@@ -85,7 +85,7 @@ class HelperTestComment extends Model {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		$this->_schema = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '8'),
 			'author_id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '8'),
@@ -120,7 +120,7 @@ class HelperTestTag extends Model {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		$this->_schema = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '8'),
 			'name' => array('type' => 'string', 'null' => false, 'default' => '', 'length' => '255'),
@@ -153,7 +153,7 @@ class HelperTestPostsTag extends Model {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		$this->_schema = array(
 			'helper_test_post_id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '8'),
 			'helper_test_tag_id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '8'),
@@ -197,9 +197,12 @@ class HelperTest extends CakeTestCase {
 		$null = null;
 		$this->View = new View($null);
 		$this->Helper = new Helper();
-		ClassRegistry::addObject('HelperTestPost', new HelperTestPost());
-		ClassRegistry::addObject('HelperTestComment', new HelperTestComment());
-		ClassRegistry::addObject('HelperTestTag', new HelperTestTag());
+        $object1 = new HelperTestPost();
+		ClassRegistry::addObject('HelperTestPost', $object1);
+		$object2 = new HelperTestComment();
+		ClassRegistry::addObject('HelperTestComment', $object2);
+		$object3 = new HelperTestTag();
+		ClassRegistry::addObject('HelperTestTag', $object3);
 	}
 
 /**

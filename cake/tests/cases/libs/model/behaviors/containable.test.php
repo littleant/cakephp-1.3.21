@@ -44,7 +44,7 @@ class ContainableBehaviorTest extends CakeTestCase {
  *
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$this->User =& ClassRegistry::init('User');
 		$this->Article =& ClassRegistry::init('Article');
 		$this->Tag =& ClassRegistry::init('Tag');
@@ -69,7 +69,7 @@ class ContainableBehaviorTest extends CakeTestCase {
  *
  * @access public
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Article);
 		unset($this->User);
 		unset($this->Tag);
@@ -118,15 +118,20 @@ class ContainableBehaviorTest extends CakeTestCase {
 
 		$r = $this->__containments($this->Article, array('Comment' => array('limit' => 1)));
 		$this->assertEqual(array_keys($r), array('Comment', 'Article'));
-		$this->assertEqual(array_shift(Set::extract('/Comment/keep', $r)), array('keep' => array()));
+		$array = Set::extract('/Comment/keep', $r);
+		$this->assertEqual(array_shift($array), array('keep' => array()));
 		$this->assertTrue(Set::matches('/Article/keep/Comment', $r));
-		$this->assertEqual(array_shift(Set::extract('/Article/keep/Comment/.', $r)), array('limit' => 1));
+		$array = Set::extract('/Article/keep/Comment/.', $r);
+		$this->assertEqual(array_shift($array), array('limit' => 1));
 
 		$r = $this->__containments($this->Article, array('Comment.User'));
 		$this->assertEqual(array_keys($r), array('User', 'Comment', 'Article'));
-		$this->assertEqual(array_shift(Set::extract('/User/keep', $r)), array('keep' => array()));
-		$this->assertEqual(array_shift(Set::extract('/Comment/keep', $r)), array('keep' => array('User' => array())));
-		$this->assertEqual(array_shift(Set::extract('/Article/keep', $r)), array('keep' => array('Comment' => array())));
+		$array = Set::extract('/User/keep', $r);
+		$this->assertEqual(array_shift($array), array('keep' => array()));
+		$array = Set::extract('/Comment/keep', $r);
+		$this->assertEqual(array_shift($array), array('keep' => array('User' => array())));
+		$array = Set::extract('/Article/keep', $r);
+		$this->assertEqual(array_shift($array), array('keep' => array('Comment' => array())));
 
 		$r = $this->__containments($this->Tag, array('Article' => array('User' => array('Comment' => array(
 			'Attachment' => array('conditions' => array('Attachment.id >' => 1))
@@ -324,6 +329,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				)
 			)
 		);
+		usort($result, function($a, $b) {
+		    return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$this->Article->contain('User', 'Comment');
@@ -389,6 +397,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Comment' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -432,6 +443,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				)
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $this->Article->find('all', array('contain' => array('User', 'Comment')));
@@ -496,6 +510,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Comment' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -643,6 +660,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				)
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$this->Article->contain(array('User' => array('ArticleFeatured', 'Comment')));
@@ -734,6 +754,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				)
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$this->Article->contain(array('User' => array('ArticleFeatured')), 'Tag', array('Comment' => 'Attachment'));
@@ -843,6 +866,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Tag' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -988,6 +1014,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				)
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $this->Article->find('all', array('contain' => array('User' => array('ArticleFeatured', 'Comment'))));
@@ -1078,6 +1107,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				)
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $this->Article->find('all', array('contain' => array('User' => 'ArticleFeatured', 'Tag', 'Comment' => 'Attachment')));
@@ -1186,6 +1218,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Tag' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -2906,6 +2941,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 			array('Article' => array('title' => 'Second Article'), 'User' => array('user' => 'larry', 'id' => 3)),
 			array('Article' => array('title' => 'Third Article'), 'User' => array('user' => 'mariano', 'id' => 1)),
 		);
+        usort($result, function($a, $b) {
+            return strcmp($a['Article']['title'], $b['Article']['title']);
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $this->Article->find('all', array(
@@ -2917,6 +2955,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 			array('Article' => array('title' => 'Second Article'), 'User' => array('user' => 'larry', 'id' => 3)),
 			array('Article' => array('title' => 'Third Article'), 'User' => array('user' => 'mariano', 'id' => 1)),
 		);
+        usort($result, function($a, $b) {
+            return strcmp($a['Article']['title'], $b['Article']['title']);
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $this->Article->find('all', array(
@@ -2959,6 +3000,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Comment' => array()
 			),
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -3026,6 +3070,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Tag' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$this->Article->contain(array('User(id,user)', 'Tag' => array('fields' => array('tag', 'created'))));
@@ -3053,6 +3100,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Tag' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $this->Article->find('all', array(
@@ -3082,6 +3132,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Tag' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$this->Article->contain(array(
@@ -3109,6 +3162,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 				'Tag' => array()
 			)
 		);
+        usort($result, function($a, $b) {
+            return $a['Article']['id'] - $b['Article']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$this->assertTrue(empty($this->User->Article->hasAndBelongsToMany['Tag']['conditions']));
@@ -3218,6 +3274,9 @@ class ContainableBehaviorTest extends CakeTestCase {
 			array('Article' => array('title' => 'Second Article'), 'User' => array('user' => 'larry', 'id' => 3)),
 			array('Article' => array('title' => 'Third Article'), 'User' => array('user' => 'mariano', 'id' => 1)),
 		);
+        usort($result, function($a, $b) {
+            return strcmp($a['Article']['title'], $b['Article']['title']);
+        });
 		$this->assertEqual($result, $expected);
 
 		$r = $Controller->Article->find('all');

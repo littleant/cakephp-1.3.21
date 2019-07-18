@@ -28,7 +28,7 @@ class MooEngineHelperTestCase extends CakeTestCase {
  *
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Moo = new MootoolsEngineHelper();
 	}
 /**
@@ -36,7 +36,7 @@ class MooEngineHelperTestCase extends CakeTestCase {
  *
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Moo);
 	}
 /**

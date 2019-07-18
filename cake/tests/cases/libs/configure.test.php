@@ -48,7 +48,7 @@ class ConfigureTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		App::build();
 	}
 
@@ -804,30 +804,30 @@ class AppImportTest extends CakeTestCase {
 		$result = App::import('Vendor', 'SomeName', array('file' => 'some.name.php'));
 		$text = ob_get_clean();
 		$this->assertTrue($result);
-		$this->assertEqual($text, 'This is a file with dot in file name');
+		$this->assertEqual(trim($text), 'This is a file with dot in file name');
 
 		ob_start();
 		$result = App::import('Vendor', 'TestHello', array('file' => 'Test'.DS.'hello.php'));
 		$text = ob_get_clean();
 		$this->assertTrue($result);
-		$this->assertEqual($text, 'This is the hello.php file in Test directory');
+		$this->assertEqual(trim($text), 'This is the hello.php file in Test directory');
 
 		ob_start();
 		$result = App::import('Vendor', 'MyTest', array('file' => 'Test'.DS.'MyTest.php'));
 		$text = ob_get_clean();
 		$this->assertTrue($result);
-		$this->assertEqual($text, 'This is the MyTest.php file');
+		$this->assertEqual(trim($text), 'This is the MyTest.php file');
 
 		ob_start();
 		$result = App::import('Vendor', 'Welcome');
 		$text = ob_get_clean();
 		$this->assertTrue($result);
-		$this->assertEqual($text, 'This is the welcome.php file in vendors directory');
+		$this->assertEqual(trim($text), 'This is the welcome.php file in vendors directory');
 
 		ob_start();
 		$result = App::import('Vendor', 'TestPlugin.Welcome');
 		$text = ob_get_clean();
 		$this->assertTrue($result);
-		$this->assertEqual($text, 'This is the welcome.php file in test_plugin/vendors directory');
+		$this->assertEqual(trim($text), 'This is the welcome.php file in test_plugin/vendors directory');
 	}
 }

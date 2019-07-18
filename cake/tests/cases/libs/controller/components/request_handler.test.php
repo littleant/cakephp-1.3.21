@@ -164,7 +164,7 @@ class RequestHandlerComponentTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->_init();
 	}
 
@@ -186,7 +186,7 @@ class RequestHandlerComponentTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->RequestHandler);
 		unset($this->Controller);
 		if (!headers_sent()) {

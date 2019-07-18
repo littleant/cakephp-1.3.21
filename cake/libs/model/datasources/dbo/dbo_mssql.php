@@ -200,7 +200,7 @@ class DboMssql extends DboSource {
  *
  * @return array Array of tablenames in the database
  */
-	function listSources() {
+	function listSources($data = null) {
 		$cache = parent::listSources();
 
 		if ($cache != null) {
@@ -452,7 +452,7 @@ class DboMssql extends DboSource {
  *
  * @return integer Number of affected rows
  */
-	function lastAffected() {
+	function lastAffected($source = null) {
 		if ($this->_result) {
 			return mssql_rows_affected($this->connection);
 		}
@@ -465,7 +465,7 @@ class DboMssql extends DboSource {
  *
  * @return integer Number of rows in resultset
  */
-	function lastNumRows() {
+	function lastNumRows($source = null) {
 		if ($this->_result) {
 			return @mssql_num_rows($this->_result);
 		}

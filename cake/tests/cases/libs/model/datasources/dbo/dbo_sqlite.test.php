@@ -113,7 +113,7 @@ class DboSqliteTest extends CakeTestCase {
  *
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$this->_initDb();
 	}
 

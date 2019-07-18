@@ -573,11 +573,11 @@ class TestTaskTest extends CakeTestCase {
 		), true);
 
 		$this->Task->plugin = 'TestPlugin';
-		$path = $testApp . 'test_plugin' . DS . 'tests' . DS . 'cases' . DS . 'helpers' . DS . 'other_helper.test.php';
+		$path = $testApp . 'test_plugin' . DS . 'tests' . DS . 'cases' . DS . 'helpers' . DS . 'plugged_helper.test.php';
 		$this->Task->setReturnValueAt(0, 'in', 5); //helper
 		$this->Task->setReturnValueAt(1, 'in', 1); //OtherHelper
 		$this->Task->expectAt(0, 'createFile', array($path, '*'));
-		$this->Task->expectAt(9, 'out', array('1. OtherHelper'));
+		$this->Task->expectAt(9, 'out', array('1. PluggedHelper'));
 		$this->Task->execute();
 	}
 

@@ -2613,6 +2613,9 @@ class ModelWriteTest extends BaseModelTest {
 		$this->assertTrue($result);
 
 		$result = $TestModel->find('all');
+        usort($result, function($a, $b) {
+            return $a['Comment']['id'] - $b['Comment']['id'];
+        });
 		$expected = array(
 			'id' => '7',
 			'article_id' => '2',
@@ -2671,10 +2674,10 @@ class ModelWriteTest extends BaseModelTest {
 		$this->assertTrue($result);
 
 		$result = $Article->read();
-		$this->assertEqual(count($result['Tag']), 2);
+		$this->assertEqual(@count($result['Tag']), 2);
 		$this->assertEqual($result['Tag'][0]['tag'], 'tag1');
-		$this->assertEqual(count($result['Comment']), 1);
-		$this->assertEqual(count($result['Comment'][0]['comment']), 1);
+		$this->assertEqual(@count($result['Comment']), 1);
+		$this->assertEqual(@count($result['Comment'][0]['comment']), 1);
 	}
 
 /**

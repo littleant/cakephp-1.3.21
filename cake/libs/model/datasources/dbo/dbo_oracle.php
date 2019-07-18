@@ -334,7 +334,7 @@ class DboOracle extends DboSource {
  * @return integer Number of rows in resultset
  * @access public
  */
-	function lastNumRows() {
+	function lastNumRows($source = null) {
 		return $this->_numRows;
 	}
 
@@ -392,7 +392,7 @@ class DboOracle extends DboSource {
  * @return array
  * @access public
  */
-	function fetchRow() {
+	function fetchRow($sql = null) {
 		if ($this->_currentRow >= $this->_numRows) {
 			ocifreestatement($this->_statementId);
 			$this->_map = null;
@@ -471,7 +471,7 @@ class DboOracle extends DboSource {
  * @return array tablenames in the database
  * @access public
  */
-	function listSources() {
+	function listSources($data = null) {
 		$cache = parent::listSources();
 		if ($cache != null) {
 			return $cache;
@@ -776,7 +776,7 @@ class DboOracle extends DboSource {
  * @return boolean True on success, false on fail
  * (i.e. if the database/model does not support transactions).
  */
-	function begin() {
+	function begin(&$model) {
 		$this->__transactionStarted = true;
 		return true;
 	}
@@ -789,7 +789,7 @@ class DboOracle extends DboSource {
  * (i.e. if the database/model does not support transactions,
  * or a transaction has not started).
  */
-	function rollback() {
+	function rollback(&$model) {
 		return ocirollback($this->connection);
 	}
 
@@ -801,7 +801,7 @@ class DboOracle extends DboSource {
  * (i.e. if the database/model does not support transactions,
  * or a transaction has not started).
  */
-	function commit() {
+	function commit(&$model) {
 		$this->__transactionStarted = false;
 		return ocicommit($this->connection);
 	}
@@ -905,7 +905,7 @@ class DboOracle extends DboSource {
  * @return integer
  * @access public
  */
-	function lastInsertId($source) {
+	function lastInsertId($source = null) {
 		$sequence = $this->_sequenceMap[$source];
 		$sql = "SELECT $sequence.currval FROM dual";
 
@@ -935,7 +935,7 @@ class DboOracle extends DboSource {
  * @return int Number of affected rows
  * @access public
  */
-	function lastAffected() {
+	function lastAffected($source = null) {
 		return $this->_statementId ? ocirowcount($this->_statementId): false;
 	}
 

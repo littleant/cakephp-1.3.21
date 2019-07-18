@@ -225,7 +225,7 @@ class AclBehaviorTestCase extends CakeTestCase {
  * @return void
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		Configure::write('Acl.database', 'test_suite');
 
 		$this->Aco = new Aco();

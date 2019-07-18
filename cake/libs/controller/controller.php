@@ -1231,7 +1231,7 @@ class Controller extends CakeObject {
 		}
 		$paging = array(
 			'page'		=> $page,
-			'current'	=> count($results),
+			'current'	=> @count($results),
 			'count'		=> $count,
 			'prevPage'	=> ($page > 1),
 			'nextPage'	=> ($count > ($page * $limit)),

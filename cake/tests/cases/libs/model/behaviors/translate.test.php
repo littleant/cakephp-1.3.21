@@ -55,7 +55,7 @@ class TranslateBehaviorTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		ClassRegistry::flush();
 	}
 

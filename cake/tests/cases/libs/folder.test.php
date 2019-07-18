@@ -127,7 +127,7 @@ class FolderTest extends CakeTestCase {
 			return;
 		}
 		$path = TMP . 'tests' . DS . 'one';
-		mkdir($path);
+		@mkdir($path);
 		chmod($path, '0444');
 
 		$this->expectError();
@@ -193,7 +193,8 @@ class FolderTest extends CakeTestCase {
 		$this->assertFalse($result);
 
 		$expected = $new . ' is a file';
-		$result = array_pop($Folder->errors());
+		$errors = $Folder->errors();
+		$result = array_pop($errors);
 		$this->assertEqual($result, $expected);
 
 		$new = TMP . 'test_folder_new';

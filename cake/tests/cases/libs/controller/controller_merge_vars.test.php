@@ -141,7 +141,7 @@ class ControllerMergeVarsTestCase extends CakeTestCase {
  *
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		ClassRegistry::flush();
 	}
 

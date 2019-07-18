@@ -2174,7 +2174,7 @@ class SetTest extends CakeTestCase {
 				'hasOne' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'dependent'),
 				'hasMany' => array('className', 'foreignKey', 'conditions', 'fields', 'order', 'limit', 'offset', 'dependent', 'exclusive', 'finderQuery', 'counterQuery'),
 				'hasAndBelongsToMany' => array('className', 'joinTable', 'with', 'foreignKey', 'associationForeignKey', 'conditions', 'fields', 'order', 'limit', 'offset', 'unique', 'finderQuery', 'deleteQuery', 'insertQuery')),
-			'__associations' => array('belongsTo', 'hasOne', 'hasMany', 'hasAndBelongsToMany'), '__backAssociation' => array(), '__insertID' => null, '__numRows' => null, '__affectedRows' => null,
+			'__associations' => array('belongsTo', 'hasOne', 'hasMany', 'hasAndBelongsToMany'), '__backAssociation' => array(), '__insertID' => null, '__numRows' => null, '__safeUpdateMode' => false, '__affectedRows' => null,
 				'_findMethods' => array('all' => true, 'first' => true, 'count' => true, 'neighbors' => true, 'list' => true, 'threaded' => true));
 		$result = Set::reverse($model);
 

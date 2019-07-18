@@ -345,7 +345,11 @@ class ModelIntegrationTest extends BaseModelTest {
 				'Comment' => array(),
 				'Tag' => array()
 		));
-		$this->assertEqual($TestModel->find('all'), $expected);
+		$allArticles = $TestModel->find('all');
+		usort($allArticles, function($a, $b) {
+		    return $a['Article']['id'] - $b['Article']['id'];
+        });
+		$this->assertEqual($allArticles, $expected);
 
 		$db2 =& ConnectionManager::getDataSource('test2');
 
@@ -542,7 +546,11 @@ class ModelIntegrationTest extends BaseModelTest {
 					'created' => '2007-03-18 10:41:23',
 					'updated' => '2007-03-18 10:43:31'
 		)));
-		$this->assertEqual($TestModel->Comment->find('all'), $expected);
+		$allComments = $TestModel->Comment->find('all');
+        usort($allComments, function($a, $b) {
+            return $a['Comment']['id'] - $b['Comment']['id'];
+        });
+		$this->assertEqual($allComments, $expected);
 
 		foreach (array('User', 'Comment') as $class) {
 			$this->_fixtures[$this->_fixtureClassMap[$class]]->drop($db2);
@@ -1102,6 +1110,9 @@ class ModelIntegrationTest extends BaseModelTest {
 				'TestPluginComment' => array()
 		));
 
+		usort($result, function($a, $b) {
+		   return $a['TestPluginArticle']['id'] - $b['TestPluginArticle']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -1124,7 +1135,8 @@ class ModelIntegrationTest extends BaseModelTest {
 		$this->assertEqual($Article->getAssociated('hasMany'), array('Comment', 'Category'));
 
 		$results = $Article->getAssociated();
-		$this->assertEqual(sort(array_keys($results)), array('Category', 'Comment', 'Tag'));
+		$keys = array_keys($results);
+		$this->assertEqual(sort($keys), array('Category', 'Comment', 'Tag'));
 
 		$Article->unbindModel(array('hasAndBelongsToMany' => array('Tag')));
 		$this->assertEqual($Article->getAssociated('hasAndBelongsToMany'), array());

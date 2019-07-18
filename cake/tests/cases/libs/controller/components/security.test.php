@@ -97,7 +97,7 @@ class SecurityTestController extends Controller {
  * @access public
  * @return void
  */
-	function redirect($option, $code, $exit) {
+	function redirect($url, $code = NULL, $exit = true) {
 		return $code;
 	}
 
@@ -143,7 +143,7 @@ class SecurityComponentTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Controller = new SecurityTestController();
 		$this->Controller->Component->init($this->Controller);
 		$this->Controller->Security =& $this->Controller->TestSecurity;
@@ -158,7 +158,7 @@ class SecurityComponentTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		Configure::write('Security.salt', $this->oldSalt);
 		$this->Controller->Session->delete('_Token');
 		unset($this->Controller->Security);

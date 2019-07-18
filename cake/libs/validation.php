@@ -536,7 +536,8 @@ class Validation extends CakeObject {
 		if (is_array($check)) {
 			return Validation::extension(array_shift($check), $extensions);
 		}
-		$extension = strtolower(array_pop(explode('.', $check)));
+		$array = explode('.', $check);
+		$extension = strtolower(array_pop($array));
 		foreach ($extensions as $value) {
 			if ($extension == strtolower($value)) {
 				return true;

@@ -250,7 +250,8 @@ class EmailComponentTest extends CakeTestCase {
 		set_error_handler('simpleTestErrorHandler');
 
 		$this->Controller->EmailTest->initialize($this->Controller, array());
-		ClassRegistry::addObject('view', new View($this->Controller));
+		$object = new View($this->Controller);
+		ClassRegistry::addObject('view', $object);
 
 		App::build(array(
 			'views' => array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views'. DS)

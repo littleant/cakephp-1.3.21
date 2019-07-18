@@ -1094,6 +1094,9 @@ class ModelReadTest extends BaseModelTest {
 					'name' => ''
 				),
 				'Child' => array()));
+        usort($result, function($a, $b) {
+            return $a['Apple']['id'] - $b['Apple']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $TestModel->Parent->unbindModel(array('hasOne' => array('Sample')));
@@ -1760,6 +1763,9 @@ class ModelReadTest extends BaseModelTest {
 				'Child' => array()
 		));
 
+        usort($result, function($a, $b) {
+            return $a['Apple']['id'] - $b['Apple']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $TestModel->Parent->unbindModel(array('hasOne' => array('Sample')));
@@ -2189,6 +2195,9 @@ class ModelReadTest extends BaseModelTest {
 				'name' => ''
 		)));
 
+        usort($result, function($a, $b) {
+            return $a['Apple']['id'] - $b['Apple']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $TestModel->unbindModel(array('hasMany' => array('Child')));
@@ -2608,6 +2617,9 @@ class ModelReadTest extends BaseModelTest {
 					'apple_id' => '',
 					'name' => ''
 		)));
+        usort($result, function($a, $b) {
+            return $a['Apple']['id'] - $b['Apple']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$result = $TestModel->Parent->unbindModel(array('belongsTo' => array('Parent')));
@@ -2993,6 +3005,9 @@ class ModelReadTest extends BaseModelTest {
 					'apple_id' => '',
 					'name' => ''
 		)));
+        usort($result, function($a, $b) {
+            return $a['Apple']['id'] - $b['Apple']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -3932,6 +3947,9 @@ class ModelReadTest extends BaseModelTest {
 				),
 				'Child' => array()
 		));
+        usort($result, function($a, $b) {
+            return $a['Apple']['id'] - $b['Apple']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -3961,7 +3979,7 @@ class ModelReadTest extends BaseModelTest {
 
 		$TestModel = new Basket();
 		$recursive = 3;
-		$result = $TestModel->find('all', compact('conditions', 'recursive'));
+		$result = $TestModel->find('all', compact('recursive'));
 
 		$expected = array(
 			array(
@@ -3991,6 +4009,9 @@ class ModelReadTest extends BaseModelTest {
 				)
 			),
 		);
+        usort($result, function($a, $b) {
+            return $a['Basket']['id'] - $b['Basket']['id'];
+        });
 		$this->assertEqual($result, $expected);
 	}
 
@@ -4907,6 +4928,9 @@ class ModelReadTest extends BaseModelTest {
 					'updated' => '2007-03-17 01:18:31',
 					'test' => 'working'
 		)));
+        usort($result, function($a, $b) {
+            return $a['Post']['id'] - $b['Post']['id'];
+        });
 		$this->assertEqual($result, $expected);
 		unset($TestModel);
 
@@ -5023,7 +5047,10 @@ class ModelReadTest extends BaseModelTest {
 					'created' => '2007-03-17 01:16:23',
 					'updated' => '2007-03-17 01:18:31'
 		)));
-		$this->assertEqual($expected, $result);
+        usort($result, function($a, $b) {
+            return $a['Post']['id'] - $b['Post']['id'];
+        });
+		$this->assertEqual($result, $expected);
 		unset($TestModel);
 
 		$Author = new Author();

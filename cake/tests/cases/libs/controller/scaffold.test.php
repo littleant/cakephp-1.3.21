@@ -279,7 +279,7 @@ class ScaffoldViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Controller = new ScaffoldMockController();
 
 		App::build(array(
@@ -294,7 +294,7 @@ class ScaffoldViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Controller);
 
 		App::build();
@@ -684,7 +684,7 @@ class ScaffoldTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Controller = new ScaffoldMockController();
 	}
 
@@ -694,7 +694,7 @@ class ScaffoldTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Controller);
 	}
 

@@ -263,7 +263,7 @@ class Article extends CakeTestModel {
  * @access public
  * @return void
  */
-	function beforeSave() {
+	function beforeSave($options = array()) {
 		return $this->beforeSaveReturn;
 	}
 
@@ -561,7 +561,7 @@ class ModifiedComment extends CakeTestModel {
  *
  * @return void
  */
-	function afterFind($results) {
+	function afterFind($results, $primary = false) {
 		if (isset($results[0])) {
 			$results[0]['Comment']['callback'] = 'Fire';
 		}
@@ -606,7 +606,7 @@ class AgainModifiedComment extends CakeTestModel {
  *
  * @return void
  */
-	function afterFind($results) {
+	function afterFind($results, $primary = false) {
 		if (isset($results[0])) {
 			$results[0]['Comment']['querytype'] = $this->findQueryType;
 		}
@@ -922,7 +922,7 @@ class Post extends CakeTestModel {
 		return true;
 	}
 
-	function afterFind($results) {
+	function afterFind($results, $primary = false) {
 		$this->useDbConfig = 'test_suite';
 		return $results;
 	}
@@ -959,7 +959,7 @@ class Author extends CakeTestModel {
  * @access public
  * @return void
  */
-	function afterFind($results) {
+	function afterFind($results, $primary = false) {
 		$results[0]['Author']['test'] = 'working';
 		return $results;
 	}
@@ -988,7 +988,7 @@ class ModifiedAuthor extends Author {
  * @access public
  * @return void
  */
-	function afterFind($results) {
+	function afterFind($results, $primary = false) {
 		foreach($results as $index => $result) {
 			$results[$index]['Author']['user'] .= ' (CakePHP)';
 		}
@@ -1237,7 +1237,7 @@ class NodeAfterFind extends CakeTestModel {
  * @access public
  * @return void
  */
-	function afterFind($results) {
+	function afterFind($results, $primary = false) {
 		return $results;
 	}
 }
@@ -2146,7 +2146,7 @@ class CallbackPostTestModel extends CakeTestModel {
  *
  * @return void
  */
-	function beforeSave($options) {
+	function beforeSave($options = array()) {
 		return $this->beforeSaveReturn;
 	}
 /**
@@ -2154,7 +2154,7 @@ class CallbackPostTestModel extends CakeTestModel {
  *
  * @return void
  */
-	function beforeValidate($options) {
+	function beforeValidate($options = array()) {
 		return $this->beforeValidateReturn;
 	}
 /**
@@ -2375,7 +2375,7 @@ class ValidationTest2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		return array();
 	}
 }

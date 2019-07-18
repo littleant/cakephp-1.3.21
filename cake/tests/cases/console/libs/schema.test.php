@@ -273,7 +273,7 @@ class SchemaShellTest extends CakeTestCase {
 		$file = new File(TMP . 'tests' . DS . 'dump_test.sql');
 		$contents = $file->read();
 
-		$this->assertPattern('/CREATE TABLE `test_suite_acos`/', $contents);
+		$this->assertPattern('/CREATE TABLE `acos`/', $contents);
 		$this->assertPattern('/id/', $contents);
 		$this->assertPattern('/model/', $contents);
 

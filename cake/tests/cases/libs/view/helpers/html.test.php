@@ -109,9 +109,10 @@ class HtmlHelperTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Html = new HtmlHelper();
-		$view = new View(new TheHtmlTestController());
+		$controller = new TheHtmlTestController();
+		$view = new View($controller);
 		ClassRegistry::addObject('view', $view);
 		$this->_appEncoding = Configure::read('App.encoding');
 		$this->_asset = Configure::read('Asset');
@@ -124,7 +125,7 @@ class HtmlHelperTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		Configure::write('App.encoding', $this->_appEncoding);
 		Configure::write('Asset', $this->_asset);
 		Configure::write('debug', $this->_debug);

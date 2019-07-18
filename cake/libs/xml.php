@@ -1082,7 +1082,7 @@ class Xml extends XmlNode {
  * @return string String representation
  * @access public
  */
-	function toString($options = array()) {
+	function toString($options = array(), $depth = 0) {
 		if (is_bool($options)) {
 			$options = array('header' => $options);
 		}
@@ -1193,7 +1193,9 @@ class Xml extends XmlNode {
 		$_this =& XmlManager::getInstance();
 		if (isset($_this->namespaces[$name])) {
 			unset($_this->namespaces[$name]);
-			unset($this->namespaces[$name]);
+			if (isset($this)) {
+				unset($this->namespaces[$name]);
+			}
 			return true;
 		} elseif (in_array($name, $_this->namespaces)) {
 			$keys = array_keys($_this->namespaces);
@@ -1201,7 +1203,9 @@ class Xml extends XmlNode {
 			for ($i = 0; $i < $count; $i++) {
 				if ($_this->namespaces[$keys[$i]] == $name) {
 					unset($_this->namespaces[$keys[$i]]);
-					unset($this->namespaces[$keys[$i]]);
+					if (isset($this)) {
+						unset($this->namespaces[$keys[$i]]);
+					}
 					return true;
 				}
 			}
@@ -1365,7 +1369,7 @@ class XmlTextNode extends XmlNode {
  * @return boolean False - not supported
  * @todo make convertEntities work without mb support, convert entities to number entities
  */
-	function append() {
+	function &append(&$child, $options = array()) {
 		return false;
 	}
 

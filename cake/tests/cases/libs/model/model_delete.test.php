@@ -562,6 +562,9 @@ class ModelDeleteTest extends BaseModelTest {
 				'BiddingMessage' => array('bidding' => '', 'name' => ''),
 			),
 		);
+        usort($result, function($a, $b) {
+            return $a['Bidding']['id'] - $b['Bidding']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$Bidding->delete(4, true);
@@ -580,6 +583,9 @@ class ModelDeleteTest extends BaseModelTest {
 				'BiddingMessage' => array('bidding' => 'Three', 'name' => 'Message 3'),
 			),
 		);
+        usort($result, function($a, $b) {
+            return $a['Bidding']['id'] - $b['Bidding']['id'];
+        });
 		$this->assertEqual($result, $expected);
 
 		$Bidding->delete(2, true);

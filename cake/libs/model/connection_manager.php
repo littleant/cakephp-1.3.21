@@ -196,7 +196,7 @@ class ConnectionManager extends CakeObject {
  * @access public
  * @static
  */
-	function enumConnectionObjects() {
+    static function enumConnectionObjects() {
 		$_this =& ConnectionManager::getInstance();
 
 		return $_this->_connectionsEnum;

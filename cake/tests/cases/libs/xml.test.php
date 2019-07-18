@@ -387,7 +387,7 @@ class XmlTest extends CakeTestCase {
  */
 	function testCloneNode() {
 		$node = new XmlNode('element', 'myValue');
-		$twin =& $node->cloneNode();
+		$twin = $node->cloneNode();
 		$this->assertEqual($node, $twin);
 	}
 
@@ -1331,7 +1331,8 @@ class XmlTest extends CakeTestCase {
  */
 	function testAppend() {
 		$parentNode = new XmlNode('ourParentNode');
-		$parentNode->append( new XmlNode('ourChildNode'));
+		$node = new XmlNode('ourChildNode');
+		$parentNode->append($node);
 		$first =& $parentNode->first();
 		$this->assertEqual($first->name, 'ourChildNode');
 

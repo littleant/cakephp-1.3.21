@@ -81,7 +81,7 @@ class MysqlTestModel extends Model {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		return array(
 			'id'		=> array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
 			'client_id'	=> array('type' => 'integer', 'null' => '', 'default' => '0', 'length' => '11'),
@@ -136,7 +136,7 @@ class DboMysqlTest extends CakeTestCase {
  *
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$db = ConnectionManager::getDataSource('test_suite');
 		$this->model = new MysqlTestModel();
 	}

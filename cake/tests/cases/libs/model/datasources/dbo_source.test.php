@@ -231,7 +231,7 @@ class TestModel4 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
@@ -282,7 +282,7 @@ class TestModel4TestModel7 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'test_model4_id' => array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
@@ -353,7 +353,7 @@ class TestModel5 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
@@ -416,7 +416,7 @@ class TestModel6 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
@@ -468,7 +468,7 @@ class TestModel7 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
@@ -533,7 +533,7 @@ class TestModel8 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
@@ -597,7 +597,7 @@ class TestModel9 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
@@ -664,7 +664,7 @@ class Level extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => '10'),
@@ -729,7 +729,7 @@ class Group extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => '10'),
@@ -807,7 +807,7 @@ class User2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => '10'),
@@ -893,7 +893,7 @@ class Category2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '10'),
@@ -958,7 +958,7 @@ class Article2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '10'),
@@ -1024,7 +1024,7 @@ class CategoryFeatured2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => '', 'length' => '10'),
@@ -1088,7 +1088,7 @@ class Featured2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => '10'),
@@ -1147,7 +1147,7 @@ class Comment2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => '10'),
@@ -1229,7 +1229,7 @@ class ArticleFeatured2 extends CakeTestModel {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		if (!isset($this->_schema)) {
 			$this->_schema = array(
 				'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => '10'),
@@ -1288,7 +1288,7 @@ class DboSourceTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->__config = $this->db->config;
 
 		if (!class_exists('DboTest')) {
@@ -1336,7 +1336,7 @@ class DboSourceTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Model);
 		Configure::write('debug', $this->debug);
 		ClassRegistry::flush();

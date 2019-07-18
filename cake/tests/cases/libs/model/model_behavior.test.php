@@ -259,7 +259,7 @@ class TestBehavior extends ModelBehavior {
  * @access public
  * @return void
  */
-	function onError(&$model) {
+	function onError(&$model, $cascade) {
 		$settings = $this->settings[$model->alias];
 		if (!isset($settings['onError']) || $settings['onError'] == 'off') {
 			return parent::onError($model, $cascade);
@@ -434,7 +434,7 @@ class BehaviorTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		ClassRegistry::flush();
 	}
 
@@ -628,7 +628,11 @@ class BehaviorTest extends CakeTestCase {
 			array('id' => '6', 'apple_id' => '4', 'color' => 'My new appleOrange', 'name' => 'My new apple', 'created' => '2006-12-25 05:29:39', 'date' => '2006-12-25', 'modified' => '2006-12-25 05:29:39', 'mytime' => '22:57:17'),
 			array('id' => '7', 'apple_id' => '6', 'color' => 'Some wierd color', 'name' => 'Some odd color', 'created' => '2006-12-25 05:34:21', 'date' => '2006-12-25', 'modified' => '2006-12-25 05:34:21', 'mytime' => '22:57:17')
 		);
-		$this->assertEqual($Apple->find('all'), $expected);
+		$allApples = $Apple->find('all');
+		usort($allApples, function($a, $b) {
+		    return $a['id'] - $b['id'];
+        });
+		$this->assertEqual($allApples, $expected);
 	}
 
 /**
@@ -948,7 +952,7 @@ class BehaviorTest extends CakeTestCase {
 
 		$Apple->Behaviors->attach('Test', array('beforeFind' => 'off', 'onError' => 'on'));
 		if (ob_start()) {
-			$Apple->Behaviors->Test->onError($Apple);
+			$Apple->Behaviors->Test->onError($Apple, null);
 			$this->assertIdentical(trim(ob_get_clean()), 'onError trigger success');
 		}
 

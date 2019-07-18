@@ -344,7 +344,7 @@ class TranslateBehavior extends ModelBehavior {
  * @param Model $model Model save was called on.
  * @return boolean true.
  */
-	function beforeSave($model, $options = array()) {
+	function beforeSave(&$model, $options = array()) {
 		if (isset($options['validate']) && $options['validate'] == false) {
 			unset($this->runtime[$model->alias]['beforeSave']);
 		}

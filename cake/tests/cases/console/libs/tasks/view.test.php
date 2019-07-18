@@ -251,7 +251,7 @@ class ViewTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Dispatcher = new TestViewTaskMockShellDispatcher();
 		$this->Dispatcher->shellPaths = App::path('shells');
 		$this->Task = new MockViewTask($this->Dispatcher);
@@ -273,7 +273,7 @@ class ViewTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function endTest() {
+	function endTest($method) {
 		ClassRegistry::flush();
 		Configure::write('Routing', $this->_routing);
 	}

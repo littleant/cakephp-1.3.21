@@ -259,7 +259,10 @@ class CodeCoverageManager {
  */
 	function reportCaseHtmlDiff($testObjectFile, $coverageData, $execCodeLines, $numContextLines) {
 		$manager = CodeCoverageManager::getInstance();
-		$total = count($testObjectFile);
+		$total = 0;
+		if (is_countable($testObjectFile)) {
+            $total = count($testObjectFile);
+        }
 		$lines = array();
 
 		for ($i = 1; $i < $total + 1; $i++) {
@@ -346,23 +349,25 @@ class CodeCoverageManager {
 		// get the output
 		$lineCount = $coveredCount = 0;
 		$report = '';
-		foreach ($testObjectFile as $num => $line) {
-			// start line count at 1
-			$num++;
-			$class = $lines[$num];
+		if (is_countable($testObjectFile)) {
+            foreach ($testObjectFile as $num => $line) {
+                // start line count at 1
+                $num++;
+                $class = $lines[$num];
 
-			if (strpos($class, 'ignored') === false) {
-				$lineCount++;
+                if (strpos($class, 'ignored') === false) {
+                    $lineCount++;
 
-				if (strpos($class, 'covered') !== false && strpos($class, 'uncovered') === false) {
-					$coveredCount++;
-				}
-			}
+                    if (strpos($class, 'covered') !== false && strpos($class, 'uncovered') === false) {
+                        $coveredCount++;
+                    }
+                }
 
-			if (strpos($class, 'show') !== false) {
-				$report .= $manager->__paintCodeline($class, $num, $line);
-			}
-		}
+                if (strpos($class, 'show') !== false) {
+                    $report .= $manager->__paintCodeline($class, $num, $line);
+                }
+            }
+        }
 		return $manager->__paintHeader($lineCount, $coveredCount, $report);
 	}
 

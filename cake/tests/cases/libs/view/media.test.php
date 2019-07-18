@@ -20,7 +20,7 @@
 App::import('Core', array('Media', 'Controller'));
 
 if (!class_exists('ErrorHandler')) {
-	App::import('Core', array('Error'));
+	App::import('Core', array('ErrorHandler'));
 }
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 	define('CAKEPHP_UNIT_TEST_EXECUTION', 1);
@@ -136,7 +136,7 @@ class MediaViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		Router::reload();
 		$this->Controller = new Controller();
 		$this->MediaController = new MediaController();
@@ -149,7 +149,7 @@ class MediaViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->MediaView);
 		unset($this->MediaController);
 		unset($this->Controller);

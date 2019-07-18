@@ -24,7 +24,7 @@ Mock::generate('Helper', 'CallbackMockHelper');
 Mock::generate('CacheHelper', 'ViewTestMockCacheHelper');
 
 if (!class_exists('ErrorHandler')) {
-	App::import('Core', array('Error'));
+	App::import('Core', array('ErrorHandler'));
 }
 
 /**
@@ -90,7 +90,7 @@ class ViewTestErrorHandler extends ErrorHandler {
  * @access public
  * @return void
  */
-	function _stop() {
+	function _stop($status = 0) {
 		return;
 	}
 }
@@ -158,7 +158,7 @@ class TestView extends View {
  * @access public
  * @return void
  */
-	function cakeError($method, $messages) {
+	function cakeError($method, $messages = array()) {
 		$error = new ViewTestErrorHandler($method, $messages);
 		return $error;
 	}
@@ -244,7 +244,7 @@ class ViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		App::build(array(
 			'plugins' => array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'plugins' . DS),
 			'views' => array(
@@ -260,7 +260,7 @@ class ViewTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		App::build();
 	}
 

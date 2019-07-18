@@ -837,7 +837,7 @@ class Multibyte extends CakeObject {
 
 				if (!empty($keys)) {
 					foreach ($keys as $key => $value) {
-						if ($keys[$key]['upper'] == $char && count($keys[$key]['lower'][0]) === 1) {
+						if ($keys[$key]['upper'] == $char && @count($keys[$key]['lower'][0]) === 1) {
 							$lowerCase[] = $keys[$key]['lower'][0];
 							$matched = true;
 							break 1;
@@ -885,7 +885,7 @@ class Multibyte extends CakeObject {
 			} else {
 				$matched = false;
 				$keys = $_this->__find($char);
-				$keyCount = count($keys);
+				$keyCount = @count($keys);
 
 				if (!empty($keys)) {
 					foreach ($keys as $key => $value) {

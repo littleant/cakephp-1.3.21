@@ -118,11 +118,12 @@ class JavascriptTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->Javascript = new JavascriptHelper();
 		$this->Javascript->Html = new HtmlHelper();
 		$this->Javascript->Form = new FormHelper();
-		$this->View = new TheView(new TheJsTestController());
+		$controller = new TheJsTestController();
+		$this->View = new TheView($controller);
 		ClassRegistry::addObject('view', $this->View);
 	}
 
@@ -132,7 +133,7 @@ class JavascriptTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		unset($this->Javascript->Html);
 		unset($this->Javascript->Form);
 		unset($this->Javascript);

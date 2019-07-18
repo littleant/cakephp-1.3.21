@@ -172,7 +172,7 @@ class DboPostgres extends DboSource {
  *
  * @return array Array of tablenames in the database
  */
-	function listSources() {
+	function listSources($data = null) {
 		$cache = parent::listSources();
 
 		if ($cache != null) {
@@ -348,7 +348,7 @@ class DboPostgres extends DboSource {
  *
  * @return integer Number of affected rows
  */
-	function lastAffected() {
+	function lastAffected($source = null) {
 		return ($this->_result) ? pg_affected_rows($this->_result) : false;
 	}
 
@@ -358,7 +358,7 @@ class DboPostgres extends DboSource {
  *
  * @return integer Number of rows in resultset
  */
-	function lastNumRows() {
+	function lastNumRows($source = null) {
 		return ($this->_result) ? pg_num_rows($this->_result) : false;
 	}
 

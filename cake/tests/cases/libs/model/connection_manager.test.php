@@ -79,7 +79,7 @@ class ConnectionManagerTest extends CakeTestCase {
  */
 	function testGetDataSource() {
 		$connections = ConnectionManager::enumConnectionObjects();
-		$this->assertTrue(count(array_keys($connections) >= 1));
+		$this->assertTrue(@count(array_keys($connections) >= 1));
 
 		$source = ConnectionManager::getDataSource(key($connections));
 		$this->assertTrue(is_object($source));
@@ -254,7 +254,7 @@ class ConnectionManagerTest extends CakeTestCase {
 		$name = 'test_created_connection';
 
 		$connections = ConnectionManager::enumConnectionObjects();
-		$this->assertTrue(count(array_keys($connections) >= 1));
+		$this->assertTrue(@count(array_keys($connections) >= 1));
 
 		$source = ConnectionManager::getDataSource(key($connections));
 		$this->assertTrue(is_object($source));

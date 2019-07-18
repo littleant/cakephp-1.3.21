@@ -221,7 +221,7 @@ class ContactNonStandardPk extends Contact {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		$this->_schema = parent::schema();
 		$this->_schema['pk'] = $this->_schema['id'];
 		unset($this->_schema['id']);
@@ -389,7 +389,7 @@ class OpenidUrl extends CakeTestModel {
  * @access public
  * @return void
  */
-	function beforeValidate() {
+	function beforeValidate($options = array()) {
 		$this->invalidate('openid_not_registered');
 		return true;
 	}
@@ -458,7 +458,7 @@ class ValidateUser extends CakeTestModel {
  * @access public
  * @return void
  */
-	function beforeValidate() {
+	function beforeValidate($options = array()) {
 		$this->invalidate('email');
 		return false;
 	}
@@ -537,7 +537,7 @@ class ValidateProfile extends CakeTestModel {
  * @access public
  * @return void
  */
-	function beforeValidate() {
+	function beforeValidate($options = array()) {
 		$this->invalidate('full_name');
 		$this->invalidate('city');
 		return false;
@@ -607,7 +607,7 @@ class ValidateItem extends CakeTestModel {
  * @access public
  * @return void
  */
-	function beforeValidate() {
+	function beforeValidate($options = array()) {
 		$this->invalidate('description');
 		return false;
 	}
@@ -679,13 +679,20 @@ class FormHelperTest extends CakeTestCase {
 		$this->Form->params['action'] = 'add';
 
 		ClassRegistry::addObject('view', $view);
-		ClassRegistry::addObject('Contact', new Contact());
-		ClassRegistry::addObject('ContactNonStandardPk', new ContactNonStandardPk());
-		ClassRegistry::addObject('OpenidUrl', new OpenidUrl());
-		ClassRegistry::addObject('UserForm', new UserForm());
-		ClassRegistry::addObject('ValidateItem', new ValidateItem());
-		ClassRegistry::addObject('ValidateUser', new ValidateUser());
-		ClassRegistry::addObject('ValidateProfile', new ValidateProfile());
+		$contact = new Contact();
+		ClassRegistry::addObject('Contact', $contact);
+		$contactNonStandardPk = new ContactNonStandardPk();
+		ClassRegistry::addObject('ContactNonStandardPk', $contactNonStandardPk);
+		$openidUrl = new OpenidUrl();
+		ClassRegistry::addObject('OpenidUrl', $openidUrl);
+		$userForm = new UserForm();
+		ClassRegistry::addObject('UserForm', $userForm);
+		$validateItem = new ValidateItem();
+		ClassRegistry::addObject('ValidateItem', $validateItem);
+		$validateUser = new ValidateUser();
+		ClassRegistry::addObject('ValidateUser', $validateUser);
+		$validateProfile = new ValidateProfile();
+		ClassRegistry::addObject('ValidateProfile', $validateProfile);
 
 		$this->oldSalt = Configure::read('Security.salt');
 

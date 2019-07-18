@@ -690,7 +690,8 @@ class CakeTestCase extends UnitTestCase {
 				}
 			}
 			if (!$matches) {
-				$this->assert(new TrueExpectation(), false, sprintf('Item #%d / regex #%d failed: %s', $itemNum, $i, $description));
+			    $expectation = new TrueExpectation();
+				$this->assert($expectation, false, sprintf('Item #%d / regex #%d failed: %s', $itemNum, $i, $description));
 				if ($fullDebug) {
 					debug($string, true);
 					debug($regex, true);

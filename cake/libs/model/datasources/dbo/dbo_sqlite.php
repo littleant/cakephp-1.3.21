@@ -180,7 +180,7 @@ class DboSqlite extends DboSource {
  * @param string $sql
  * @return unknown
  */
-	function execute($sql) {
+	function execute($sql, $options = array()) {
 		$result = parent::execute($sql);
 		$this->_queryStats = array();
 		return $result;
@@ -191,7 +191,7 @@ class DboSqlite extends DboSource {
  *
  * @return array Array of tablenames in the database
  */
-	function listSources() {
+	function listSources($data = null) {
 		$cache = parent::listSources();
 
 		if ($cache != null) {
@@ -337,7 +337,7 @@ class DboSqlite extends DboSource {
  *
  * @return integer Number of affected rows
  */
-	function lastAffected() {
+	function lastAffected($source = null) {
 		if (!empty($this->_queryStats)) {
 			foreach (array('rows inserted', 'rows updated', 'rows deleted') as $key) {
 				if (array_key_exists($key, $this->_queryStats)) {
@@ -354,7 +354,7 @@ class DboSqlite extends DboSource {
  *
  * @return integer Number of rows in resultset
  */
-	function lastNumRows() {
+	function lastNumRows($source = null) {
 		if ($this->hasResult()) {
 			sqlite_num_rows($this->_result);
 		}
@@ -366,7 +366,7 @@ class DboSqlite extends DboSource {
  *
  * @return int
  */
-	function lastInsertId() {
+	function lastInsertId($source = null) {
 		return sqlite_last_insert_rowid($this->connection);
 	}
 
@@ -566,7 +566,7 @@ class DboSqlite extends DboSource {
  * @param string $model Name of model to inspect
  * @return array Fields in table. Keys are column and unique
  */
-	function index(&$model) {
+	function index($model) {
 		$index = array();
 		$table = $this->fullTableName($model);
 		if ($table) {

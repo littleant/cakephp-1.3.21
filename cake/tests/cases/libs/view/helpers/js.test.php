@@ -79,7 +79,7 @@ class JsHelperTestCase extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->_asset = Configure::read('Asset.timestamp');
 		Configure::write('Asset.timestamp', false);
 
@@ -99,7 +99,7 @@ class JsHelperTestCase extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		Configure::write('Asset.timestamp', $this->_asset);
 		ClassRegistry::removeObject('view');
 		unset($this->Js);
@@ -577,7 +577,7 @@ class JsBaseEngineTestCase extends CakeTestCase {
  * @access public
  * @return void
  */
-	function startTest() {
+	function startTest($method) {
 		$this->JsEngine = new JsBaseEngineHelper();
 	}
 /**
@@ -586,7 +586,7 @@ class JsBaseEngineTestCase extends CakeTestCase {
  * @access public
  * @return void
  */
-	function endTest() {
+	function endTest($method) {
 		ClassRegistry::removeObject('view');
 		unset($this->JsEngine);
 	}

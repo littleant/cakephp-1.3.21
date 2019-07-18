@@ -102,7 +102,7 @@ class MysqliTestModel extends Model {
  * @access public
  * @return void
  */
-	function schema() {
+	function schema($field = false) {
 		return array(
 			'id'		=> array('type' => 'integer', 'null' => '', 'default' => '', 'length' => '8'),
 			'client_id'	=> array('type' => 'integer', 'null' => '', 'default' => '0', 'length' => '11'),
@@ -183,7 +183,7 @@ class DboMysqliTest extends CakeTestCase {
 		$name = $this->db->fullTableName('simple');
 		$this->db->query('CREATE TABLE ' . $name . ' (id int(11) AUTO_INCREMENT, bool tinyint(1), small_int tinyint(2), primary key(id));');
 		$expected = array('PRIMARY' => array('column' => 'id', 'unique' => 1));
-		$result = $this->db->index($name, false);
+		$result = $this->db->index('simple');
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
 
@@ -193,7 +193,7 @@ class DboMysqliTest extends CakeTestCase {
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'pointless_bool' => array('column' => 'bool', 'unique' => 0),
 		);
-		$result = $this->db->index($name, false);
+		$result = $this->db->index('with_a_key');
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
 
@@ -204,7 +204,7 @@ class DboMysqliTest extends CakeTestCase {
 			'pointless_bool' => array('column' => 'bool', 'unique' => 0),
 			'pointless_small_int' => array('column' => 'small_int', 'unique' => 0),
 		);
-		$result = $this->db->index($name, false);
+		$result = $this->db->index('with_two_keys');
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
 
@@ -216,7 +216,7 @@ class DboMysqliTest extends CakeTestCase {
 			'pointless_small_int' => array('column' => 'small_int', 'unique' => 0),
 			'one_way' => array('column' => array('bool', 'small_int'), 'unique' => 0),
 		);
-		$result = $this->db->index($name, false);
+		$result = $this->db->index('with_compound_keys');
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
 
@@ -229,7 +229,7 @@ class DboMysqliTest extends CakeTestCase {
 			'one_way' => array('column' => array('bool', 'small_int'), 'unique' => 0),
 			'other_way' => array('column' => array('small_int', 'bool'), 'unique' => 0),
 		);
-		$result = $this->db->index($name, false);
+		$result = $this->db->index('with_multiple_compound_keys');
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
 	}
@@ -319,7 +319,7 @@ class DboMysqliTest extends CakeTestCase {
 	function testReadTableParameters() {
 		$this->db->cacheSources = $this->db->testing = false;
 		$this->db->query('CREATE TABLE ' . $this->db->fullTableName('tinyint') . ' (id int(11) AUTO_INCREMENT, bool tinyint(1), small_int tinyint(2), primary key(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;');
-		$result = $this->db->readTableParameters('tinyint');
+		$result = $this->db->readTableParameters($this->db->fullTableName('tinyint', false));
 		$expected = array(
 			'charset' => 'utf8',
 			'collate' => 'utf8_unicode_ci',
@@ -328,7 +328,7 @@ class DboMysqliTest extends CakeTestCase {
 
 		$this->db->query('DROP TABLE ' . $this->db->fullTableName('tinyint'));
 		$this->db->query('CREATE TABLE ' . $this->db->fullTableName('tinyint') . ' (id int(11) AUTO_INCREMENT, bool tinyint(1), small_int tinyint(2), primary key(id)) ENGINE=MyISAM DEFAULT CHARSET=cp1250 COLLATE=cp1250_general_ci;');
-		$result = $this->db->readTableParameters('tinyint');
+		$result = $this->db->readTableParameters($this->db->fullTableName('tinyint', false));
 		$expected = array(
 			'charset' => 'cp1250',
 			'collate' => 'cp1250_general_ci',

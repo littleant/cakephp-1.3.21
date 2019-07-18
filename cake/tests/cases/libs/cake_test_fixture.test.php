@@ -174,7 +174,7 @@ Mock::generate('DboSource', 'BaseFixtureMockDboSource');
 class FixtureMockDboSource extends BaseFixtureMockDboSource {
 	var $insertMulti;
 
-	function value($string) {
+	function value($string, $column = NULL, $read = NULL) {
 		return is_string($string) ? '\'' . $string . '\'' : $string;
 	}
 
