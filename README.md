@@ -40,7 +40,7 @@ One configuration variable has to be changed:
 - "Security.cipherSeed" must be a valid `int` instead of a string. Make sure, it is small enough to be treated like an int, and not like a float on your system. Otherwise cookies will not be decoded correctly!
 
 ## Running the tests
-Tests have only been partially ported to PHP 7.
+Core-tests have been ported to PHP 7.
 
 To run any tests, you need a [Simpletest 1.0.1 version with PHP 7 support](https://github.com/littleant/simpletest-1.0.1) in the vendors-directory.
 
