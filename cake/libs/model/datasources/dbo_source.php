@@ -2650,7 +2650,7 @@ class DboSource extends DataSource {
 		foreach ($schema->tables as $curTable => $columns) {
 			if (!$tableName || $tableName == $curTable) {
 				$cols = $colList = $indexes = $tableParameters = array();
-				$primary = null;
+                $primaries = array();
 				$table = $this->fullTableName($curTable);
 
 				foreach ($columns as $name => $col) {
@@ -2658,7 +2658,7 @@ class DboSource extends DataSource {
 						$col = array('type' => $col);
 					}
 					if (isset($col['key']) && $col['key'] == 'primary') {
-						$primary = $name;
+                        $primaries[] = $name;
 					}
 					if ($name !== 'indexes' && $name !== 'tableParameters') {
 						$col['name'] = $name;
@@ -2672,8 +2672,13 @@ class DboSource extends DataSource {
 						$tableParameters = array_merge($tableParameters, $this->buildTableParameters($col, $table));
 					}
 				}
-				if (empty($indexes) && !empty($primary)) {
-					$col = array('PRIMARY' => array('column' => $primary, 'unique' => 1));
+				if (empty($indexes) && !empty($primaries)) {
+                    $col = array('PRIMARY' => array());
+                    if (count($primaries) == 1) {
+                        $col['PRIMARY'] = array('column' => $primaries[0], 'unique' => 1);
+                    } else {
+                        $col['PRIMARY'] = array('column' => $primaries, 'unique' => 1);
+                    }
 					$indexes = array_merge($indexes, $this->buildIndex($col, $table));
 				}
 				$columns = $cols;
