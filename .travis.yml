@@ -1,5 +1,124 @@
 language: php
+php:
+  - 7.2
+  - 7.3
 notifications:
   email:false
 branches:
-  only: master
+  only:
+  - master
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test2;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS cake;'
+install:
+  - echo "<?php class DATABASE_CONFIG { var \$test = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'test', 'prefix' => '',); var \$test2 = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'test2', 'prefix' => '',); var \$default = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'cake', 'prefix' => '',); }" > ./app/config/database.php
+script:
+  - ./cake/console/cake testsuite core case basics
+  - ./cake/console/cake testsuite core case console/Cake
+  - ./cake/console/cake testsuite core case console/libs/Acl
+#  - ./cake/console/cake testsuite core case console/libs/Api
+  - ./cake/console/cake testsuite core case console/libs/Bake
+  - ./cake/console/cake testsuite core case console/libs/Schema
+  - ./cake/console/cake testsuite core case console/libs/Shell
+  - ./cake/console/cake testsuite core case console/libs/tasks/Controller
+  - ./cake/console/cake testsuite core case console/libs/tasks/DbConfig
+  - ./cake/console/cake testsuite core case console/libs/tasks/Extract
+  - ./cake/console/cake testsuite core case console/libs/tasks/Fixture
+  - ./cake/console/cake testsuite core case console/libs/tasks/Model
+  - ./cake/console/cake testsuite core case console/libs/tasks/Plugin
+#  - ./cake/console/cake testsuite core case console/libs/tasks/Project
+#  - ./cake/console/cake testsuite core case console/libs/tasks/Template
+#  - ./cake/console/cake testsuite core case console/libs/tasks/Test
+  - ./cake/console/cake testsuite core case console/libs/tasks/View
+#  - ./cake/console/cake testsuite core case Dispatcher
+  - ./cake/console/cake testsuite core case libs/cache/Apc
+  - ./cake/console/cake testsuite core case libs/cache/File
+  - ./cake/console/cake testsuite core case libs/cache/Memcache
+  - ./cake/console/cake testsuite core case libs/cache/Xcache
+  - ./cake/console/cake testsuite core case libs/Cache
+  - ./cake/console/cake testsuite core case libs/CakeLog
+#  - ./cake/console/cake testsuite core case libs/CakeSession
+#  - ./cake/console/cake testsuite core case libs/CakeSocket
+#  - ./cake/console/cake testsuite core case libs/CakeTestCase
+  - ./cake/console/cake testsuite core case libs/CakeTestFixture
+  - ./cake/console/cake testsuite core case libs/ClassRegistry
+#  - ./cake/console/cake testsuite core case libs/CodeCoverageManager
+#  - ./cake/console/cake testsuite core case libs/Configure
+  - ./cake/console/cake testsuite core case libs/controller/Component
+  - ./cake/console/cake testsuite core case libs/controller/components/Acl
+#  - ./cake/console/cake testsuite core case libs/controller/components/Auth
+#  - ./cake/console/cake testsuite core case libs/controller/components/Cookie
+#  - ./cake/console/cake testsuite core case libs/controller/components/Email
+#  - ./cake/console/cake testsuite core case libs/controller/components/RequestHandler
+#  - ./cake/console/cake testsuite core case libs/controller/components/Security
+#  - ./cake/console/cake testsuite core case libs/controller/components/Session
+#  - ./cake/console/cake testsuite core case libs/controller/Controller
+  - ./cake/console/cake testsuite core case libs/controller/ControllerMergeVars
+#  - ./cake/console/cake testsuite core case libs/controller/PagesController
+#  - ./cake/console/cake testsuite core case libs/controller/Scaffold
+  - ./cake/console/cake testsuite core case libs/Debugger
+  - ./cake/console/cake testsuite core case libs/Error
+#  - ./cake/console/cake testsuite core case libs/File
+  - ./cake/console/cake testsuite core case libs/Folder
+  - ./cake/console/cake testsuite core case libs/HttpSocket
+  - ./cake/console/cake testsuite core case libs/I18n
+  - ./cake/console/cake testsuite core case libs/Inflector
+  - ./cake/console/cake testsuite core case libs/L10n
+  - ./cake/console/cake testsuite core case libs/log/FileLog
+  - ./cake/console/cake testsuite core case libs/MagicDb
+  - ./cake/console/cake testsuite core case libs/model/behaviors/Acl
+  - ./cake/console/cake testsuite core case libs/model/behaviors/Containable
+#  - ./cake/console/cake testsuite core case libs/model/behaviors/Translate
+  - ./cake/console/cake testsuite core case libs/model/behaviors/Tree
+  - ./cake/console/cake testsuite core case libs/model/CakeSchema
+  - ./cake/console/cake testsuite core case libs/model/ConnectionManager
+  - ./cake/console/cake testsuite core case libs/model/datasources/dbo/DboMssql
+  - ./cake/console/cake testsuite core case libs/model/datasources/dbo/DboMysql
+  - ./cake/console/cake testsuite core case libs/model/datasources/dbo/DboMysqli
+  - ./cake/console/cake testsuite core case libs/model/datasources/dbo/DboOracle
+  - ./cake/console/cake testsuite core case libs/model/datasources/dbo/DboPostgres
+  - ./cake/console/cake testsuite core case libs/model/datasources/dbo/DboSqlite
+#  - ./cake/console/cake testsuite core case libs/model/datasources/DboSource
+  - ./cake/console/cake testsuite core case libs/model/DbAcl
+  - ./cake/console/cake testsuite core case libs/model/Model
+  - ./cake/console/cake testsuite core case libs/model/ModelBehavior
+  - ./cake/console/cake testsuite core case libs/model/ModelDelete
+  - ./cake/console/cake testsuite core case libs/model/ModelIntegration
+  - ./cake/console/cake testsuite core case libs/model/ModelRead
+  - ./cake/console/cake testsuite core case libs/model/ModelValidation
+  - ./cake/console/cake testsuite core case libs/model/ModelWrite
+#  - ./cake/console/cake testsuite core case libs/Multibyte
+#  - ./cake/console/cake testsuite core case libs/Object
+  - ./cake/console/cake testsuite core case libs/Overloadable
+  - ./cake/console/cake testsuite core case libs/Router
+  - ./cake/console/cake testsuite core case libs/Sanitize
+  - ./cake/console/cake testsuite core case libs/Security
+  - ./cake/console/cake testsuite core case libs/Set
+  - ./cake/console/cake testsuite core case libs/String
+#  - ./cake/console/cake testsuite core case libs/TestManager
+  - ./cake/console/cake testsuite core case libs/Validation
+  - ./cake/console/cake testsuite core case libs/view/Helper
+#  - ./cake/console/cake testsuite core case libs/view/helpers/Ajax
+  - ./cake/console/cake testsuite core case libs/view/helpers/Cache
+#  - ./cake/console/cake testsuite core case libs/view/helpers/Form
+  - ./cake/console/cake testsuite core case libs/view/helpers/Html
+  - ./cake/console/cake testsuite core case libs/view/helpers/Javascript
+  - ./cake/console/cake testsuite core case libs/view/helpers/JqueryEngine
+#  - ./cake/console/cake testsuite core case libs/view/helpers/Js
+  - ./cake/console/cake testsuite core case libs/view/helpers/MootoolsEngine
+  - ./cake/console/cake testsuite core case libs/view/helpers/Number
+  - ./cake/console/cake testsuite core case libs/view/helpers/Paginator
+  - ./cake/console/cake testsuite core case libs/view/helpers/PrototypeEngine
+#  - ./cake/console/cake testsuite core case libs/view/helpers/Rss
+#  - ./cake/console/cake testsuite core case libs/view/helpers/Session
+  - ./cake/console/cake testsuite core case libs/view/helpers/Text
+  - ./cake/console/cake testsuite core case libs/view/helpers/Time
+  - ./cake/console/cake testsuite core case libs/view/helpers/Xml
+  - ./cake/console/cake testsuite core case libs/view/Media
+#  - ./cake/console/cake testsuite core case libs/view/Theme
+#  - ./cake/console/cake testsuite core case libs/view/View
+#  - ./cake/console/cake testsuite core case libs/Xml
+
