@@ -115,7 +115,7 @@ script:
 #  - ./cake/console/cake testsuite core case libs/view/helpers/Rss
 #  - ./cake/console/cake testsuite core case libs/view/helpers/Session
   - ./cake/console/cake testsuite core case libs/view/helpers/Text
-  - ./cake/console/cake testsuite core case libs/view/helpers/Time
+#  - ./cake/console/cake testsuite core case libs/view/helpers/Time
   - ./cake/console/cake testsuite core case libs/view/helpers/Xml
   - ./cake/console/cake testsuite core case libs/view/Media
 #  - ./cake/console/cake testsuite core case libs/view/Theme
