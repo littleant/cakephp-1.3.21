@@ -46,9 +46,10 @@ Core-tests have been ported to PHP 7.
 
 To run any tests, you need a [Simpletest 1.0.1 version with PHP 7 support](https://github.com/littleant/simpletest-1.0.1) in the vendors-directory.
 
-Note: The original CakePHP 1.3 developers [noted](https://book.cakephp.org/1.3/en/The-Manual/Common-Tasks-With-CakePHP/Testing.html), that the core-tests cannot be run all at once. You need to run them individually, or they will fail.
-
-Also: Some core-tests will fail, if you are not using a dedicated test-database. These are shortcomings in the test-cases.
+Notes:
+* The original CakePHP 1.3 developers [noted](https://book.cakephp.org/1.3/en/The-Manual/Common-Tasks-With-CakePHP/Testing.html), that the core-tests cannot be run all at once. You need to run them individually, or they will fail.
+* Some core-tests will fail, if you are not using a dedicated test-database. These are shortcomings in the test-cases.
+* Some core-tests fail randomly, that's why they are being excluded from travis.
 
 ## Contributing
 Please issue a pull request if you want to contribute.
