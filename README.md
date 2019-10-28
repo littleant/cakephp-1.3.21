@@ -41,6 +41,9 @@ Two database drivers had to be removed:
 One configuration variable has to be changed:
 - "Security.cipherSeed" must be a valid `int` instead of a string. Make sure, it is small enough to be treated like an int, and not like a float on your system. Otherwise cookies will not be decoded correctly!
 
+## MySQL
+The sql-mode `ONLY_FULL_GROUP_BY` must be disabled. CakePHP creates queries that are incompatible with this mode.
+
 ## Running the tests
 Core-tests have been ported to PHP 7.
 

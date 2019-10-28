@@ -13,6 +13,7 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test2;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS cake;'
+  - mysql -e 'SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""));'
 install:
   - echo "<?php class DATABASE_CONFIG { var \$test = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'test', 'prefix' => '',); var \$test2 = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'test2', 'prefix' => '',); var \$default = array('driver' => 'mysqli', 'persistent' => false, 'host' => '127.0.0.1', 'login' => 'travis', 'password' => '', 'database' => 'cake', 'prefix' => '',); }" > ./app/config/database.php
 script:
