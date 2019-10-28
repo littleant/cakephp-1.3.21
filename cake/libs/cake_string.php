@@ -34,7 +34,7 @@ class CakeString {
  * @return RFC 4122 UUID
  * @static
  */
-	function uuid() {
+	static function uuid() {
 		$node = env('SERVER_ADDR');
 		$pid = null;
 
