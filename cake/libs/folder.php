@@ -781,6 +781,10 @@ class Folder extends CakeObject {
  * @static
  */
 	function isSlashTerm($path) {
+	    if (!is_string($path)) {
+	        return false;
+        }
+
 		$lastChar = $path[strlen($path) - 1];
 		return $lastChar === '/' || $lastChar === '\\';
 	}
