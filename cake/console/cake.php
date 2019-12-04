@@ -364,7 +364,7 @@ class ShellDispatcher {
 		}
 		$methods = array_diff(get_class_methods($Shell), $methods);
 		$added = in_array(strtolower($arg), array_map('strtolower', $methods));
-		$private = $arg[0] == '_' && method_exists($Shell, $arg);
+		$private = isset($arg[0]) && $arg[0] == '_' && method_exists($Shell, $arg);
 
 		if (!$private) {
 			if ($added) {
