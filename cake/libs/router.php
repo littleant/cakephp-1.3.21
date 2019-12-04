@@ -1424,7 +1424,7 @@ class CakeRoute {
 			return false;
 		} else {
 			foreach ($this->defaults as $key => $val) {
-				if ($key[0] === '[' && preg_match('/^\[(\w+)\]$/', $key, $header)) {
+				if (isset($key[0]) && $key[0] === '[' && preg_match('/^\[(\w+)\]$/', $key, $header)) {
 					if (isset($this->__headerMap[$header[1]])) {
 						$header = $this->__headerMap[$header[1]];
 					} else {
