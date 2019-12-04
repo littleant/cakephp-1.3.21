@@ -445,7 +445,6 @@ class Controller extends CakeObject {
 
 		if ($pluginController && $pluginName != null) {
 			$appVars = get_class_vars($pluginController);
-			$uses = $appVars['uses'];
 			$merge = array('components', 'helpers');
 
 			if ($this->uses !== null && $this->uses !== false) {
