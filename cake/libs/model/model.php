@@ -906,7 +906,7 @@ class Model extends Overloadable {
 							$data[$val] = sprintf('%02d', $data[$val]);
 						}
 					}
-					if (!isset($data[$val]) || isset($data[$val]) && (empty($data[$val]) || $data[$val][0] === '-')) {
+					if (!isset($data[$val]) || isset($data[$val]) && (empty($data[$val]) || (isset($data[$val][0]) && $data[$val][0] === '-'))) {
 						return null;
 					}
 					if (isset($data[$val]) && !empty($data[$val])) {
