@@ -290,7 +290,7 @@ class TreeBehavior extends ModelBehavior {
 				'recursive' => $recursive
 			)));
 
-			if (empty($result) || !isset($result[0])) {
+			if (empty($result) || !isset($result[0]) || !isset($result[0][$right]) || !isset($result[0][$left])) {
 				return array();
 			}
 			$conditions = array($scope,
