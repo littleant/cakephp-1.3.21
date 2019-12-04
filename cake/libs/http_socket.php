@@ -305,7 +305,11 @@ class HttpSocket extends CakeSocket {
 			$this->config['request']['cookies'] = array_merge($this->config['request']['cookies'], $this->response['cookies']);
 		}
 
-		return $this->response['body'];
+		if (isset($this->response['body'])) {
+            return $this->response['body'];
+        }
+
+		return false;
 	}
 
 /**
