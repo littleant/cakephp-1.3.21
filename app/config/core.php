@@ -185,6 +185,12 @@
 	Configure::write('Session.checkAgent', true);
 
 /**
+ * Must be one of: None, Lax, Strict. Defaults to "Lax".
+ * "None" is only sent to compatible clients.
+ */
+	Configure::write('Session.cookie_samesite', 'Lax');
+
+/**
  * The level of CakePHP security. The session timeout time defined
  * in 'Session.timeout' is multiplied according to the settings here.
  * Valid values:

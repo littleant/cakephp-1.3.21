@@ -22,6 +22,10 @@
  * @since         CakePHP(tm) v .0.10.0.1222
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
+require(LIBS .'same_site.php');
+use Skorp\Dissua\SameSite;
+
 if (!class_exists('Security')) {
 	App::import('Core', 'Security');
 }
@@ -108,6 +112,14 @@ class CakeSession extends CakeObject {
  * @var integer
  */
 	var $cookieLifeTime = false;
+
+/**
+ * Parameter to set for session.cookie_samesite.
+ * Should be one of: None, Lax, Strict
+ *
+ * @var string
+ */
+	var $cookieSameSite = 'Lax';
 
 /**
  * Keeps track of keys to watch for writes on
@@ -483,6 +495,18 @@ class CakeSession extends CakeObject {
 		} else {
 			$this->cookieLifeTime = Configure::read('Session.timeout') * (Security::inactiveMins() * 60);
 		}
+
+        if (Configure::read('Session.cookie_samesite') !== null) {
+            $this->cookieSameSite = Configure::read('Session.cookie_samesite');
+        }
+        if (trim($this->cookieSameSite) === 'None') {
+            $shouldSendSameSiteNone = SameSite::handle($_SERVER['HTTP_USER_AGENT']);
+            if ($shouldSendSameSiteNone) {
+                ini_set('session.cookie_samesite', $this->cookieSameSite);
+            }
+        } else {
+            ini_set('session.cookie_samesite', $this->cookieSameSite);
+        }
 
 		switch (Configure::read('Session.save')) {
 			case 'cake':

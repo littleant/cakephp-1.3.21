@@ -30,7 +30,7 @@ Three class functions had to be renamed:
 
 ### Renamed files
 One file had to be renamed:
-- "cake/libs/error.php" has been renamed to "cake/libs/error_handler.php": Change any `App::import('Core', 'Error')` to `App::import('Core', 'ErrorHandler')`
+- "cake/libs/error.php" has been renamed to "cake/libs/error\_handler.php": Change any `App::import('Core', 'Error')` to `App::import('Core', 'ErrorHandler')`
 
 ### Removed database drivers
 Two database drivers had to be removed:
@@ -43,6 +43,10 @@ One configuration variable has to be changed:
 
 #### MySQL
 The sql-mode `ONLY_FULL_GROUP_BY` must be disabled. CakePHP creates queries that are incompatible with this mode.
+
+### New possible configuration options
+One new configuration is possible:
+- "Session.cookie\_samesite" sets the SameSite-cookie-parameter. Defaults to "Lax".
 
 ## Running the tests
 Core-tests have been ported to PHP 7.
