@@ -69,7 +69,7 @@ class Sanitize {
  * @access public
  * @static
  */
-	function escape($string, $connection = 'default') {
+	static function escape($string, $connection = 'default') {
 		$db =& ConnectionManager::getDataSource($connection);
 		if (is_numeric($string) || $string === null || is_bool($string)) {
 			return $string;
