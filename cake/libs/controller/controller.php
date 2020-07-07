@@ -924,10 +924,12 @@ class Controller extends CakeObject {
 		if (!empty($ref) && defined('FULL_BASE_URL')) {
 			$base = FULL_BASE_URL . $this->webroot;
 			if (strpos($ref, $base) === 0) {
-				$return =  substr($ref, strlen($base));
-				if (isset($return[0]) && $return[0] != '/') {
-					$return = '/'.$return;
-				}
+                $return =  substr($ref, strlen($base));
+                if (empty($return)) {
+                    $return = '/';
+                } else if (isset($return[0]) && $return[0] != '/') {
+                    $return = '/'.$return;
+                }
 				return $return;
 			} elseif (!$local) {
 				return $ref;
