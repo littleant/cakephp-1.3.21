@@ -496,17 +496,19 @@ class CakeSession extends CakeObject {
 			$this->cookieLifeTime = Configure::read('Session.timeout') * (Security::inactiveMins() * 60);
 		}
 
-        if (Configure::read('Session.cookie_samesite') !== null) {
-            $this->cookieSameSite = Configure::read('Session.cookie_samesite');
-        }
-        if (trim($this->cookieSameSite) === 'None') {
-            $shouldSendSameSiteNone = SameSite::handle($_SERVER['HTTP_USER_AGENT']);
-            if ($shouldSendSameSiteNone) {
-                ini_set('session.cookie_samesite', $this->cookieSameSite);
-            }
-        } else {
-            ini_set('session.cookie_samesite', $this->cookieSameSite);
-        }
+		if (Configure::read('Session.cookie_samesite') !== null) {
+			$this->cookieSameSite = Configure::read('Session.cookie_samesite');
+		}
+		if (empty($_SESSION) && $iniSet) {
+			if (strtolower(trim($this->cookieSameSite)) === 'none') {
+				$shouldSendSameSiteNone = SameSite::handle($_SERVER['HTTP_USER_AGENT']);
+				if ($shouldSendSameSiteNone) {
+					ini_set('session.cookie_samesite', $this->cookieSameSite);
+				}
+			} else {
+				ini_set('session.cookie_samesite', $this->cookieSameSite);
+			}
+		}
 
 		switch (Configure::read('Session.save')) {
 			case 'cake':
