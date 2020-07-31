@@ -54,7 +54,7 @@ The CookieComponent now supports the SameSite-attribute.
 In your controller set it like this:
 `$this->Cookie->samesite = "None";`
 
-Note: Value of "None" will not be send to incompatible clients like Safari, in order to keep the intended behavior.
+Note: Value of "None" will not be sent to incompatible clients like Safari, in order to keep the intended behavior.
 Defaults to "Lax".
 
 ## Running the tests
