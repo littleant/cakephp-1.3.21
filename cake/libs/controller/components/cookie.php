@@ -18,6 +18,9 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+require_once(LIBS .'same_site.php');
+use Skorp\Dissua\SameSite;
+
 /**
  * Load Security class
  */
@@ -104,6 +107,19 @@ class CookieComponent extends CakeObject {
  * @access public
  */
 	var $secure = false;
+
+/**
+ * Samesite-parameter
+ * 
+ * Value should be one of: Strict, Lax, or None.
+ * 
+ * Overridden with the controller beforeFilter();
+ * $this->Cookie->samesite = 'None';
+ * 
+ * @var string
+ * @access public
+ */
+	var $samesite = 'Lax';
 
 /**
  * Encryption key.
@@ -373,7 +389,29 @@ class CookieComponent extends CakeObject {
  * @access private
  */
 	function __write($name, $value) {
-		setcookie($this->name . $name, $this->__encrypt($value), $this->__expires, $this->path, $this->domain, $this->secure);
+		$sendSameSiteValue = true;
+		if (strtolower(trim($this->samesite)) === 'none') {
+			$sendSameSiteValue = SameSite::handle($_SERVER['HTTP_USER_AGENT']);
+		}
+
+		if ($sendSameSiteValue) {
+			if (PHP_VERSION_ID < 70300) {
+				// for PHP version < 7.3 we need to abuse the path-parameter to send the samesite-attribute
+				setcookie($this->name . $name, $this->__encrypt($value), $this->__expires, "{$this->path}; samesite={$this->samesite}", $this->domain, $this->secure);
+			} else {
+				// new setcookie()-syntax (since PHP 7.3) allows for setting the samesite-attribute natively
+				setcookie($this->name . $name, $this->__encrypt($value), [
+					'expires' => $this->__expires,
+					'path' => $this->path,
+					'domain' => $this->domain,
+					'samesite' => $this->samesite,
+					'secure' => $this->secure,
+				]);
+			}
+		} else {
+			// Some clients like Safari handle Samesite=None-attributes incorrectly. Don't send the samesite-attribute to fix this
+			setcookie($this->name . $name, $this->__encrypt($value), $this->__expires, $this->path, $this->domain, $this->secure);
+		}
 
 		if (!is_null($this->__reset)) {
 			$this->__expires = $this->__reset;

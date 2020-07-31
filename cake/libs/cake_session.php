@@ -23,7 +23,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-require(LIBS .'same_site.php');
+require_once(LIBS .'same_site.php');
 use Skorp\Dissua\SameSite;
 
 if (!class_exists('Security')) {
