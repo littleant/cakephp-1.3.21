@@ -48,6 +48,15 @@ The sql-mode `ONLY_FULL_GROUP_BY` must be disabled. CakePHP creates queries that
 One new configuration is possible:
 - "Session.cookie\_samesite" sets the SameSite-cookie-parameter. Defaults to "Lax".
 
+#### CookieComponent
+The CookieComponent now supports the SameSite-attribute.
+
+In your controller set it like this:
+`$this->Cookie->samesite = "None";`
+
+Note: Value of "None" will not be send to incompatible clients like Safari, in order to keep the intended behavior.
+Defaults to "Lax".
+
 ## Running the tests
 Core-tests have been ported to PHP 7.
 
