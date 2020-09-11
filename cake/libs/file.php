@@ -149,7 +149,7 @@ class File extends CakeObject {
 			}
 		}
 
-		$this->handle = fopen($this->path, $mode);
+		$this->handle = @fopen($this->path, $mode);
 		if (is_resource($this->handle)) {
 			return true;
 		}
@@ -295,7 +295,7 @@ class File extends CakeObject {
 			$this->handle = null;
 		}
 		if ($this->exists()) {
-			return unlink($this->path);
+			return @unlink($this->path);
 		}
 		return false;
 	}
