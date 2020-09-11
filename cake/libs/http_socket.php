@@ -306,8 +306,8 @@ class HttpSocket extends CakeSocket {
 		}
 
 		if (isset($this->response['body'])) {
-            return $this->response['body'];
-        }
+			return $this->response['body'];
+		}
 
 		return false;
 	}

@@ -99,7 +99,7 @@ class FixtureTaskTest extends CakeTestCase {
  * @access public
  */
 	function testConstruct() {
-	    $this->Dispatch = new \stdClass();
+		$this->Dispatch = new \stdClass();
 		$this->Dispatch->params['working'] = DS . 'my' . DS . 'path';
 		$Task = new FixtureTask($this->Dispatch);
 

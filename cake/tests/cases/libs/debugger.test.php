@@ -95,13 +95,13 @@ class DebuggerTest extends CakeTestCase {
 		$this->assertTrue(is_array($result));
 		$this->assertEqual(count($result), 4);
 
-        if (version_compare(PHP_VERSION, '7.4.0', '<')) {
-            $expected = '<code><span style="color: #000000">&lt;?php';
-            $expected .= '</span></code>';
-        } else {
-            // from PHP 7.4 onwards the highlight_string()-output changed
-            $expected = '<code><span style="color: #000000"><span style="color: #0000BB">&lt;?php</span></span></code>';
-        }
+		if (version_compare(PHP_VERSION, '7.4.0', '<')) {
+			$expected = '<code><span style="color: #000000">&lt;?php';
+			$expected .= '</span></code>';
+		} else {
+			// from PHP 7.4 onwards the highlight_string()-output changed
+			$expected = '<code><span style="color: #000000"><span style="color: #0000BB">&lt;?php</span></span></code>';
+		}
 		$this->assertEqual($result[0], $expected);
 
 		$return = Debugger::excerpt('[internal]', 2, 2);

@@ -469,8 +469,8 @@ class PaginatorHelper extends AppHelper {
 		}
 		$paging = $this->params($model);
 		if (isset($paging['pageCount'])) {
-            return $page <= $paging['pageCount'];
-        }
+			return $page <= $paging['pageCount'];
+		}
 
 		return false;
 	}

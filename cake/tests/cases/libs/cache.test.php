@@ -149,12 +149,12 @@ class CacheTest extends CakeTestCase {
 		$this->assertEqual($result['settings'], Cache::settings('tests'));
 
 		if (isset($_cacheConfigSessions['settings'])) {
-            Cache::config('sessions', $_cacheConfigSessions['settings']);
-        }
+			Cache::config('sessions', $_cacheConfigSessions['settings']);
+		}
 
 		if (isset($_cacheConfigTests['settings'])) {
-            Cache::config('tests', $_cacheConfigTests['settings']);
-        }
+			Cache::config('tests', $_cacheConfigTests['settings']);
+		}
 	}
 
 /**
