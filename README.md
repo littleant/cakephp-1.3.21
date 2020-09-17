@@ -50,7 +50,6 @@ One new configuration is possible (requires PHP 7.3+ to work):
 
 #### CookieComponent
 The CookieComponent now supports the SameSite-attribute.
-Requires PHP 7.3+ to work.
 
 In your controller set it like this:
 `$this->Cookie->samesite = "None";`
