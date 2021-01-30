@@ -1,7 +1,7 @@
 # CakePHP 1.3 for PHP 7.3
 An unofficial port of CakePHP 1.3.21 to PHP 7.3.
 
-[![Build Status](https://travis-ci.org/littleant/cakephp-1.3.21.svg?branch=master)](https://travis-ci.org/littleant/cakephp-1.3.21)
+[![Build Status](https://travis-ci.com/littleant/cakephp-1.3.21.svg?branch=master)](https://travis-ci.com/littleant/cakephp-1.3.21)
 
 **:warning: Only use this code, if you have an active CakePHP 1.3 version that you have to port to PHP 7!
 Otherwise use a [current CakePHP version](https://cakephp.org/)!**
