@@ -761,7 +761,7 @@ class Router {
  * @access public
  * @static
  */
-	static function url($url = null, $full = false) {
+	function url($url = null, $full = false) {
 		$self =& Router::getInstance();
 		$defaults = $params = array('plugin' => null, 'controller' => null, 'action' => 'index');
 
@@ -772,7 +772,7 @@ class Router {
 		}
 
 		if (!empty($self->__params)) {
-			if (isset($self) && !isset($self->params['requested'])) {
+			if (isset($this) && !isset($this->params['requested'])) {
 				$params = $self->__params[0];
 			} else {
 				$params = end($self->__params);
@@ -781,7 +781,7 @@ class Router {
 		$path = array('base' => null);
 
 		if (!empty($self->__paths)) {
-			if (isset($self) && !isset($self->params['requested'])) {
+			if (isset($this) && !isset($this->params['requested'])) {
 				$path = $self->__paths[0];
 			} else {
 				$path = end($self->__paths);
