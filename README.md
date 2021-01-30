@@ -45,7 +45,7 @@ One configuration variable has to be changed:
 The sql-mode `ONLY_FULL_GROUP_BY` must be disabled. CakePHP creates queries that are incompatible with this mode.
 
 ### New possible configuration options
-One new configuration is possible:
+One new configuration is possible (requires PHP 7.3+ to work):
 - "Session.cookie\_samesite" sets the SameSite-cookie-parameter. Defaults to "Lax".
 
 #### CookieComponent
