@@ -490,6 +490,10 @@ class CakeSession extends CakeObject {
 		    ini_set('session.referer_check', $this->host);
 		}
 
+        if ($iniSet && !empty(Configure::read('Session.httpOnly'))) {
+            ini_set('session.cookie_httponly', 'On');
+        }
+
 		if ($this->security == 'high') {
 			$this->cookieLifeTime = 0;
 		} else {
