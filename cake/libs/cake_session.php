@@ -730,7 +730,7 @@ class CakeSession extends CakeObject {
  * @return boolean Success
  * @access private
  */
-	function __open() {
+	static function __open() {
 		return true;
 	}
 
@@ -740,7 +740,7 @@ class CakeSession extends CakeObject {
  * @return boolean Success
  * @access private
  */
-	function __close() {
+	static function __close() {
 		$probability = mt_rand(1, 150);
 		if ($probability <= 3) {
 			switch (Configure::read('Session.save')) {
@@ -762,7 +762,7 @@ class CakeSession extends CakeObject {
  * @return string The value of the key or an empty string if the value does not exist
  * @access private
  */
-	function __read($id) {
+	static function __read($id) {
 		$model =& ClassRegistry::getObject('Session');
 
 		$row = $model->find('first', array(
@@ -784,7 +784,7 @@ class CakeSession extends CakeObject {
  * @return boolean True for successful write, false otherwise.
  * @access private
  */
-	function __write($id, $data) {
+	static function __write($id, $data) {
 		if (!$id) {
 			return false;
 		}
@@ -801,7 +801,7 @@ class CakeSession extends CakeObject {
  * @return boolean True for successful delete, false otherwise.
  * @access private
  */
-	function __destroy($id) {
+	static function __destroy($id) {
 		$model =& ClassRegistry::getObject('Session');
 		$model->delete($id);
 
@@ -817,7 +817,7 @@ class CakeSession extends CakeObject {
  * @return boolean Success
  * @access private
  */
-	function __gc($expires = null) {
+	static function __gc($expires = null) {
 		$model =& ClassRegistry::getObject('Session');
 
 		if (!$expires) {
