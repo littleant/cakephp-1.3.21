@@ -114,7 +114,7 @@ class MagicDb extends CakeObject {
 			}
 
 			$columns = explode("\t", $line);
-			if (in_array($columns[0]{0}, array('>', '&'))) {
+			if (in_array($columns[0][0], array('>', '&'))) {
 				$format[] = $columns;
 			} elseif (!empty($format)) {
 				$db['database'][] = $format;

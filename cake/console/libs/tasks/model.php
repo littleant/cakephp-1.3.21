@@ -348,7 +348,7 @@ class ModelTask extends BakeTask {
 		sort($options);
 		$default = 1;
 		foreach ($options as $key => $option) {
-			if ($option{0} != '_' && strtolower($option) != 'getinstance') {
+			if ($option[0] != '_' && strtolower($option) != 'getinstance') {
 				$choices[$default] = strtolower($option);
 				$default++;
 			}
