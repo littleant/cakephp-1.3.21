@@ -268,7 +268,7 @@ class Cache {
  * @access public
  * @static
  */
-	function gc() {
+	static function gc() {
 		$self =& Cache::getInstance();
 		$self->_engines[$self->__name]->gc();
 	}
