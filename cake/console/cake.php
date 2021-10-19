@@ -632,7 +632,7 @@ class ShellDispatcher {
 
 			foreach ($shellList as $shell => $types) {
 				sort($types);
-				$shellList[$shell] = str_pad($shell . ' [' . implode ($types, ', ') . ']', $width / $columns);
+				$shellList[$shell] = str_pad($shell . ' [' . implode(', ', $types) . ']', $width / $columns);
 			}
 			$out = array_chunk($shellList, $rows);
 			for ($i = 0; $i < $rows; $i++) {
