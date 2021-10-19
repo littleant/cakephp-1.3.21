@@ -1140,7 +1140,7 @@ class Xml extends XmlNode {
  * @access public
  * @static
  */
-	function addGlobalNs($name, $url = null) {
+	static function addGlobalNs($name, $url = null) {
 		$_this =& XmlManager::getInstance();
 		if ($ns = Xml::resolveNamespace($name, $url)) {
 			$_this->namespaces = array_merge($_this->namespaces, $ns);
@@ -1178,7 +1178,7 @@ class Xml extends XmlNode {
  * @access public
  * @static
  */
-	function addGlobalNamespace($name, $url = null) {
+	static function addGlobalNamespace($name, $url = null) {
 		return Xml::addGlobalNs($name, $url);
 	}
 
@@ -1189,7 +1189,7 @@ class Xml extends XmlNode {
  * @access public
  * @static
  */
-	function removeGlobalNs($name) {
+	static function removeGlobalNs($name) {
 		$_this =& XmlManager::getInstance();
 		if (isset($_this->namespaces[$name])) {
 			unset($_this->namespaces[$name]);
@@ -1219,7 +1219,7 @@ class Xml extends XmlNode {
  * @access public
  * @static
  */
-	function removeGlobalNamespace($name) {
+	static function removeGlobalNamespace($name) {
 		return Xml::removeGlobalNs($name);
 	}
 
@@ -1231,7 +1231,7 @@ class Xml extends XmlNode {
  * @access public
  * @static
  */
-	function options($options = array()) {
+	static function options($options = array()) {
 		$_this =& XmlManager::getInstance();
 		$_this->options = array_merge($_this->options, $options);
 		return $_this->options;

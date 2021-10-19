@@ -78,7 +78,7 @@ class Security extends CakeObject {
  * @access public
  * @static
  */
-	function generateAuthKey() {
+	static function generateAuthKey() {
 		if (!class_exists('CakeString')) {
 			App::import('Core', 'CakeString');
 		}

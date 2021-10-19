@@ -173,7 +173,6 @@ class CakeTestSuiteDispatcher {
  * Gets the reporter based on the request parameters
  *
  * @return void
- * @static
  */
 	function &getReporter() {
 		static $Reporter = NULL;

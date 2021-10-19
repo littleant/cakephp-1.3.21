@@ -161,7 +161,7 @@ class ConnectionManager extends CakeObject {
  * @access public
  * @static
  */
-	function loadDataSource($connName) {
+	static function loadDataSource($connName) {
 		$_this =& ConnectionManager::getInstance();
 
 		if (is_array($connName)) {
@@ -211,7 +211,7 @@ class ConnectionManager extends CakeObject {
  * @access public
  * @static
  */
-	function &create($name = '', $config = array()) {
+	static function &create($name = '', $config = array()) {
 		$_this =& ConnectionManager::getInstance();
 
 		if (empty($name) || empty($config) || array_key_exists($name, $_this->_connectionsEnum)) {
@@ -229,7 +229,6 @@ class ConnectionManager extends CakeObject {
  *
  * @return void
  * @access protected
- * @static
  */
 	function _getConnectionObjects() {
 		$connections = get_object_vars($this->config);
