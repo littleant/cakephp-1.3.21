@@ -133,7 +133,7 @@ class CakeLog {
 			trigger_error(sprintf(__('Could not load logger class %s', true), $loggerName), E_USER_WARNING);
 			return false;
 		}
-		if (!is_callable(array($loggerName, 'write'))) {
+		if (!method_exists($loggerName, 'write')) {
 			trigger_error(
 				sprintf(__('logger class %s does not implement a write method.', true), $loggerName),
 				E_USER_WARNING
