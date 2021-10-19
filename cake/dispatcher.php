@@ -508,7 +508,7 @@ class Dispatcher extends CakeObject {
 		} else {
 			$url = $_GET['url'];
 		}
-		if ($url{0} == '/') {
+		if ($url[0] == '/') {
 			$url = substr($url, 1);
 		}
 		return $url;
