@@ -257,7 +257,7 @@ class Folder extends CakeObject {
  * @access public
  * @static
  */
-	function isWindowsPath($path) {
+	static function isWindowsPath($path) {
 		return (preg_match('/^[A-Z]:\\\\/i', $path) || substr($path, 0, 2) == '\\\\');
 	}
 
@@ -269,7 +269,7 @@ class Folder extends CakeObject {
  * @access public
  * @static
  */
-	function isAbsolute($path) {
+	static function isAbsolute($path) {
 		return !empty($path) && ($path[0] === '/' || preg_match('/^[A-Z]:\\\\/i', $path) || substr($path, 0, 2) == '\\\\');
 	}
 
@@ -281,7 +281,7 @@ class Folder extends CakeObject {
  * @access public
  * @static
  */
-	function normalizePath($path) {
+	static function normalizePath($path) {
 		return Folder::correctSlashFor($path);
 	}
 
@@ -293,7 +293,7 @@ class Folder extends CakeObject {
  * @access public
  * @static
  */
-	function correctSlashFor($path) {
+	static function correctSlashFor($path) {
 		return (Folder::isWindowsPath($path)) ? '\\' : '/';
 	}
 
@@ -305,7 +305,7 @@ class Folder extends CakeObject {
  * @access public
  * @static
  */
-	function slashTerm($path) {
+	static function slashTerm($path) {
 		if (Folder::isSlashTerm($path)) {
 			return $path;
 		}
@@ -321,7 +321,7 @@ class Folder extends CakeObject {
  * @access public
  * @static
  */
-	function addPathElement($path, $element) {
+	static function addPathElement($path, $element) {
 		return rtrim($path, DS) . DS . $element;
 	}
 
@@ -780,7 +780,7 @@ class Folder extends CakeObject {
  * @access public
  * @static
  */
-	function isSlashTerm($path) {
+	static function isSlashTerm($path) {
 		if (!is_string($path)) {
 			return false;
 		}

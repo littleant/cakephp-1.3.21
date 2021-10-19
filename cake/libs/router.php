@@ -336,7 +336,7 @@ class Router {
  * @access public
  * @static
  */
-	function connectNamed($named, $options = array()) {
+	static function connectNamed($named, $options = array()) {
 		$self =& Router::getInstance();
 
 		if (isset($options['argSeparator'])) {
@@ -381,7 +381,7 @@ class Router {
  * @access public
  * @static
  */
-	function defaults($connect = true) {
+	static function defaults($connect = true) {
 		$self =& Router::getInstance();
 		$self->__connectDefaults = $connect;
 	}
@@ -699,7 +699,7 @@ class Router {
  * @return void
  * @static
  */
-	function reload() {
+	static function reload() {
 		$self =& Router::getInstance();
 		foreach (get_class_vars('Router') as $key => $val) {
 			$self->{$key} = $val;
@@ -716,7 +716,7 @@ class Router {
  * @access public
  * @static
  */
-	function promote($which = null) {
+	static function promote($which = null) {
 		$self =& Router::getInstance();
 		if ($which === null) {
 			$which = count($self->routes) - 1;
@@ -761,7 +761,7 @@ class Router {
  * @access public
  * @static
  */
-	function url($url = null, $full = false) {
+	static function url($url = null, $full = false) {
 		$self =& Router::getInstance();
 		$defaults = $params = array('plugin' => null, 'controller' => null, 'action' => 'index');
 
@@ -1031,7 +1031,7 @@ class Router {
  * @access public
  * @static
  */
-	function queryString($q, $extra = array(), $escape = false) {
+	static function queryString($q, $extra = array(), $escape = false) {
 		if (empty($q) && empty($extra)) {
 			return null;
 		}
@@ -1127,7 +1127,7 @@ class Router {
  * @access public
  * @static
  */
-	function &requestRoute() {
+	static function &requestRoute() {
 		$self =& Router::getInstance();
 		return $self->__currentRoute[0];
 	}
@@ -1153,7 +1153,7 @@ class Router {
  * @access public
  * @static
  */
-	function stripPlugin($base, $plugin = null) {
+	static function stripPlugin($base, $plugin = null) {
 		if ($plugin != null) {
 			$base = preg_replace('/(?:' . $plugin . ')/', '', $base);
 			$base = str_replace('//', '', $base);
@@ -1199,7 +1199,7 @@ class Router {
  * @access public
  * @static
  */
-	function getArgs($args, $options = array()) {
+	static function getArgs($args, $options = array()) {
 		$self =& Router::getInstance();
 		$pass = $named = array();
 		$args = explode('/', $args);

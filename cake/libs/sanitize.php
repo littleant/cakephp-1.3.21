@@ -41,7 +41,7 @@ class Sanitize {
  * @access public
  * @static
  */
-	function paranoid($string, $allowed = array()) {
+	static function paranoid($string, $allowed = array()) {
 		$allow = null;
 		if (!empty($allowed)) {
 			foreach ($allowed as $value) {
@@ -128,7 +128,7 @@ class Sanitize {
  * @access public
  * @static
  */
-	function stripWhitespace($str) {
+	static function stripWhitespace($str) {
 		$r = preg_replace('/[\n\r\t]+/', '', $str);
 		return preg_replace('/\s{2,}/u', ' ', $r);
 	}
@@ -141,7 +141,7 @@ class Sanitize {
  * @access public
  * @static
  */
-	function stripImages($str) {
+	static function stripImages($str) {
 		$str = preg_replace('/(<a[^>]*>)(<img[^>]+alt=")([^"]*)("[^>]*>)(<\/a>)/i', '$1$3$5<br />', $str);
 		$str = preg_replace('/(<img[^>]+alt=")([^"]*)("[^>]*>)/i', '$2<br />', $str);
 		$str = preg_replace('/<img[^>]*>/i', '', $str);
@@ -156,7 +156,7 @@ class Sanitize {
  * @access public
  * @static
  */
-	function stripScripts($str) {
+	static function stripScripts($str) {
 		return preg_replace('/(<link[^>]+rel="[^"]*stylesheet"[^>]*>|<img[^>]*>|style="[^"]*")|<script[^>]*>.*?<\/script>|<style[^>]*>.*?<\/style>|<!--.*?-->/is', '', $str);
 	}
 
@@ -188,7 +188,7 @@ class Sanitize {
  * @access public
  * @static
  */
-	function stripTags() {
+	static function stripTags() {
 		$params = params(func_get_args());
 		$str = $params[0];
 
@@ -280,7 +280,7 @@ class Sanitize {
  * @access public
  * @static
  */
-	function formatColumns(&$model) {
+	static function formatColumns(&$model) {
 		foreach ($model->data as $name => $values) {
 			if ($name == $model->alias) {
 				$curModel =& $model;

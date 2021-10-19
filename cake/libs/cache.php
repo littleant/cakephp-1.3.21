@@ -231,7 +231,7 @@ class Cache {
  * @access public
  * @static
  */
-	function set($settings = array(), $value = null) {
+	static function set($settings = array(), $value = null) {
 		$self =& Cache::getInstance();
 		if (!isset($self->__config[$self->__name]) || !isset($self->_engines[$self->__name])) {
 			return false;
@@ -412,7 +412,7 @@ class Cache {
  *   or if there was an error fetching it
  * @access public
  */
-	function decrement($key, $offset = 1, $config = null) {
+	static function decrement($key, $offset = 1, $config = null) {
 		$self =& Cache::getInstance();
 
 		if (!$config) {
@@ -456,7 +456,7 @@ class Cache {
  * @access public
  * @static
  */
-	function delete($key, $config = null) {
+	static function delete($key, $config = null) {
 		$self =& Cache::getInstance();
 		if (!$config) {
 			$config = $self->__name;
@@ -488,7 +488,7 @@ class Cache {
  * @access public
  * @static
  */
-	function clear($check = false, $config = null) {
+	static function clear($check = false, $config = null) {
 		$self =& Cache::getInstance();
 		if (!$config) {
 			$config = $self->__name;
@@ -516,7 +516,7 @@ class Cache {
  * @access public
  * @static
  */
-	function isInitialized($name = null) {
+	static function isInitialized($name = null) {
 		if (Configure::read('Cache.disable')) {
 			return false;
 		}
@@ -538,7 +538,7 @@ class Cache {
  * @access public
  * @static
  */
-	function settings($name = null) {
+	static function settings($name = null) {
 		$self =& Cache::getInstance();
 		if (!$name && isset($self->__config[$self->__name])) {
 			$name = $self->__name;

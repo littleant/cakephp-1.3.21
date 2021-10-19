@@ -293,7 +293,6 @@ class ClassRegistry {
  * @param string $class
  * @return boolean
  * @access private
- * @static
  */
 	function &__duplicate($alias,  $class) {
 		$duplicate = false;
@@ -344,7 +343,7 @@ class ClassRegistry {
  * @access private
  * @static
  */
-	function __getMap($key) {
+	static function __getMap($key) {
 		if (isset($this->__map[$key])) {
 			return $this->__map[$key];
 		}

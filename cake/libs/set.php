@@ -115,7 +115,7 @@ class Set {
  * @access public
  * @static
  */
-	function map($class = 'stdClass', $tmp = 'stdClass') {
+	static function map($class = 'stdClass', $tmp = 'stdClass') {
 		if (is_array($class)) {
 			$val = $class;
 			$class = $tmp;
@@ -164,7 +164,7 @@ class Set {
  * @access private
  * @static
  */
-	function __map(&$array, $class, $primary = false) {
+	static function __map(&$array, $class, $primary = false) {
 		if ($class === true) {
 			$out = new stdClass;
 		} else {
@@ -265,7 +265,7 @@ class Set {
  * @access public
  * @static
  */
-	function enum($select, $list = null) {
+	static function enum($select, $list = null) {
 		if (empty($list)) {
 			$list = array('no', 'yes');
 		}
@@ -289,7 +289,7 @@ class Set {
  * @access public
  * @static
  */
-	function format($data, $format, $keys) {
+	static function format($data, $format, $keys) {
 
 		$extracted = array();
 		$count = count($keys);
@@ -522,7 +522,7 @@ class Set {
  * @access public
  * @static
  */
-	function matches($conditions, $data = array(), $i = null, $length = null) {
+	static function matches($conditions, $data = array(), $i = null, $length = null) {
 		if (empty($conditions)) {
 			return true;
 		}
@@ -754,7 +754,7 @@ class Set {
  * @access public
  * @static
  */
-	function check($data, $path = null) {
+	static function check($data, $path = null) {
 		if (empty($path)) {
 			return $data;
 		}
@@ -816,7 +816,7 @@ class Set {
  * @access public
  * @static
  */
-	function contains($val1, $val2 = null) {
+	static function contains($val1, $val2 = null) {
 		if (empty($val1) || empty($val2)) {
 			return false;
 		}
@@ -1038,7 +1038,7 @@ class Set {
  * @access public
  * @static
  */
-	function flatten($data, $separator = '.') {
+	static function flatten($data, $separator = '.') {
 		$result = array();
 		$path = null;
 
@@ -1096,7 +1096,7 @@ class Set {
  * @return array Sorted array of data
  * @static
  */
-	function sort($data, $path, $dir) {
+	static function sort($data, $path, $dir) {
 		$originalKeys = array_keys($data);
 		if (is_numeric(implode('', $originalKeys))) {
 			$data = array_values($data);
@@ -1137,7 +1137,7 @@ class Set {
  * @access public
  * @static
  */
-	function apply($path, $data, $callback, $options = array()) {
+	static function apply($path, $data, $callback, $options = array()) {
 		$defaults = array('type' => 'pass');
 		$options = array_merge($defaults, $options);
 

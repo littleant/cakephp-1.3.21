@@ -146,7 +146,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function alphaNumeric($check) {
+	static function alphaNumeric($check) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
