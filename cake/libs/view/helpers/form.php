@@ -428,7 +428,7 @@ class FormHelper extends AppHelper {
 			serialize($fields) .
 			Configure::read('Security.salt')
 		);
-		$locked = implode(array_keys($locked), '|');
+		$locked = implode('|', array_keys($locked));
 
 		$out = $this->hidden('_Token.fields', array(
 			'value' => urlencode($fields . ':' . $locked),
@@ -1868,7 +1868,7 @@ class FormHelper extends AppHelper {
 					$time = explode(':', $days[1]);
 
 					if (($time[0] > 12) && $timeFormat == '12') {
-						$time[0] = $time[0] - 12;
+						$time[0] = (int)$time[0] - 12;
 						$meridian = 'pm';
 					} elseif ($time[0] == '12' && $timeFormat == '12') {
 						$meridian = 'pm';
