@@ -221,7 +221,7 @@ class File extends CakeObject {
  * @return string The with converted line endings.
  * @access public
  */
-	function prepare($data, $forceWindows = false) {
+	static function prepare($data, $forceWindows = false) {
 		$lineBreak = "\n";
 		if (DIRECTORY_SEPARATOR == '\\' || $forceWindows === true) {
 			$lineBreak = "\r\n";

@@ -1156,7 +1156,7 @@ class Xml extends XmlNode {
  * @param  string  $url
  * @return array
  */
-	function resolveNamespace($name, $url) {
+	static function resolveNamespace($name, $url) {
 		$_this =& XmlManager::getInstance();
 		if ($url == null && isset($_this->defaultNamespaceMap[$name])) {
 			$url = $_this->defaultNamespaceMap[$name];
@@ -1187,7 +1187,6 @@ class Xml extends XmlNode {
  *
  * @param  string  $name The namespace name or URI
  * @access public
- * @static
  */
 	static function removeGlobalNs($name) {
 		$_this =& XmlManager::getInstance();

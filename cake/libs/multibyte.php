@@ -1027,7 +1027,7 @@ class Multibyte extends CakeObject {
  * @static
  * @TODO: add support for 'Q'('Quoted Printable') encoding
  */
-	function mimeEncode($string, $charset = null, $newline = "\r\n") {
+	static function mimeEncode($string, $charset = null, $newline = "\r\n") {
 		if (!Multibyte::checkMultibyte($string) && strlen($string) < 75) {
 			return $string;
 		}

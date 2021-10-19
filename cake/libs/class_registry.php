@@ -341,9 +341,8 @@ class ClassRegistry {
  * @param string $key Key to find in map
  * @return string Mapped value
  * @access private
- * @static
  */
-	static function __getMap($key) {
+	function __getMap($key) {
 		if (isset($this->__map[$key])) {
 			return $this->__map[$key];
 		}

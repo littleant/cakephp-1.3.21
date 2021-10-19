@@ -177,7 +177,7 @@ class Cache {
  *
  * @return array Array of configured Cache config names.
  */
-	function configured() {
+	static function configured() {
 		$self =& Cache::getInstance();
 		return array_keys($self->__config);
 	}
@@ -190,7 +190,7 @@ class Cache {
  * @param string $name A currently configured cache config you wish to remove.
  * @return boolen success of the removal, returns false when the config does not exist.
  */
-	function drop($name) {
+	static function drop($name) {
 		$self =& Cache::getInstance();
 		if (!isset($self->__config[$name])) {
 			return false;

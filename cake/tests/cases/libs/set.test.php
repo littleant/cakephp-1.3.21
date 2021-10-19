@@ -2798,7 +2798,7 @@ class SetTest extends CakeTestCase {
  * @access protected
  * @return void
  */
-	function _method($val1, $val2) {
+	static function _method($val1, $val2) {
 		$val1 += $val2;
 		return $val1;
 	}

@@ -118,7 +118,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function notEmpty($check) {
+	static function notEmpty($check) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
@@ -173,7 +173,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function between($check, $min, $max) {
+	static function between($check, $min, $max) {
 		$length = mb_strlen($check);
 		return ($length >= $min && $length <= $max);
 	}
@@ -189,7 +189,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function blank($check) {
+	static function blank($check) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
@@ -216,7 +216,7 @@ class Validation extends CakeObject {
  * @access public
  * @see Validation::_luhn()
  */
-	function cc($check, $type = 'fast', $deep = false, $regex = null) {
+	static function cc($check, $type = 'fast', $deep = false, $regex = null) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
@@ -294,7 +294,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function comparison($check1, $operator = null, $check2 = null) {
+	static function comparison($check1, $operator = null, $check2 = null) {
 		if (is_array($check1)) {
 			extract($check1, EXTR_OVERWRITE);
 		}
@@ -354,7 +354,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function custom($check, $regex = null) {
+	static function custom($check, $regex = null) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
@@ -386,7 +386,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function date($check, $format = 'ymd', $regex = null) {
+	static function date($check, $format = 'ymd', $regex = null) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
@@ -425,7 +425,7 @@ class Validation extends CakeObject {
  * @access public
  */
 
-	function time($check) {
+	static function time($check) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
@@ -440,7 +440,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function boolean($check) {
+	static function boolean($check) {
 		$booleanList = array(0, 1, '0', '1', true, false);
 		return in_array($check, $booleanList, true);
 	}
@@ -455,7 +455,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function decimal($check, $places = null, $regex = null) {
+	static function decimal($check, $places = null, $regex = null) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->regex = $regex;
@@ -480,7 +480,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function email($check, $deep = false, $regex = null) {
+	static function email($check, $deep = false, $regex = null) {
 		$_this =& Validation::getInstance();
 		$_this->__reset();
 		$_this->check = $check;
@@ -520,7 +520,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function equalTo($check, $comparedTo) {
+	static function equalTo($check, $comparedTo) {
 		return ($check === $comparedTo);
 	}
 
@@ -532,7 +532,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function extension($check, $extensions = array('gif', 'jpeg', 'png', 'jpg')) {
+	static function extension($check, $extensions = array('gif', 'jpeg', 'png', 'jpg')) {
 		if (is_array($check)) {
 			return Validation::extension(array_shift($check), $extensions);
 		}
@@ -559,7 +559,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function ip($check, $type = 'both') {
+	static function ip($check, $type = 'both') {
 		$_this =& Validation::getInstance();
 		$success = false;
 		$type = strtolower($type);
@@ -614,7 +614,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function minLength($check, $min) {
+	static function minLength($check, $min) {
 		$length = mb_strlen($check);
 		return ($length >= $min);
 	}
@@ -627,7 +627,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function maxLength($check, $max) {
+	static function maxLength($check, $max) {
 		$length = mb_strlen($check);
 		return ($length <= $max);
 	}
@@ -640,7 +640,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function money($check, $symbolPosition = 'left') {
+	static function money($check, $symbolPosition = 'left') {
 		$_this =& Validation::getInstance();
 		$_this->check = $check;
 
@@ -666,7 +666,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function multiple($check, $options = array()) {
+	static function multiple($check, $options = array()) {
 		$defaults = array('in' => null, 'max' => null, 'min' => null);
 		$options = array_merge($defaults, $options);
 		$check = array_filter((array)$check);
@@ -696,7 +696,7 @@ class Validation extends CakeObject {
  * @return boolean Succcess
  * @access public
  */
-	function numeric($check) {
+	static function numeric($check) {
 		return is_numeric($check);
 	}
 
@@ -709,7 +709,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function phone($check, $regex = null, $country = 'all') {
+	static function phone($check, $regex = null, $country = 'all') {
 		$_this =& Validation::getInstance();
 		$_this->check = $check;
 		$_this->regex = $regex;
@@ -743,7 +743,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function postal($check, $regex = null, $country = null) {
+	static function postal($check, $regex = null, $country = null) {
 		$_this =& Validation::getInstance();
 		$_this->check = $check;
 		$_this->regex = $regex;
@@ -792,7 +792,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function range($check, $lower = null, $upper = null) {
+	static function range($check, $lower = null, $upper = null) {
 		if (!is_numeric($check)) {
 			return false;
 		}
@@ -811,7 +811,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function ssn($check, $regex = null, $country = null) {
+	static function ssn($check, $regex = null, $country = null) {
 		$_this =& Validation::getInstance();
 		$_this->check = $check;
 		$_this->regex = $regex;
@@ -846,7 +846,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function uuid($check) {
+	static function uuid($check) {
 		$_this =& Validation::getInstance();
 		$_this->check = $check;
 		$_this->regex = '/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i';
@@ -871,7 +871,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access public
  */
-	function url($check, $strict = false) {
+	static function url($check, $strict = false) {
 		$_this =& Validation::getInstance();
 		$_this->__populateIp();
 		$_this->check = $check;
@@ -893,7 +893,7 @@ class Validation extends CakeObject {
  * @return boolean Succcess
  * @access public
  */
-	function inList($check, $list) {
+	static function inList($check, $list) {
 		return in_array($check, $list);
 	}
 
@@ -907,7 +907,7 @@ class Validation extends CakeObject {
  * @return mixed user-defined class class method returns
  * @access public
  */
-	function userDefined($check, $object, $method, $args = null) {
+	static function userDefined($check, $object, $method, $args = null) {
 		return call_user_func_array(array(&$object, $method), array($check, $args));
 	}
 
@@ -922,7 +922,7 @@ class Validation extends CakeObject {
  * @return mixed Return of Passed method, false on failure
  * @access protected
  **/
-	function _pass($method, $check, $classPrefix) {
+	static function _pass($method, $check, $classPrefix) {
 		$className = ucwords($classPrefix) . 'Validation';
 		if (!class_exists($className)) {
 			trigger_error(sprintf(__('Could not find %s class, unable to complete validation.', true), $className), E_USER_WARNING);
@@ -942,7 +942,7 @@ class Validation extends CakeObject {
  * @return boolean Success of match
  * @access protected
  */
-	function _check() {
+	static function _check() {
 		$_this =& Validation::getInstance();
 		if (preg_match($_this->regex, $_this->check)) {
 			$_this->error[] = false;
@@ -961,7 +961,7 @@ class Validation extends CakeObject {
  * @return void
  * @access protected
  */
-	function _extract($params) {
+	static function _extract($params) {
 		$_this =& Validation::getInstance();
 		extract($params, EXTR_OVERWRITE);
 
@@ -989,7 +989,7 @@ class Validation extends CakeObject {
  * @return boolean Success
  * @access protected
  */
-	function _luhn() {
+	static function _luhn() {
 		$_this =& Validation::getInstance();
 		if ($_this->deep !== true) {
 			return true;

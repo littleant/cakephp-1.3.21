@@ -312,7 +312,7 @@ class Configure extends CakeObject {
  * @return void
  * @access public
  */
-	function store($type, $name, $data = array()) {
+	static function store($type, $name, $data = array()) {
 		$write = true;
 		$content = '';
 
@@ -335,7 +335,7 @@ class Configure extends CakeObject {
  * @return void
  * @access private
  */
-	function __writeConfig($content, $name, $write = true) {
+	static function __writeConfig($content, $name, $write = true) {
 		$file = CACHE . 'persistent' . DS . $name . '.php';
 
 		if (Configure::read() > 0) {
@@ -724,7 +724,7 @@ class App extends CakeObject {
  * @param string $theme lower_cased theme name to find the path of.
  * @return string full path to the theme.
  */
-	function themePath($theme) {
+	static function themePath($theme) {
 		$_this =& App::getInstance();
 		$themeDir = 'themed' . DS . Inflector::underscore($theme);
 		for ($i = 0, $length = count($_this->views); $i < $length; $i++) {
