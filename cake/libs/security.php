@@ -94,7 +94,7 @@ class Security extends CakeObject {
  * @static
  * @todo Complete implementation
  */
-	function validateAuthKey($authKey) {
+	static function validateAuthKey($authKey) {
 		return true;
 	}
 
@@ -154,7 +154,7 @@ class Security extends CakeObject {
  * @static
  * @see Security::hash()
  */
-	function setHash($hash) {
+	static function setHash($hash) {
 		$_this =& Security::getInstance();
 		$_this->hashType = $hash;
 	}

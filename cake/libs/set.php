@@ -138,7 +138,7 @@ class Set {
  * @return array Array from $array.
  * @access private
  */
-	function __array($array) {
+	static function __array($array) {
 		if (empty($array)) {
 			$array = array();
 		} elseif (is_object($array)) {
@@ -1071,7 +1071,7 @@ class Set {
  * @return array
  * @access private
  */
-	function __flatten($results, $key = null) {
+	static function __flatten($results, $key = null) {
 		$stack = array();
 		foreach ($results as $k => $r) {
 			$id = $k;
