@@ -118,12 +118,10 @@ class TextHelper extends AppHelper {
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Helpers/Text.html#Text#autoLinkUrls-1619
  */
 	function autoLinkUrls($text, $htmlOptions = array()) {
-		$options = var_export($htmlOptions, true);
-		$text = preg_replace_callback('#(?<!href="|">)((?:https?|ftp|nntp)://[^\s<>()]+)#i', create_function('$matches',
-			'$Html = new HtmlHelper(); $Html->tags = $Html->loadConfig(); return $Html->link($matches[0], $matches[0],' . $options . ');'), $text);
+		$options = array_filter($htmlOptions);
+		$text = preg_replace_callback('#(?<!href="|">)((?:https?|ftp|nntp)://[^\s<>()]+)#i', function($matches) use ($options) { $Html = new HtmlHelper(); $Html->tags = $Html->loadConfig(); return $Html->link($matches[0], $matches[0], $options);}, $text);
 
-		return preg_replace_callback('#(?<!href="|">)(?<!http://|https://|ftp://|nntp://)(www\.[^\n\%\ <]+[^<\n\%\,\.\ <])(?<!\))#i',
-			create_function('$matches', '$Html = new HtmlHelper(); $Html->tags = $Html->loadConfig(); return $Html->link($matches[0], "http://" . $matches[0],' . $options . ');'), $text);
+		return preg_replace_callback('#(?<!href="|">)(?<!http://|https://|ftp://|nntp://)(www\.[^\n\%\ <]+[^<\n\%\,\.\ <])(?<!\))#i', function($matches) use ($options) { $Html = new HtmlHelper(); $Html->tags = $Html->loadConfig(); return $Html->link($matches[0], "http://" . $matches[0], $options);}, $text);
 	}
 
 /**
@@ -136,17 +134,11 @@ class TextHelper extends AppHelper {
  * @link http://book.cakephp.org/1.3/en/The-Manual/Core-Helpers/Text.html#Text#autoLinkEmails-1618
  */
 	function autoLinkEmails($text, $options = array()) {
-		$linkOptions = 'array(';
-		foreach ($options as $option => $value) {
-			$value = var_export($value, true);
-			$linkOptions .= "'$option' => $value, ";
-		}
-		$linkOptions .= ')';
+		$linkOptions = array_filter($options);
 		$atom = '[a-z0-9!#$%&\'*+\/=?^_`{|}~-]';
 
 		return preg_replace_callback(
-			'/(' . $atom . '+(?:\.' . $atom . '+)*@[a-z0-9-]+(?:\.[a-z0-9-]+)+)/i',
-			create_function('$matches', '$Html = new HtmlHelper(); $Html->tags = $Html->loadConfig(); return $Html->link($matches[0], "mailto:" . $matches[0],' . $linkOptions . ');'), $text);
+			'/(' . $atom . '+(?:\.' . $atom . '+)*@[a-z0-9-]+(?:\.[a-z0-9-]+)+)/i', function ($matches) use ($linkOptions) { $Html = new HtmlHelper(); $Html->tags = $Html->loadConfig(); return $Html->link($matches[0], "mailto:" . $matches[0], $linkOptions);}, $text);
 	}
 
 /**
