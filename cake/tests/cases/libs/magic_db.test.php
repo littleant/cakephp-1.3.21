@@ -176,7 +176,7 @@ class MagicDbTestData extends CakeObject {
  * @param string $key
  * @access public
  */
-	function get($key) {
+	static function get($key) {
 /**
  * data property
  *

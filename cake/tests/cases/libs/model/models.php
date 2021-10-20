@@ -274,7 +274,7 @@ class Article extends CakeTestModel {
  * @access public
  * @return void
  */
-	function titleDuplicate ($title) {
+	static function titleDuplicate ($title) {
 		if ($title === 'My Article Title') {
 			return false;
 		}
