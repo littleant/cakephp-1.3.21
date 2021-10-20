@@ -2850,7 +2850,7 @@ class SetTest extends CakeTestCase {
 					array(
 						'title' => 'constructng result array when using findall',
 						'link' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f',
-						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br><p>Array( <br> [0] =&gt; Array(",
+						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br> <p>Array( <br> [0] =&gt; Array(",
 						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f'),
 						'author' => 'bmil...@gmail.com(bpscrugs)',
 						'pubDate' => 'Fri, 28 Dec 2007 00:44:14 UT',
@@ -2858,7 +2858,7 @@ class SetTest extends CakeTestCase {
 					array(
 						'title' => 'Re: share views between actions?',
 						'link' => 'http://groups.google.com/group/cake-php/msg/8b350d898707dad8',
-						'description' => 'Then perhaps you might do us all a favour and refrain from replying to <br> things you do not understand. That goes especially for asinine comments. <br> Indeed. <br> To sum up: <br> No comment. <br> In my day, a simple &quot;RTFM&quot; would suffice. I\'ll keep in mind to ignore any <br> further responses from you. <br> You (and I) were referring to the *online documentation*, not other',
+						'description' => "Then perhaps you might do us all a favour and refrain from replying to <br> things you do not understand. That goes especially for asinine comments. <br> Indeed. <br> To sum up: <br> No comment. <br> In my day, a simple &quot;RTFM&quot; would suffice. I'll keep in mind to ignore any <br> further responses from you. <br> You (and I) were referring to the *online documentation*, not other",
 						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/8b350d898707dad8'),
 						'author' => 'subtropolis.z...@gmail.com(subtropolis zijn)',
 						'pubDate' => 'Fri, 28 Dec 2007 00:45:01 UT'
@@ -2960,7 +2960,7 @@ class SetTest extends CakeTestCase {
 					array(
 						'title' => 'constructng result array when using findall',
 						'link' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f',
-						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br><p>Array( <br> [0] =&gt; Array(",
+						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br> <p>Array( <br> [0] =&gt; Array(",
 						'creator' => 'cakephp',
 						'Category' => array('cakephp', 'model'),
 						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f'),
