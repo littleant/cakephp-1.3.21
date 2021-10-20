@@ -198,7 +198,7 @@ class I18n extends CakeObject {
  *
  * @return void
  */
-	function clear() {
+	static function clear() {
 		$self =& I18n::getInstance();
 		$self->__domains = array();
 	}
