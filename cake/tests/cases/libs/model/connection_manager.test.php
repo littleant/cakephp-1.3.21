@@ -79,7 +79,7 @@ class ConnectionManagerTest extends CakeTestCase {
  */
 	function testGetDataSource() {
 		$connections = ConnectionManager::enumConnectionObjects();
-		$this->assertTrue(@count(array_keys($connections) >= 1));
+		$this->assertTrue(@count(array_keys($connections)) >= 1);
 
 		$source = ConnectionManager::getDataSource(key($connections));
 		$this->assertTrue(is_object($source));
@@ -227,7 +227,6 @@ class ConnectionManagerTest extends CakeTestCase {
 		$connections = array(
 			array('classname' => 'DboMysql', 'filename' => 'dbo' . DS . 'dbo_mysql'),
 			array('classname' => 'DboMysqli', 'filename' => 'dbo' . DS . 'dbo_mysqli'),
-			array('classname' => 'DboMssql', 'filename' => 'dbo' . DS . 'dbo_mssql'),
 			array('classname' => 'DboOracle', 'filename' => 'dbo' . DS . 'dbo_oracle'),
 		);
 
@@ -254,7 +253,7 @@ class ConnectionManagerTest extends CakeTestCase {
 		$name = 'test_created_connection';
 
 		$connections = ConnectionManager::enumConnectionObjects();
-		$this->assertTrue(@count(array_keys($connections) >= 1));
+		$this->assertTrue(@count(array_keys($connections)) >= 1);
 
 		$source = ConnectionManager::getDataSource(key($connections));
 		$this->assertTrue(is_object($source));

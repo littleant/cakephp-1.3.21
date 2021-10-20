@@ -320,9 +320,10 @@ class DboMysqliTest extends CakeTestCase {
 		$this->db->cacheSources = $this->db->testing = false;
 		$this->db->query('CREATE TABLE ' . $this->db->fullTableName('tinyint') . ' (id int(11) AUTO_INCREMENT, bool tinyint(1), small_int tinyint(2), primary key(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;');
 		$result = $this->db->readTableParameters($this->db->fullTableName('tinyint', false));
+		$multibyte = strstr($result['charset'], 'mb');
 		$expected = array(
-			'charset' => 'utf8',
-			'collate' => 'utf8_unicode_ci',
+			'charset' => 'utf8' . $multibyte,
+			'collate' => 'utf8' . $multibyte . '_unicode_ci',
 			'engine' => 'InnoDB');
 		$this->assertEqual($result, $expected);
 

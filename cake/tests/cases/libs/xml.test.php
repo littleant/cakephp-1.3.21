@@ -1030,7 +1030,7 @@ class XmlTest extends CakeTestCase {
 					array(
 						'title' => 'constructng result array when using findall',
 						'link' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f',
-						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br><p>Array( <br> [0] =&gt; Array(",
+						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br> <p>Array( <br> [0] =&gt; Array(",
 						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f'),
 						'author' => 'bmil...@gmail.com(bpscrugs)',
 						'pubDate' => 'Fri, 28 Dec 2007 00:44:14 UT',
@@ -1152,7 +1152,7 @@ class XmlTest extends CakeTestCase {
 					array(
 						'title' => 'constructng result array when using findall',
 						'link' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f',
-						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br><p>Array( <br> [0] =&gt; Array(",
+						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br> <p>Array( <br> [0] =&gt; Array(",
 						'creator' => 'cakephp',
 						'Category' => array('cakephp', 'model'),
 						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f'),

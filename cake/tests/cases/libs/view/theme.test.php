@@ -174,7 +174,6 @@ class ThemeViewTest extends CakeTestCase {
 	function testConstructionNoRegister() {
 		ClassRegistry::flush();
 		$controller = null;
-		$Theme = new ThemeView($controller, false);
 		$ThemeTwo =& ClassRegistry::getObject('view');
 		$this->assertFalse($ThemeTwo);
 	}

@@ -165,30 +165,41 @@ class TestView extends View {
 }
 
 /**
+ * TestBeforeHelper class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.view
+ */
+class TestBeforeHelper extends Helper
+{
+
+	/**
+	 * property property
+	 *
+	 * @var string ''
+	 * @access public
+	 */
+	var $property = '';
+
+	/**
+	 * beforeLayout method
+	 *
+	 * @access public
+	 * @return void
+	 */
+	function beforeLayout()
+	{
+		$this->property = 'Valuation';
+	}
+}
+
+/**
  * TestAfterHelper class
  *
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view
  */
 class TestAfterHelper extends Helper {
-
-/**
- * property property
- *
- * @var string ''
- * @access public
- */
-	var $property = '';
-
-/**
- * beforeLayout method
- *
- * @access public
- * @return void
- */
-	function beforeLayout() {
-		$this->property = 'Valuation';
-	}
 
 /**
  * afterLayout method
@@ -653,10 +664,10 @@ class ViewTest extends CakeTestCase {
  * @return void
  */
 	function testBeforeLayout() {
-		$this->PostsController->helpers = array('Session', 'TestAfter', 'Html');
+		$this->PostsController->helpers = array('Session', 'TestBefore', 'Html');
 		$View = new View($this->PostsController);
 		$out = $View->render('index');
-		$this->assertEqual($View->loaded['testAfter']->property, 'Valuation');
+		$this->assertEqual($View->loaded['testBefore']->property, 'Valuation');
 	}
 
 /**
@@ -844,7 +855,7 @@ class ViewTest extends CakeTestCase {
 		fwrite($f, $cacheText);
 		fclose($f);
 
-		$result = $View->renderCache($path, '+1 second');
+		$result = $View->renderCache($path, strtotime('+1 second'));
 		$this->assertFalse($result);
 		@unlink($path);
 
@@ -853,7 +864,7 @@ class ViewTest extends CakeTestCase {
 		fwrite($f, $cacheText);
 		fclose($f);
 		ob_start();
-		$View->renderCache($path, '+1 second');
+		$View->renderCache($path, strtotime('+1 second'));
 		$result = ob_get_clean();
 
 		$expected = 'some cacheText';
