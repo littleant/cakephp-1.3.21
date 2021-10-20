@@ -645,7 +645,7 @@ class PaginatorHelper extends AppHelper {
 
 			if ($first && $start > 1) {
 				$offset = ($start <= (int)$first) ? $start - 1 : $first;
-				if ($offset < $start - 1) {
+				if ($offset === 'first' || $offset < $start - 1) {
 					$out .= $this->first($offset, array('tag' => $tag, 'separator' => $separator));
 				} else {
 					$out .= $this->first($offset, array('tag' => $tag, 'after' => $separator, 'separator' => $separator));
@@ -678,7 +678,7 @@ class PaginatorHelper extends AppHelper {
 
 			if ($last && $end < $params['pageCount']) {
 				$offset = ($params['pageCount'] < $end + (int)$last) ? $params['pageCount'] - $end : $last;
-				if ($offset <= $last && $params['pageCount'] - $end > $offset) {
+				if ($offset === 'last' || ($offset <= $last && $params['pageCount'] - $end > $offset)) {
 					$out .= $this->last($offset, array('tag' => $tag, 'separator' => $separator));
 				} else {
 					$out .= $this->last($offset, array('tag' => $tag, 'before' => $separator, 'separator' => $separator));

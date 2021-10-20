@@ -112,7 +112,11 @@ class DboMysqli extends DboMysqlBase {
 		if (preg_match('/^\s*call/i', $sql)) {
 			return $this->_executeProcedure($sql);
 		}
-		return mysqli_query($this->connection, $sql);
+		try {
+			return mysqli_query($this->connection, $sql);
+		} catch (mysqli_sql_exception $e) {
+			return false;
+		}
 	}
 
 /**

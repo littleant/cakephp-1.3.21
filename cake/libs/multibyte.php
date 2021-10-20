@@ -885,9 +885,9 @@ class Multibyte extends CakeObject {
 			} else {
 				$matched = false;
 				$keys = $_this->__find($char);
-				$keyCount = @count($keys);
 
 				if (!empty($keys)) {
+					$keyCount = @count($keys);
 					foreach ($keys as $key => $value) {
 						$matched = false;
 						$replace = 0;

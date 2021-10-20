@@ -44,6 +44,9 @@ One configuration variable has to be changed:
 #### MySQL
 The sql-mode `ONLY_FULL_GROUP_BY` must be disabled. CakePHP creates queries that are incompatible with this mode.
 
+#### Postgres
+The method `lastInsertId()` with a second parameter had to be renamed to `lastInsertX()` due to inheritance
+
 ### New possible configuration options
 Two new options are possible:
 - "Session.cookie\_samesite" sets the SameSite-cookie-parameter. Defaults to "Lax". **Requires PHP 7.3+ to work.**

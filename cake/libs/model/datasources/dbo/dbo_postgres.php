@@ -366,6 +366,17 @@ class DboPostgres extends DboSource {
 		return ($this->_result) ? pg_num_rows($this->_result) : false;
 	}
 
+	/**
+	 * Returns the ID generated from the previous INSERT operation.
+	 *
+	 * @param string $source Name of the database table
+	 * @return integer
+	 */
+	function lastInsertId($source = null)
+	{
+		return $this->lastInsertX($source, 'id');
+	}
+
 /**
  * Returns the ID generated from the previous INSERT operation.
  *
@@ -373,7 +384,7 @@ class DboPostgres extends DboSource {
  * @param string $field Name of the ID database field. Defaults to "id"
  * @return integer
  */
-	function lastInsertId($source, $field = 'id') {
+	function lastInsertX($source, $field = 'id') {
 		$seq = $this->getSequence($source, $field);
 		$data = $this->fetchRow("SELECT currval('{$seq}') as max");
 		return $data[0]['max'];
