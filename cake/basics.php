@@ -1023,6 +1023,13 @@ if (!function_exists('file_put_contents')) {
 		}
 	}
 
+	if (!function_exists('is_countable')) {
+		function is_countable($var)
+		{
+			return (is_array($var) || $var instanceof Countable);
+		}
+	}
+
 /**
  * Wraps ternary operations. If $condition is a non-empty value, $val1 is returned, otherwise $val2.
  * Don't use for isset() conditions, or wrap your variable with @ operator:
