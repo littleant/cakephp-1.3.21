@@ -121,8 +121,8 @@ class DebuggerTest extends CakeTestCase {
 		$out .= '';
 		$result = Debugger::output(true);
 
-		$this->assertEqual($result[0]['error'], 'Notice');
-		$this->assertPattern('/Undefined variable\:\s+out/', $result[0]['description']);
+		$this->assertEqual($result[0]['error'], 'Warning');
+		$this->assertPattern('/Undefined variable\s+\$out/', $result[0]['description']);
 		$this->assertPattern('/DebuggerTest::testOutput/i', $result[0]['trace']);
 		$this->assertPattern('/SimpleInvoker::invoke/i', $result[0]['trace']);
 
@@ -131,8 +131,8 @@ class DebuggerTest extends CakeTestCase {
 		$other .= '';
 		$result = ob_get_clean();
 
-		$this->assertPattern('/Undefined variable:\s+other/', $result);
-		$this->assertPattern('/Context:/', $result);
+		$this->assertPattern('/Undefined variable\s+\$other/', $result);
+		$this->assertPattern('/Trace:/', $result);
 		$this->assertPattern('/DebuggerTest::testOutput/i', $result);
 		$this->assertPattern('/SimpleInvoker::invoke/i', $result);
 
@@ -141,8 +141,8 @@ class DebuggerTest extends CakeTestCase {
 		$wrong .= '';
 		$result = ob_get_clean();
 		$this->assertPattern('/<pre class="cake-debug">.+<\/pre>/', $result);
-		$this->assertPattern('/<b>Notice<\/b>/', $result);
-		$this->assertPattern('/variable:\s+wrong/', $result);
+		$this->assertPattern('/<b>Warning<\/b>/', $result);
+		$this->assertPattern('/variable\s+\$wrong/', $result);
 
 		ob_start();
 		Debugger::output('js');
@@ -156,12 +156,10 @@ class DebuggerTest extends CakeTestCase {
 				             "(document.getElementById('cakeErr4-trace').style.display == 'none'" .
 				             " ? '' : 'none');"
 			),
-			'b' => array(), 'Notice', '/b', ' (8)',
+			'b' => array(), 'Warning', '/b', ' (2)',
 		));
-
-		$this->assertPattern('/Undefined variable:\s+buzz/', $result[1]);
+		$this->assertPattern('/Undefined variable\s+\$buzz/', $result[1]);
 		$this->assertPattern('/<a[^>]+>Code/', $result[1]);
-		$this->assertPattern('/<a[^>]+>Context/', $result[2]);
 		set_error_handler('simpleTestErrorHandler');
 	}
 
@@ -194,10 +192,10 @@ class DebuggerTest extends CakeTestCase {
 
 		$data = array(
 			'error' => array(),
-			'code' => array(), '8', '/code',
+			'code' => array(), '2', '/code',
 			'file' => array(), 'preg:/[^<]+/', '/file',
 			'line' => array(), '' . (intval(__LINE__) + -8), '/line',
-			'preg:/Undefined variable:\s+foo/',
+			'preg:/Undefined variable\s+\$foo/',
 			'/error'
 		);
 		$this->assertTags($result, $data, true);
