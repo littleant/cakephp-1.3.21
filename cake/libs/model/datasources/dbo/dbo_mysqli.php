@@ -60,7 +60,11 @@ class DboMysqli extends DboMysqlBase {
 		$config = $this->config;
 		$this->connected = false;
 
-		$this->connection = mysqli_connect($config['host'], $config['login'], $config['password'], $config['database'], $config['port'], $config['socket']);
+		try {
+			$this->connection = mysqli_connect($config['host'], $config['login'], $config['password'], $config['database'], $config['port'], $config['socket']);
+		} catch (mysqli_sql_exception $e) {
+			return false;
+		}
 
 		if ($this->connection !== false) {
 			$this->connected = true;
@@ -307,7 +311,7 @@ class DboMysqli extends DboMysqlBase {
  * @return string The database encoding
  */
 	function getEncoding() {
-		return mysqli_client_encoding($this->connection);
+		return mysqli_character_set_name($this->connection);
 	}
 
 /**
