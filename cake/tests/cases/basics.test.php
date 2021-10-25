@@ -751,6 +751,7 @@ class BasicsTest extends CakeTestCase {
  * @access public
  */
 	function testStripslashesDeepSybase() {
+		$this->skipUnless(version_compare(phpversion(), '8') < 0, '%s magic_quotes is removed in PHP8');
 		$this->skipUnless(ini_get('magic_quotes_sybase') === '1', '%s magic_quotes_sybase is off');
 
 		$this->assertEqual(stripslashes_deep("tes\'t"), "tes\'t");

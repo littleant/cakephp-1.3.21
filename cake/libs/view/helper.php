@@ -884,7 +884,7 @@ class Helper extends Overloadable {
  * @access private
  */
 	function __clean() {
-		if (get_magic_quotes_gpc()) {
+		if (version_compare(phpversion(), '8') < 0 && get_magic_quotes_gpc()) {
 			$this->__cleaned = stripslashes($this->__tainted);
 		} else {
 			$this->__cleaned = $this->__tainted;

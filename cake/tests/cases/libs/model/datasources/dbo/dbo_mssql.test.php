@@ -302,7 +302,7 @@ class DboMssqlTest extends CakeTestCase {
  * @access public
  */
 	function skip() {
-		$this->_initDb();
+		$this->skipUnless($this->_initDb();version_compare(phpversion(), '7') < 0, '%s SQL Server removed in PHP7');
 		$this->skipUnless($this->db->config['driver'] == 'mssql', '%s SQL Server connection not available');
 	}
 
