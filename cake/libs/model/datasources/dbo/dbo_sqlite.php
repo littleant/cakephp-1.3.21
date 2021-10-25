@@ -117,6 +117,14 @@ class DboSqlite extends DboSource {
 		),
 	);
 
+	/**
+	 * A reference to the physical connection of this DataSource
+	 *
+	 * @var SQLite3
+	 * @access public
+	 */
+	var $connection = null;
+
 /**
  * Connects to the database using config['database'] as a filename.
  *
@@ -126,12 +134,12 @@ class DboSqlite extends DboSource {
 	function connect() {
 		$config = $this->config;
 
-		if (!$config['persistent']) {
-			$this->connection = sqlite_open($config['database']);
-		} else {
-			$this->connection = sqlite_popen($config['database']);
+		try {
+			$this->connection = new SQLite3($config['database']);
+		} catch (mysqli_sql_exception $e) {
+			return false;
 		}
-		$this->connected = is_resource($this->connection);
+		$this->connected = true;
 
 		if ($this->connected) {
 			$this->_execute('PRAGMA count_changes = 1;');
@@ -145,7 +153,7 @@ class DboSqlite extends DboSource {
  * @return boolean
  */
 	function enabled() {
-		return extension_loaded('sqlite');
+		return extension_loaded('sqlite3');
 	}
 /**
  * Disconnects from database.
@@ -153,7 +161,7 @@ class DboSqlite extends DboSource {
  * @return boolean True if the database could be disconnected, else false
  */
 	function disconnect() {
-		@sqlite_close($this->connection);
+		$this->connection->close();
 		$this->connected = false;
 		return $this->connected;
 	}
@@ -165,7 +173,7 @@ class DboSqlite extends DboSource {
  * @return resource Result resource identifier
  */
 	function _execute($sql) {
-		$result = sqlite_query($this->connection, $sql);
+		$result = $this->connection->query($sql);
 
 		if (preg_match('/^(INSERT|UPDATE|DELETE)/', $sql)) {
 			$this->resultSet($result);
@@ -277,7 +285,7 @@ class DboSqlite extends DboSource {
 					return 'NULL';
 				}
 			default:
-				$data = sqlite_escape_string($data);
+				$data = $this->connection->escapeString($data);
 			break;
 		}
 		return "'" . $data . "'";
@@ -325,9 +333,9 @@ class DboSqlite extends DboSource {
  * @return string Error message
  */
 	function lastError() {
-		$error = sqlite_last_error($this->connection);
+		$error = $this->connection->lastErrorCode();
 		if ($error) {
-			return $error.': '.sqlite_error_string($error);
+			return $error.': '. $this->connection->lastErrorMsg();
 		}
 		return null;
 	}
@@ -356,7 +364,7 @@ class DboSqlite extends DboSource {
  */
 	function lastNumRows($source = null) {
 		if ($this->hasResult()) {
-			sqlite_num_rows($this->_result);
+			return $this->_result->numColumns() && $this->_result->columnType(0) != SQLITE3_NULL;
 		}
 		return false;
 	}
@@ -367,7 +375,7 @@ class DboSqlite extends DboSource {
  * @return int
  */
 	function lastInsertId($source = null) {
-		return sqlite_last_insert_rowid($this->connection);
+		return $this->connection->lastInsertRowID();
 	}
 
 /**
@@ -414,11 +422,11 @@ class DboSqlite extends DboSource {
 	function resultSet(&$results) {
 		$this->results =& $results;
 		$this->map = array();
-		$fieldCount = sqlite_num_fields($results);
+		$fieldCount = $results->numColumns();
 		$index = $j = 0;
 
 		while ($j < $fieldCount) {
-			$columnName = str_replace('"', '', sqlite_field_name($results, $j));
+			$columnName = str_replace('"', '', $results->columnName($j));
 
 			if (strpos($columnName, '.')) {
 				$parts = explode('.', $columnName);
@@ -436,7 +444,7 @@ class DboSqlite extends DboSource {
  * @return unknown
  */
 	function fetchResult() {
-		if ($row = sqlite_fetch_array($this->results, SQLITE_ASSOC)) {
+		if ($row = $this->results->fetchArray(SQLITE3_ASSOC)) {
 			$resultRow = array();
 			$i = 0;
 

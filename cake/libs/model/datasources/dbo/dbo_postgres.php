@@ -115,10 +115,14 @@ class DboPostgres extends DboSource {
 		$conn  = "host='{$config['host']}' port='{$config['port']}' dbname='{$config['database']}' ";
 		$conn .= "user='{$config['login']}' password='{$config['password']}'";
 
-		if (!$config['persistent']) {
-			$this->connection = pg_connect($conn, PGSQL_CONNECT_FORCE_NEW);
-		} else {
-			$this->connection = pg_pconnect($conn);
+		try {
+			if (!$config['persistent']) {
+				$this->connection = pg_connect($conn, PGSQL_CONNECT_FORCE_NEW);
+			} else {
+				$this->connection = pg_pconnect($conn);
+			}
+		} catch (mysqli_sql_exception $e) {
+			return false;
 		}
 		$this->connected = false;
 
