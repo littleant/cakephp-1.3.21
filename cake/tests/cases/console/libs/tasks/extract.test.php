@@ -135,7 +135,7 @@ class ExtractTaskTest extends CakeTestCase {
 		$this->assertPattern($pattern, $result);
 
 		$pattern = '/\#: (\\\\|\/)extract\.ctp:14\n';
-		$pattern .= '\#: (\\\\|\/)home\.ctp:77\n';
+		$pattern .= '\#: (\\\\|\/)home\.ctp:74\n';
 		$pattern .= 'msgid "Editing this Page"\nmsgstr ""/';
 		$this->assertPattern($pattern, $result);
 
