@@ -1,7 +1,7 @@
 # CakePHP 1.3 for PHP 8.1
 An unofficial port of CakePHP 1.3.21 to PHP 8.1.
 
-[![Build Status](https://travis-ci.com/littleant/cakephp-1.3.21.svg?branch=master)](https://travis-ci.com/littleant/cakephp-1.3.21)
+[![Build Status](https://app.travis-ci.com/littleant/cakephp-1.3.21.svg?branch=master)](https://app.travis-ci.com/littleant/cakephp-1.3.21)
 
 **:warning: Only use this code, if you have an active CakePHP 1.3 version that you have to port to PHP 8!
 Otherwise use a [current CakePHP version](https://cakephp.org/)!**
