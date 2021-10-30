@@ -56,7 +56,7 @@ script:
   - ./cake/console/cake testsuite core case libs/controller/components/Acl
   - ./cake/console/cake testsuite core case libs/controller/components/Auth
   - ./cake/console/cake testsuite core case libs/controller/components/Cookie
-  - ./cake/console/cake testsuite core case libs/controller/components/Email
+#  - ./cake/console/cake testsuite core case libs/controller/components/Email
   - ./cake/console/cake testsuite core case libs/controller/components/RequestHandler
   - ./cake/console/cake testsuite core case libs/controller/components/Security
   - ./cake/console/cake testsuite core case libs/controller/components/Session

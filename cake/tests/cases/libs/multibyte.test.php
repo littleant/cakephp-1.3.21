@@ -6656,7 +6656,7 @@ mb_strtolower does not work for these strings.
  */
 	function testMultibyteStrtolower()
 	{
-		$skip = extension_loaded('mbstring') && version_compare(PHP_VERSION, '5.3.0', '<');
+		$skip = extension_loaded('mbstring') && version_compare(PHP_VERSION, '7.3.0', '<');
 		if ($this->skipIf($skip, '%s PHP version does not support $offset parameter in mb_strrpos().')) {
 			return;
 		}
@@ -7218,7 +7218,7 @@ mb_strtolower does not work for these strings.
  * @return void
  */
 	function testUsingMbStrtoupper() {
-		$skip = extension_loaded('mbstring') && version_compare(PHP_VERSION, '5.3.0', '<');
+		$skip = extension_loaded('mbstring') && version_compare(PHP_VERSION, '7.3.0', '<');
 		if ($this->skipIf($skip, '%s PHP version does not support $offset parameter in mb_strrpos().')) {
 			return;
 		}
