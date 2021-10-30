@@ -116,7 +116,7 @@ class TimeHelperTest extends CakeTestCase {
 		for($i = 0; $i < 200; $i ++) {
 			$years = mt_rand(0, 3);
 			$months = mt_rand(0, 11);
-			$weeks = mt_rand(0, 2);
+			$weeks = mt_rand(0, 3);
 			$days = mt_rand(0, 6);
 			$hours = 0;
 			$minutes = 0;
