@@ -20,6 +20,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::import('Core', 'CakeTestCase');
+include_once CAKE_TESTS_LIB . 'reporter' . DS . 'cake_html_reporter.php';
 
 if (!class_exists('AppController')) {
 	require_once LIBS . 'controller' . DS . 'app_controller.php';

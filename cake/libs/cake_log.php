@@ -252,7 +252,7 @@ class CakeLog {
  * @param array $context Context
  * @return void
  */
-	function handleError($code, $description, $file = null, $line = null, $context = null) {
+	static function handleError($code, $description, $file = null, $line = null, $context = null) {
 		if ($code === 2048 || $code === 8192 || error_reporting() === 0) {
 			return;
 		}

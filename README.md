@@ -1,5 +1,5 @@
-# CakePHP 1.3 for PHP 8.1
-An unofficial port of CakePHP 1.3.21 to PHP 8.1.
+# CakePHP 1.3 for PHP 7.3+
+An unofficial port of CakePHP 1.3.21 to PHP 7.3+
 
 [![Build Status](https://app.travis-ci.com/littleant/cakephp-1.3.21.svg?branch=master)](https://app.travis-ci.com/littleant/cakephp-1.3.21)
 
@@ -7,14 +7,14 @@ An unofficial port of CakePHP 1.3.21 to PHP 8.1.
 Otherwise use a [current CakePHP version](https://cakephp.org/)!**
 
 ## Getting Started
-1. Make sure your code is PHP 8.1 ready.
-2. If you made any changes in the cake-directory, that you want to reapply in the PHP 8-version, write them down.
+1. Make sure your code is PHP 7.3 or newer ready.
+2. If you made any changes in the cake-directory, that you want to reapply in this newer PHP version, write them down.
 3. Delete your cake-directory.
 4. Copy **only** the cake-directory from this repository to your existing installation.
 5. Reapply the changes you wrote down in step 2.
 6. Find and fix problems related to the changes described below.
 
-Porting CakePHP to PHP 8.1 required the introduction of some breaking changes.
+Porting CakePHP to recent PHP versions required the introduction of some breaking changes.
 Make sure you update your own code according to the following changes:
 
 ### Renamed classes
@@ -62,7 +62,7 @@ Note: Value of "None" will not be sent to incompatible clients like Safari, in o
 Defaults to "Lax".
 
 ## Running the tests
-Core-tests have been ported to PHP 7.
+Core-tests have been ported to PHP 7.3+.
 
 To run any tests, you need a [Simpletest 1.0.1 version with PHP 7 support](https://github.com/littleant/simpletest-1.0.1) in the vendors-directory.
 

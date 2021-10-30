@@ -51,7 +51,12 @@ class ErrorHandler extends CakeObject {
 	function __construct($method, $messages) {
 		$this->stdout = fopen('php://stdout', 'w');
 		$this->stderr = fopen('php://stderr', 'w');
-		call_user_func_array(array(&$this, $method), $messages);
+		if (version_compare(phpversion(), '7.2') < 0) {
+			call_user_func_array(array(&$this, $method), $messages);
+		} else {
+			// PHP8 spread assoc array into named args
+			call_user_func_array(array(&$this, $method), [$messages]);
+		}
 	}
 
 /**

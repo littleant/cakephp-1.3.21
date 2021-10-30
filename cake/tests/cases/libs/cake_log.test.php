@@ -172,12 +172,15 @@ class CakeLogTest extends CakeTestCase {
 		set_error_handler(array('CakeLog', 'handleError'));
 		$out .= '';
 
-		$result = file(LOGS . 'debug.log');
+		$filename = LOGS . 'error.log';
+		$pattern = '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} Warning: Warning \(2\): Undefined variable\s+\$out in \[.+ line \d+\]$/';
+		if (version_compare(phpversion(), '8') < 0) {
+			$filename = LOGS . 'debug.log';
+			$pattern = '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} Notice: Notice \(8\): Undefined variable:\s+out in \[.+ line \d+\]$/';
+		}
+		$result = file($filename);
 		$this->assertEqual(count($result), 1);
-		$this->assertPattern(
-			'/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} Warning: Warning \(8\): Undefined variable\s+\$out in \[.+ line \d+\]$/',
-			$result[0]
-		);
-		@unlink(LOGS . 'debug.log');
+		$this->assertPattern($pattern, $result[0]);
+		@unlink(LOGS . 'error.log');
 	}
 }

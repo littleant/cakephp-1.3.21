@@ -676,7 +676,6 @@ class AuthTest extends CakeTestCase {
  * @return void
  */
 	function testLoginActionNotSettingAuthRedirect() {
-		$_referer = $_SERVER['HTTP_REFERER'];
 		$_SERVER['HTTP_REFERER'] = '/pages/display/about';
 
 		$this->Controller->data = array();

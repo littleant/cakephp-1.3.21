@@ -268,7 +268,7 @@ class CakeSession extends CakeObject {
  * @access public
  */
 	function id($id = null) {
-		if ($id) {
+		if ($id && (!function_exists('session_status') || session_status() !== PHP_SESSION_ACTIVE)) {
 			$this->id = $id;
 			session_id($this->id);
 		}
@@ -539,9 +539,9 @@ class CakeSession extends CakeObject {
 					if ($iniSet) {
 						ini_set('session.use_trans_sid', 0);
 						ini_set('url_rewriter.tags', '');
-                                                if (version_compare(PHP_VERSION, '7.2.0', '<')) {
-                                                        ini_set('session.save_handler', 'user');
-                                                }
+						if (version_compare(PHP_VERSION, '7.2.0', '<')) {
+								ini_set('session.save_handler', 'user');
+						}
 						ini_set('session.serialize_handler', 'php');
 						ini_set('session.use_cookies', 1);
 						ini_set('session.name', Configure::read('Session.cookie'));
@@ -618,11 +618,11 @@ class CakeSession extends CakeObject {
 			return true;
 		} elseif (!isset($_SESSION)) {
 			session_cache_limiter ("must-revalidate");
-			session_start();
+			@session_start();
 			header ('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"');
 			return true;
 		} else {
-			session_start();
+			@session_start();
 			return true;
 		}
 	}

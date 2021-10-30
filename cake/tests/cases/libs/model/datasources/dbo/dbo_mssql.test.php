@@ -302,8 +302,8 @@ class DboMssqlTest extends CakeTestCase {
  * @access public
  */
 	function skip() {
-		$this->skipUnless($this->_initDb();version_compare(phpversion(), '7') < 0, '%s SQL Server removed in PHP7');
-		$this->skipUnless($this->db->config['driver'] == 'mssql', '%s SQL Server connection not available');
+		$this->skipUnless(version_compare(phpversion(), '7') < 0, '%s SQL Server removed in PHP7');
+		$this->skipUnless($this->db && $this->db->config['driver'] == 'mssql', '%s SQL Server connection not available');
 	}
 
 /**
@@ -332,8 +332,10 @@ class DboMssqlTest extends CakeTestCase {
  * @access public
  */
 	function setUp() {
-		$db = ConnectionManager::getDataSource('test_suite');
-		$this->db = new DboMssqlTestDb($db->config);
+		if (version_compare(phpversion(), '7') < 0) {
+			$db = ConnectionManager::getDataSource('test_suite');
+			$this->db = new DboMssqlTestDb($db->config);
+		}
 		$this->model = new MssqlTestModel();
 	}
 

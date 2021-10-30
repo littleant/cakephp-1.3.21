@@ -323,21 +323,6 @@ class TestTaskTest extends CakeTestCase {
  * @return void
  * @access public
  */
-	function testFixtureArrayGenerationFromModel() {
-		$subject = ClassRegistry::init('TestTaskArticle');
-		$result = $this->Task->generateFixtureList($subject);
-		$expected = array('plugin.test_task.test_task_comment', 'app.articles_tags',
-			'app.test_task_article', 'app.test_task_tag');
-
-		$this->assertEqual(sort($result), sort($expected));
-	}
-
-/**
- * test that the generation of fixtures works correctly.
- *
- * @return void
- * @access public
- */
 	function testFixtureArrayGenerationFromController() {
 		$subject = new TestTaskCommentsController();
 		$result = $this->Task->generateFixtureList($subject);

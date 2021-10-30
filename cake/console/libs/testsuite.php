@@ -18,6 +18,11 @@
  * @since         CakePHP(tm) v 1.2.0.4433
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
+
+if (!defined('FULL_BASE_URL')) {
+	define('FULL_BASE_URL', 'http://cakephp.org');
+}
+
 class TestSuiteShell extends Shell {
 
 /**
@@ -81,6 +86,7 @@ class TestSuiteShell extends Shell {
 		} else {
 			define('TEST_CAKE_CORE_INCLUDE_PATH', CAKE_CORE_INCLUDE_PATH);
 		}
+		ini_set('log_errors', 0);
 
 		$this->__installSimpleTest();
 
@@ -93,6 +99,12 @@ class TestSuiteShell extends Shell {
 		}
 		$this->parseArgs();
 		$this->getManager();
+	}
+
+	function startup()
+	{
+		$this->params['noclear'] = true;
+		parent::startup();
 	}
 
 /**
