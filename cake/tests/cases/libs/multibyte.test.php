@@ -4797,10 +4797,6 @@ class MultibyteTest extends CakeTestCase {
  * @return void
  */
 	function testUsingMbStrrpos() {
-		$skip = extension_loaded('mbstring') && version_compare(PHP_VERSION, '5.2.0', '<');
-		if ($this->skipIf($skip, '%s PHP version does not support $offset parameter in mb_strrpos().')) {
-			return;
-		}
 		$string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 		$find = 'F';
 		$result = mb_strrpos($string, $find);
@@ -6658,7 +6654,12 @@ mb_strtolower does not work for these strings.
  * @access public
  * @return void
  */
-	function testMultibyteStrtolower() {
+	function testMultibyteStrtolower()
+	{
+		$skip = extension_loaded('mbstring') && version_compare(PHP_VERSION, '5.3.0', '<');
+		if ($this->skipIf($skip, '%s PHP version does not support $offset parameter in mb_strrpos().')) {
+			return;
+		}
 		$string = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~';
 		$result = Multibyte::strtolower($string);
 		$expected = '!"#$%&\'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
@@ -7217,6 +7218,10 @@ mb_strtolower does not work for these strings.
  * @return void
  */
 	function testUsingMbStrtoupper() {
+		$skip = extension_loaded('mbstring') && version_compare(PHP_VERSION, '5.3.0', '<');
+		if ($this->skipIf($skip, '%s PHP version does not support $offset parameter in mb_strrpos().')) {
+			return;
+		}
 		$string = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 		$result = mb_strtoupper($string);
 		$expected = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~';
