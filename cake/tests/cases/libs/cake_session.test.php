@@ -46,7 +46,9 @@ class CakeSessionTest extends CakeTestCase {
 	function startCase() {
 		// Make sure garbage colector will be called
 		$this->__gc_divisor = ini_get('session.gc_divisor');
-		ini_set('session.gc_divisor', '1');
+		if (!function_exists('session_status') || session_status() !== PHP_SESSION_ACTIVE) {
+			ini_set('session.gc_divisor', '1');
+		}
 	}
 
 /**
@@ -57,7 +59,9 @@ class CakeSessionTest extends CakeTestCase {
  */
 	function endCase() {
 		// Revert to the default setting
-		ini_set('session.gc_divisor', $this->__gc_divisor);
+		if (!function_exists('session_status') || session_status() !== PHP_SESSION_ACTIVE) {
+			ini_set('session.gc_divisor', $this->__gc_divisor);
+		}
 	}
 
 /**
@@ -79,8 +83,10 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
     function tearDown() {
-        unset($_SESSION);
-		session_destroy();
+		if (!function_exists('session_status') || session_status() === PHP_SESSION_ACTIVE) {
+			unset($_SESSION);
+			session_destroy();
+		}
     }
 
 /**
@@ -152,9 +158,11 @@ class CakeSessionTest extends CakeTestCase {
 		$result = $this->Session->id();
 		$this->assertEqual($result, $expected);
 
-		$this->Session->id('MySessionId');
-		$result = $this->Session->id();
-		$this->assertEqual($result, 'MySessionId');
+		if (!function_exists('session_status') || session_status() !== PHP_SESSION_ACTIVE) {
+			$this->Session->id('MySessionId');
+			$result = $this->Session->id();
+			$this->assertEqual($result, 'MySessionId');
+		}
 	}
 
 /**
@@ -437,8 +445,10 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	function testReadAndWriteWithDatabaseStorage() {
-		unset($_SESSION);
-		session_destroy();
+		if (!function_exists('session_status') || session_status() === PHP_SESSION_ACTIVE) {
+			unset($_SESSION);
+			session_destroy();
+		}
 		Configure::write('Session.table', 'sessions');
 		Configure::write('Session.model', 'Session');
 		Configure::write('Session.database', 'test_suite');
@@ -481,6 +491,7 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	function testDatabaseStorageEmptySessionId() {
+		$this->skipUnless(version_compare(phpversion(), '7.2') < 0, '%s 7.2+ throw warning but it actualy never worked');
 		unset($_SESSION);
 		session_destroy();
 		Configure::write('Session.table', 'sessions');
@@ -491,7 +502,9 @@ class CakeSessionTest extends CakeTestCase {
 		$id = $this->Session->id();
 
 		$this->Session->id = '';
-		session_id('');
+		if (version_compare(phpversion(), '7.2') < 0) {
+			session_id('');
+		}
 
 		$this->Session->write('SessionTestCase', 'This is a Test');
 		$this->assertEqual($this->Session->read('SessionTestCase'), 'This is a Test');

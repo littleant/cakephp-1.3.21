@@ -408,7 +408,7 @@ PHP;
 		$result = explode("</div>", $report = $manager->reportCaseHtmlDiff($testObjectFile, $coverageData, $execCodeLines, 3));
 
 		foreach ($result as $line) {
-			preg_match('/<span class="line-num">(.*?)<\/span>/', $line, $matches);
+			preg_match('/\<span class="line-num"\>(.*?)\<\/span\>/', $line, $matches);
 			if (!isset($matches[1])) {
 				continue;
 			}
@@ -416,7 +416,7 @@ PHP;
 			$num = $matches[1];
 			$class = $expected[$num];
 			$pattern = '/<div class="code-line '.$class.'">/';
-			$this->assertPattern($pattern, $line, $num.': '.$line." fails");
+			$this->assertPattern($pattern, $line, $num.": fails");
 		}
 	}
 

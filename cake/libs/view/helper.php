@@ -184,7 +184,7 @@ class Helper extends Overloadable {
  * @access public
  * @link http://book.cakephp.org/view/1448/url
  */
-	static function url($url = null, $full = false) {
+	function url($url = null, $full = false) {
 		return h(Router::url($url, $full));
 	}
 

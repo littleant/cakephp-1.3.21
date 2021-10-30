@@ -10,7 +10,7 @@ notifications:
 branches:
   only:
   - master
-  - php8
+  - fix-php8-tests
 services:
   - mysql
 before_install:
@@ -45,7 +45,7 @@ script:
   - ./cake/console/cake testsuite core case libs/cache/Xcache
   - ./cake/console/cake testsuite core case libs/Cache
   - ./cake/console/cake testsuite core case libs/CakeLog
-#  - ./cake/console/cake testsuite core case libs/CakeSession
+  - ./cake/console/cake testsuite core case libs/CakeSession
 #  - ./cake/console/cake testsuite core case libs/CakeSocket
   - ./cake/console/cake testsuite core case libs/CakeTestCase
   - ./cake/console/cake testsuite core case libs/CakeTestFixture
@@ -95,7 +95,7 @@ script:
   - ./cake/console/cake testsuite core case libs/model/ModelRead
 #  - ./cake/console/cake testsuite core case libs/model/ModelValidation
 #  - ./cake/console/cake testsuite core case libs/model/ModelWrite
-#  - ./cake/console/cake testsuite core case libs/Multibyte
+  - ./cake/console/cake testsuite core case libs/Multibyte
   - ./cake/console/cake testsuite core case libs/Object
   - ./cake/console/cake testsuite core case libs/Overloadable
   - ./cake/console/cake testsuite core case libs/Router

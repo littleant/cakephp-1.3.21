@@ -45,7 +45,7 @@ class TestDispatcher extends Dispatcher {
 	function _invoke(&$controller, $params) {
 		restore_error_handler();
 		if ($result = parent::_invoke($controller, $params)) {
-			if ($result[0] === 'missingAction') {
+			if (is_array($result) && $result[0] === 'missingAction') {
 				return $result;
 			}
 		}
@@ -1241,8 +1241,8 @@ class DispatcherTest extends CakeTestCase {
 		$Dispatcher = new Dispatcher();
 
 		Configure::write('App.baseUrl', '/index.php');
-		$_SERVER['DOCUMENT_ROOT'] = '/Users/markstory/Sites/cake_dev';
-		$_SERVER['SCRIPT_FILENAME'] = '/Users/markstory/Sites/cake_dev/index.php';
+		$_SERVER['DOCUMENT_ROOT'] =  ROOT;
+		$_SERVER['SCRIPT_FILENAME'] =  ROOT . '/index.php';
 
 		$result = $Dispatcher->baseUrl();
 		$this->assertEqual('/index.php', $result);
@@ -1259,8 +1259,8 @@ class DispatcherTest extends CakeTestCase {
 		$Dispatcher = new Dispatcher();
 
 		Configure::write('App.baseUrl', '/index.php');
-		$_SERVER['DOCUMENT_ROOT'] = '/Users/markstory/Sites/cake_dev/app/webroot';
-		$_SERVER['SCRIPT_FILENAME'] = '/Users/markstory/Sites/cake_dev/app/webroot/index.php';
+		$_SERVER['DOCUMENT_ROOT'] = ROOT . '/app/webroot';
+		$_SERVER['SCRIPT_FILENAME'] = ROOT . '/app/webroot/index.php';
 
 		$result = $Dispatcher->baseUrl();
 		$this->assertEqual('/index.php', $result);

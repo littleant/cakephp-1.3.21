@@ -19,6 +19,7 @@
  * @since         CakePHP(tm) v 1.2.0.4206
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
+include_once CAKE_TESTS_LIB . 'reporter' . DS . 'cake_html_reporter.php';
 
 /**
  * TestManagerTest class
