@@ -10,7 +10,6 @@ notifications:
 branches:
   only:
   - master
-  - fix-php8-tests
 services:
   - mysql
 before_install:
