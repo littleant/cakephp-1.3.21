@@ -920,8 +920,9 @@ class DboSource extends DataSource {
  * @param integer $recursive Number of levels of association
  * @param array $stack
  */
-	function queryAssociation(&$model, &$linkModel, $type, $association, $assocData, &$queryData, $external = false, &$resultSet, $recursive, $stack) {
+	function queryAssociation(&$model, &$linkModel, $type, $association, $assocData, &$queryData, $external, &$resultSet, $recursive, $stack) {
 		if ($query = $this->generateAssociationQuery($model, $linkModel, $type, $association, $assocData, $queryData, $external, $resultSet)) {
+			$external = $external ?: false;
 			if (!isset($resultSet) || !is_array($resultSet)) {
 				if (Configure::read() > 0) {
 					echo '<div style = "font: Verdana bold 12px; color: #FF0000">' . sprintf(__('SQL Error in model %s:', true), $model->alias) . ' ';
@@ -1222,7 +1223,7 @@ class DboSource extends DataSource {
  * @return mixed
  * @access public
  */
-	function generateAssociationQuery(&$model, &$linkModel, $type, $association = null, $assocData = array(), &$queryData, $external = false, &$resultSet) {
+	function generateAssociationQuery(&$model, &$linkModel, $type, $association = null, $assocData = array(), &$queryData = null, $external = false, &$resultSet = null) {
 		$queryData = $this->__scrubQueryData($queryData);
 		$assocData = $this->__scrubQueryData($assocData);
 

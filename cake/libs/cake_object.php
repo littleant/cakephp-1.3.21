@@ -215,7 +215,7 @@ class CakeObject {
  * @access protected
  * @todo add examples to manual
  */
-	function _persist($name, $return = null, &$object, $type = null) {
+	function _persist($name, $return = null, &$object = null, $type = null) {
 		$file = CACHE . 'persistent' . DS . strtolower($name) . '.php';
 		if ($return === null) {
 			if (!file_exists($file)) {
@@ -225,7 +225,7 @@ class CakeObject {
 			}
 		}
 
-		if (!file_exists($file)) {
+		if (!file_exists($file) && $object !== null) {
 			$this->_savePersistent($name, $object);
 			return false;
 		} else {
