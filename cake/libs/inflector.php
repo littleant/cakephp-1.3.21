@@ -518,7 +518,7 @@ class Inflector {
 	static function underscore($camelCasedWord) {
 		$_this =& Inflector::getInstance();
 		if (!($result = $_this->_cache(__FUNCTION__, $camelCasedWord))) {
-			$result = strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', (string)$camelCasedWord));
+			$result = strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $camelCasedWord));
 			$_this->_cache(__FUNCTION__, $camelCasedWord, $result);
 		}
 		return $result;
@@ -537,7 +537,7 @@ class Inflector {
 	static function humanize($lowerCaseAndUnderscoredWord) {
 		$_this =& Inflector::getInstance();
 		if (!($result = $_this->_cache(__FUNCTION__, $lowerCaseAndUnderscoredWord))) {
-			$result = $lowerCaseAndUnderscoredWord ? ucwords(str_replace('_', ' ', $lowerCaseAndUnderscoredWord)) : '';
+			$result = ucwords(str_replace('_', ' ', $lowerCaseAndUnderscoredWord));
 			$_this->_cache(__FUNCTION__, $lowerCaseAndUnderscoredWord, $result);
 		}
 		return $result;

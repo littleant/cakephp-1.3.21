@@ -431,10 +431,7 @@ if (!function_exists('array_combine')) {
 			if (isset($_SERVER['HTTPS'])) {
 				return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 			}
-			if (env('SCRIPT_URI')) {
-				return (strpos(env('SCRIPT_URI'), 'https://') === 0);
-			}
-			return false;
+			return (strpos(env('SCRIPT_URI'), 'https://') === 0);
 		}
 
 		if ($key == 'SCRIPT_NAME') {
