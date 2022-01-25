@@ -505,7 +505,7 @@ class CakeSession extends CakeObject {
 		}
 		if (empty($_SESSION) && $iniSet) {
 			if (strtolower(trim($this->cookieSameSite)) === 'none') {
-				$shouldSendSameSiteNone = SameSite::handle($_SERVER['HTTP_USER_AGENT']);
+				$shouldSendSameSiteNone = SameSite::handle(env('HTTP_USER_AGENT'));
 				if ($shouldSendSameSiteNone) {
 					ini_set('session.cookie_samesite', $this->cookieSameSite);
 				}
