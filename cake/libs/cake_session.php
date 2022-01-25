@@ -203,7 +203,7 @@ class CakeSession extends CakeObject {
 			}
 			$this->host = env('HTTP_HOST');
 
-			if ($this->host && strpos($this->host, ':') !== false) {
+			if (strpos($this->host, ':') !== false) {
 				$this->host = substr($this->host, 0, strpos($this->host, ':'));
 			}
 		}

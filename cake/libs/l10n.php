@@ -413,10 +413,7 @@ class L10n extends CakeObject {
  * @access private
  */
 	function __autoLanguage() {
-		$_detectableLanguages = array();
-		if (env('HTTP_ACCEPT_LANGUAGE')) {
-			$_detectableLanguages = preg_split('/[,;]/', env('HTTP_ACCEPT_LANGUAGE'));
-		}
+		$_detectableLanguages = preg_split('/[,;]/', env('HTTP_ACCEPT_LANGUAGE'));
 		foreach ($_detectableLanguages as $key => $langKey) {
 			$langKey = strtolower($langKey);
 			if (strpos($langKey, '_') !== false) {
