@@ -1377,7 +1377,7 @@ class Model extends Overloadable {
 			if (!empty($this->data)) {
 				$success = Set::merge($success, $this->data);
 			}
-			$this->data = false;
+			$this->data = array();
 			$this->_clearCache();
 			$this->validationErrors = array();
 		}

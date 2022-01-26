@@ -178,7 +178,7 @@ class RequestHandlerComponent extends CakeObject {
  *
  */
 	function __construct() {
-		$this->__acceptTypes = explode(',', env('HTTP_ACCEPT'));
+		$this->__acceptTypes = env('HTTP_ACCEPT') ? explode(',', env('HTTP_ACCEPT')) : array();
 		$this->__acceptTypes = array_map('trim', $this->__acceptTypes);
 
 		foreach ($this->__acceptTypes as $i => $type) {
@@ -398,7 +398,7 @@ class RequestHandlerComponent extends CakeObject {
  * @access public
  */
 	function isPut() {
-		return (strtolower(env('REQUEST_METHOD')) == 'put');
+		return env('REQUEST_METHOD') && (strtolower(env('REQUEST_METHOD')) == 'put');
 	}
 
 /**
@@ -408,7 +408,7 @@ class RequestHandlerComponent extends CakeObject {
  * @access public
  */
 	function isGet() {
-		return (strtolower(env('REQUEST_METHOD')) == 'get');
+		return env('REQUEST_METHOD') && (strtolower(env('REQUEST_METHOD')) == 'get');
 	}
 
 /**
