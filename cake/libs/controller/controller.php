@@ -443,7 +443,7 @@ class Controller extends CakeObject {
 			}
 		}
 
-		if (class_exists($pluginController) && $pluginName != null) {
+		if (!is_null($pluginController) && class_exists($pluginController) && $pluginName != null) {
 			$appVars = get_class_vars($pluginController);
 			$merge = array('components', 'helpers');
 
