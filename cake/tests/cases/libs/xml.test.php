@@ -1002,7 +1002,7 @@ class XmlTest extends CakeTestCase {
 			<item>
 				<title>constructng result array when using findall</title>
 				<link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
-				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
+				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt;&lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
 				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</guid>
 				<author>bmil...@gmail.com(bpscrugs)</author>
 				<pubDate>Fri, 28 Dec 2007 00:44:14 UT</pubDate>
@@ -1116,7 +1116,7 @@ class XmlTest extends CakeTestCase {
 			<item>
 				<title>constructng result array when using findall</title>
 				<link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
-				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
+				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt;&lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
 				<dc:creator>cakephp</dc:creator>
 				<category><![CDATA[cakephp]]></category>
 				<category><![CDATA[model]]></category>
