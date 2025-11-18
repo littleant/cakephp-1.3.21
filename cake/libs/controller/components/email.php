@@ -883,6 +883,22 @@ class EmailComponent extends CakeObject{
 			return false;
 		}
 
+		if (!empty($this->smtpOptions['tls']) && $this->smtpOptions['tls'] === true) {
+			if (!$this->_smtpSend("STARTTLS", '220')) {
+				$this->smtpError = 'Unable to issue STARTTLS';
+				return false;
+			}
+			if (!stream_socket_enable_crypto($this->__smtpConnection->connection, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+				$this->smtpError = 'Unable to connect using TLS';
+				return false;
+			}
+
+			if (!$this->_smtpSend("EHLO {$host}", '250') && !$this->_smtpSend("HELO {$host}", '250')) {
+				$this->smtpError = 'Unable to issue EHLO/HELO after STARTTLS';
+				return false;
+			}
+		}
+
 		if (isset($this->smtpOptions['username']) && isset($this->smtpOptions['password'])) {
 			$authRequired = $this->_smtpSend('AUTH LOGIN', '334|503');
 			if ($authRequired == '334') {
